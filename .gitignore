@@ -1,0 +1,11 @@
+# Local scratch
+*.progress
+*.jsonl
+*.tmp
+
+# OS
+.DS_Store
+
+# Editor
+.idea/
+.vscode/

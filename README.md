@@ -1,4 +1,8 @@
-# Sorftime CLI Quick Reference
+# Sorftime CLI — Cross-Border E-Commerce Data API for AI Agents & Developers
+
+> **Scriptable access to 117 data endpoints across Amazon, Shopee, Walmart, 1688, Temu, and TikTok** — batch ASIN queries, category Best Sellers, keyword research, hijacker monitoring, variation sales, creator analytics.
+>
+> One npm package. One unified command: `sorftime api <Endpoint> '<json>'`. Works with any AI agent and any automation pipeline. Open source.
 
 ## 🆕 What's New (August 6, 2026)
 
@@ -207,7 +211,10 @@ sorftime-cli/
     ├── _lib.sh                              # Shared bash library (sourced by the others)
     ├── call.sh                              # Single API call wrapper
     ├── one.sh                               # One-line status query
-    └── decode.sh                            # Error-code dictionary
+    ├── batch.sh                             # Generic batch runner (rate limit / retry / resume / dry-run)
+    ├── doctor.sh                            # Environment self-check with onboarding hints
+    ├── decode.sh                            # Error-code dictionary
+    └── gen-index.sh                         # Endpoint count matrix generator
 ```
 
 ---
@@ -223,3 +230,12 @@ sorftime-cli/
 - **Want a one-line status query** — Use `scripts/one.sh <Endpoint> <ID>` instead of a raw `sorftime api ... | jq`.
 
 For detailed troubleshooting, see [`resources/_common.md`](resources/_common.md) §7 (error codes) and §8 (rate limits).
+---
+
+## 📄 License
+
+MIT © [DannylydST](https://github.com/DannylydST) · Sorftime Data Technology
+
+---
+
+*Built for automation. On 6 platforms. Open source.*
