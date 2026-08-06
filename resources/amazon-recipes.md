@@ -1,5 +1,14 @@
 # Amazon Multi-endpoint Orchestration Recipes
 
+
+## Table of Contents
+
+- [Recipe 1: Product Selection (CategoryRequest → ProductSearch → KeywordExtends → ProductReviewsQuery)](#recipe-1-product-selection-categoryrequest--productsearch--keywordextends--productreviewsquery)
+- [Recipe 2: Competitor Deep-Dive (ProductRequest batch → AsinSalesVolume → ASINRequestKeyword → ProductReviewsQuery)](#recipe-2-competitor-deep-dive-productrequest-batch--asinsalesvolume--asinrequestkeyword--productreviewsquery)
+- [Recipe 3: Monitoring Deployment (KeywordBatchSubscription + period config + schedule detail extraction)](#recipe-3-monitoring-deployment-keywordbatchsubscription--period-config--schedule-detail-extraction)
+- [Recipe 4: Trend Tracking (CategoryTrend trendIndex 0-39 → time series stitching)](#recipe-4-trend-tracking-categorytrend-trendindex-0-39--time-series-stitching)
+- [Recipe 5: Cross-Platform Comparison (Amazon ProductRequest + Shopee CategoryRequest + Walmart ProductRequest)](#recipe-5-cross-platform-comparison-amazon-productrequest--shopee-categoryrequest--walmart-productrequest)
+
 **Purpose**: Demonstrate core scenarios of `sorftime-cli` — arbitrary endpoint combinations, batch scripts, custom workflows.
 
 **Prerequisites**: You are already familiar with each endpoint's individual usage (see [amazon-category-api.md](./amazon-category-api.md) / [amazon-product-api.md](./amazon-product-api.md) / [amazon-keyword-api.md](./amazon-keyword-api.md) / [amazon-monitoring-api.md](./amazon-monitoring-api.md)).

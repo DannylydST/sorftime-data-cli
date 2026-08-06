@@ -1,5 +1,16 @@
 # Amazon Alexa Question Endpoints (4)
 
+
+## Table of Contents
+
+- [1. Real-time Collect Alexa Questions (AlexaQuestionsCollection)](#1-real-time-collect-alexa-questions-alexaquestionscollection)
+- [2. Real-time Query Alexa Question Task Status (AlexaQuestionsCollectionStatusQuery)](#2-real-time-query-alexa-question-task-status-alexaquestionscollectionstatusquery)
+- [3. Query Alexa Question Task Result (AlexaQuestionsCollectionResultQuery)](#3-query-alexa-question-task-result-alexaquestionscollectionresultquery)
+- [4. Query Alexa Questions (AlexaQuestionsQuery)](#4-query-alexa-questions-alexaquestionsquery)
+- [Notes](#notes)
+- [Best Practices](#best-practices)
+- [1. Full Alexa Question Research Workflow](#1-full-alexa-question-research-workflow)
+
 **Endpoints in this file**: AlexaQuestionsCollection, AlexaQuestionsCollectionStatusQuery, AlexaQuestionsCollectionResultQuery, AlexaQuestionsQuery
 
 **Amazon Domains**: 1=US, 2=UK, 3=DE, 4=FR, 5=IN, 6=CA, 7=JP, 8=ES, 9=IT

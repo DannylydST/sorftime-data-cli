@@ -2,6 +2,30 @@
 
 > For common reference, see [`_common.md`](./_common.md): CLI call template, Domain table, error codes, response structure, rate limits & concurrency. Each endpoint document **only retains the endpoint's own parameters / fields / examples**; common parts are referenced from this file.
 
+
+## Table of Contents
+
+- [1. CLI Call Template](#1-cli-call-template)
+- [2. Amazon Domain Table (14 sites)](#2-amazon-domain-table-14-sites)
+- [3. Shopee Domain Table (8 sites)](#3-shopee-domain-table-8-sites)
+- [4. 1688 Domain Table (1 site)](#4-1688-domain-table-1-site)
+- [5. Walmart Domain Table (1 site)](#5-walmart-domain-table-1-site)
+- [5b. Temu Domain Table (2 sites)](#5b-temu-domain-table-2-sites)
+- [5c. TikTok Domain Table (8 sites)](#5c-tiktok-domain-table-8-sites)
+- [6. Common Response Structure](#6-common-response-structure)
+- [6.1 Amazon / Shopee / Walmart — PascalCase](#61-amazon--shopee--walmart--pascalcase)
+- [6.2 1688 / Temu / TikTok — PascalCase on success, camelCase on error](#62-1688--temu--tiktok--pascalcase-on-success-camelcase-on-error)
+- [6.3 Common Field Description](#63-common-field-description)
+- [7. Error Code Table](#7-error-code-table)
+- [Amazon business error codes](#amazon-business-error-codes)
+- [Shopee business error codes](#shopee-business-error-codes)
+- [1688 business error codes](#1688-business-error-codes)
+- [Walmart business error codes](#walmart-business-error-codes)
+- [Temu business error codes](#temu-business-error-codes)
+- [TikTok business error codes](#tiktok-business-error-codes)
+- [8. Rate Limit and Concurrency Constraints (Common)](#8-rate-limit-and-concurrency-constraints-common)
+- [9. How Each Endpoint Document References This File](#9-how-each-endpoint-document-references-this-file)
+
 ---
 
 ## 1. CLI Call Template

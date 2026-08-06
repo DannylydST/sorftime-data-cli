@@ -3,6 +3,43 @@
 > This document is **not** an endpoint manual, but rather a set of **executable templates for solving concrete business problems**. Each template = problem description + step-by-step commands + expected output.
 > For common reference (Domain table, error codes, CLI template), see [`_common.md`](./_common.md).
 
+
+## Table of Contents
+
+- [Quick access](#quick-access)
+- [Natural language search (Quick access)](#natural-language-search-quick-access)
+- [1. Basics](#1-basics)
+- [1.1 Account and quota management](#11-account-and-quota-management)
+- [1.2 Core method basic calls](#12-core-method-basic-calls)
+- [1.3 Natural language search](#13-natural-language-search)
+- [1.4 Batch execution](#14-batch-execution)
+- [2. Product selection](#2-product-selection)
+- [2.1 New high-potential products](#21-new-high-potential-products)
+- [2.3 Hot potential bestsellers (market breakthrough)](#23-hot-potential-bestsellers-market-breakthrough)
+- [2.4 Seasonal hot sellers](#24-seasonal-hot-sellers)
+- [2.5 High-price, low-competition potential hits](#25-high-price-low-competition-potential-hits)
+- [2.6 FBM hot sellers](#26-fbm-hot-sellers)
+- [3. Operations](#3-operations)
+- [3.1 Find competitors (via product name search)](#31-find-competitors-via-product-name-search)
+- [3.2 Competitor keyword reverse lookup (find common core keywords)](#32-competitor-keyword-reverse-lookup-find-common-core-keywords)
+- [3.3 Discover keywords via category](#33-discover-keywords-via-category)
+- [3.4 Long-tail keyword extension + CPC analysis](#34-long-tail-keyword-extension--cpc-analysis)
+- [3.5 Track your/competitor's exposure rank changes for a keyword](#35-track-yourcompetitors-exposure-rank-changes-for-a-keyword)
+- [3.6 Keyword competition analysis](#36-keyword-competition-analysis)
+- [3.7 Build your own keyword library](#37-build-your-own-keyword-library)
+- [3.8 Full keyword research workflow (from finding competitors to building a library)](#38-full-keyword-research-workflow-from-finding-competitors-to-building-a-library)
+- [3.9 Listing creation (from competitor analysis to copy / images output)](#39-listing-creation-from-competitor-analysis-to-copy--images-output)
+- [Temu Special](#temu-special)
+- [Temu Basic Calls](#temu-basic-calls)
+- [Temu Product Query](#temu-product-query)
+- [Temu Shop Query](#temu-shop-query)
+- [Temu vs Amazon Cross-Platform Comparison](#temu-vs-amazon-cross-platform-comparison)
+- [4. Research](#4-research)
+- [4.1 Product research](#41-product-research)
+- [4.2 Market research](#42-market-research)
+- [4.3 Keyword ad-investment research](#43-keyword-ad-investment-research)
+- [API name quick reference](#api-name-quick-reference)
+
 ---
 
 ## Quick access

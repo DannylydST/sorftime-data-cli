@@ -1,5 +1,37 @@
 # Walmart Endpoints (17)
 
+
+## Table of Contents
+
+- [Call Conventions](#call-conventions)
+- [1. Category Tree (CategoryTree)](#1-category-tree-categorytree)
+- [2. Category Market Report (CategoryRequest)](#2-category-market-report-categoryrequest)
+- [3. Product Data Query (ProductRequest)](#3-product-data-query-productrequest)
+- [4. Product Historical Trend Query (ProductTrendRequest)](#4-product-historical-trend-query-producttrendrequest)
+- [5. Product Officially Disclosed Variant Sales (ProductSalesVolume)](#5-product-officially-disclosed-variant-sales-productsalesvolume)
+- [6. Query This Month's Remaining Credits (CoinQuery)](#6-query-this-months-remaining-credits-coinquery)
+- [7. Query Credit Usage Details (CoinStream)](#7-query-credit-usage-details-coinstream)
+- [8. Query Monthly Request Usage Details (RequestStreamMonth)](#8-query-monthly-request-usage-details-requeststreammonth)
+- [9. Keyword & Library (9 endpoints)](#9-keyword--library-9-endpoints)
+- [9.0 Common notes for keyword & library endpoints](#90-common-notes-for-keyword--library-endpoints)
+- [9.1 Keyword Query (KeywordQuery)](#91-keyword-query-keywordquery)
+- [9.2 Search Keywords by Name (KeywordSearchFromName)](#92-search-keywords-by-name-keywordsearchfromname)
+- [9.3 Keyword (Last 15 Days) Search Result Products (KeywordSearchResults)](#93-keyword-last-15-days-search-result-products-keywordsearchresults)
+- [9.4 Keyword Details (KeywordRequest)](#94-keyword-details-keywordrequest)
+- [9.5 Product Reverse-lookup Keywords (ProductRequestKeyword)](#95-product-reverse-lookup-keywords-productrequestkeyword)
+- [9.6 Find Related Keywords (KeywordExtends)](#96-find-related-keywords-keywordextends)
+- [9.7 Add Keyword to My Library (FavoriteKeyword)](#97-add-keyword-to-my-library-favoritekeyword)
+- [9.8 Move / Delete Keyword Library Keyword (ChangeFavoriteKeyword)](#98-move--delete-keyword-library-keyword-changefavoritekeyword)
+- [9.9 Query Keyword Library (GetFavoriteKeyword)](#99-query-keyword-library-getfavoritekeyword)
+- [Notes](#notes)
+- [Best Practices](#best-practices)
+- [1. Category to Product Analysis](#1-category-to-product-analysis)
+- [2. Product Comparison Analysis](#2-product-comparison-analysis)
+- [3. Account Quota Monitoring](#3-account-quota-monitoring)
+- [4. Keyword Research Workflow](#4-keyword-research-workflow)
+- [5. Keyword Filtering](#5-keyword-filtering)
+- [6. Library Management](#6-library-management)
+
 **Endpoints in this file**: CategoryTree, CategoryRequest, ProductRequest, ProductTrendRequest, ProductSalesVolume, CoinQuery, CoinStream, RequestStreamMonth, KeywordQuery, KeywordSearchFromName, KeywordSearchResults, KeywordRequest, ProductRequestKeyword, KeywordExtends, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword
 
 ## Call Conventions

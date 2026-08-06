@@ -3,6 +3,19 @@
 > Data field type definitions for all TikTok endpoints. Each endpoint document only describes the type of the `data` field; for individual fields, see this document.
 > All endpoints share a common outer response structure: `RequestLeft`, `RequestConsumed`, `RequestCount`, `Code`, `Message`, `Data`.
 
+
+## Table of Contents
+
+- [CategoryTreeObject](#categorytreeobject)
+- [CategoryObject](#categoryobject)
+- [CategoryListObject](#categorylistobject)
+- [ProductSummeryObject](#productsummeryobject)
+- [ProductTrendObject](#producttrendobject)
+- [ShopObject](#shopobject)
+- [AuthorObject (US site only)](#authorobject-us-site-only)
+- [VideoObject (US site only)](#videoobject-us-site-only)
+- [TagObject (US site only)](#tagobject-us-site-only)
+
 ---
 
 ## CategoryTreeObject

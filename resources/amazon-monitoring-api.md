@@ -1,5 +1,40 @@
 # Amazon Monitoring — Common Rules & All Endpoints (14)
 
+
+## Table of Contents
+
+- [A1. Prerequisites](#a1-prerequisites)
+- [Install sorftime-cli](#install-sorftime-cli)
+- [Configure the account](#configure-the-account)
+- [A2. Domain Parameters and Site Support Matrix](#a2-domain-parameters-and-site-support-matrix)
+- [A3. Credit Cost Rules](#a3-credit-cost-rules)
+- [A4. Data Retention](#a4-data-retention)
+- [A5. period Expression Syntax](#a5-period-expression-syntax)
+- [A6. area Postal Codes](#a6-area-postal-codes)
+- [A7. Common Notes](#a7-common-notes)
+- [A8. Common Errors](#a8-common-errors)
+- [C1. Keyword Monitoring (5 endpoints)](#c1-keyword-monitoring-5-endpoints)
+- [1. Register Keyword Monitoring (KeywordBatchSubscription)](#1-register-keyword-monitoring-keywordbatchsubscription)
+- [2. Query Keyword Tasks (KeywordTasks)](#2-query-keyword-tasks-keywordtasks)
+- [3. Modify Keyword Monitoring Task (KeywordBatchTaskUpdate)](#3-modify-keyword-monitoring-task-keywordbatchtaskupdate)
+- [4. Query Keyword Monitoring Task Execution Batches (KeywordBatchScheduleList)](#4-query-keyword-monitoring-task-execution-batches-keywordbatchschedulelist)
+- [5. Extract Keyword Monitoring Product List Detail Data (KeywordBatchScheduleDetail)](#5-extract-keyword-monitoring-product-list-detail-data-keywordbatchscheduledetail)
+- [C2. Best Seller List Monitoring (4 endpoints)](#c2-best-seller-list-monitoring-4-endpoints)
+- [1. Register Best Seller List Monitoring Task (BestSellerListSubscription)](#1-register-best-seller-list-monitoring-task-bestsellerlistsubscription)
+- [2. Query Best Seller List Monitoring Tasks (BestSellerListTask)](#2-query-best-seller-list-monitoring-tasks-bestsellerlisttask)
+- [3. Delete Best Seller List Monitoring Task (BestSellerListDelete)](#3-delete-best-seller-list-monitoring-task-bestsellerlistdelete)
+- [4. Collect Best Seller List Monitoring Data (BestSellerListDataCollect)](#4-collect-best-seller-list-monitoring-data-bestsellerlistdatacollect)
+- [C3. Hijacker & Stock Monitoring (5 endpoints)](#c3-hijacker--stock-monitoring-5-endpoints)
+- [1. Register Hijacker & Stock Monitoring (ProductSellerSubscription)](#1-register-hijacker--stock-monitoring-productsellersubscription)
+- [2. Query Hijacker & Stock Monitoring Tasks (ProductSellerTasks)](#2-query-hijacker--stock-monitoring-tasks-productsellertasks)
+- [3. Modify Hijacker & Stock Monitoring Task (ProductSellerTaskUpdate)](#3-modify-hijacker--stock-monitoring-task-productsellertaskupdate)
+- [4. Query Hijacker & Stock Monitoring Task Execution Batches (ProductSellerTaskScheduleList)](#4-query-hijacker--stock-monitoring-task-execution-batches-productsellertaskschedulelist)
+- [5. Extract Hijacker & Stock Monitoring Execution Result Detail Data (ProductSellerTaskScheduleDetail)](#5-extract-hijacker--stock-monitoring-execution-result-detail-data-productsellertaskscheduledetail)
+- [1. Keyword rank monitoring](#1-keyword-rank-monitoring)
+- [2. Best Seller list monitoring](#2-best-seller-list-monitoring)
+- [3. Hijacker monitoring](#3-hijacker-monitoring)
+- [4. Combined monitoring strategy](#4-combined-monitoring-strategy)
+
 For common reference, see [`_common.md`](./_common.md): CLI call template, Domain table, error codes, response structure, rate limits & concurrency.
 This document covers all Amazon monitoring endpoints — common rules plus 14 endpoint details in one file.
 

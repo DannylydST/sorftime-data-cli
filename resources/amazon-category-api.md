@@ -1,5 +1,21 @@
 # Amazon Category Endpoints (7)
 
+
+## Table of Contents
+
+- [1. Category Tree (CategoryTree)](#1-category-tree-categorytree)
+- [2. Category Best Sellers (supports historical lookup) (CategoryRequest)](#2-category-best-sellers-supports-historical-lookup-categoryrequest)
+- [3. All Hot-selling Products in a Category (CategoryProducts)](#3-all-hot-selling-products-in-a-category-categoryproducts)
+- [4. Query Market Historical Trend (CategoryTrend)](#4-query-market-historical-trend-categorytrend)
+- [5. Search Category by Name (CategorySearchFromName)](#5-search-category-by-name-categorysearchfromname)
+- [6. AI Interpret Category Market (CategoryAssistant)](#6-ai-interpret-category-market-categoryassistant)
+- [7. Same-category Product Feature Analysis (SimilarProductFeature)](#7-same-category-product-feature-analysis-similarproductfeature)
+- [Notes](#notes)
+- [Best Practices](#best-practices)
+- [1. Complete Category Market Analysis Workflow](#1-complete-category-market-analysis-workflow)
+- [2. Historical Data Analysis](#2-historical-data-analysis)
+- [3. Multi-site Comparison Analysis](#3-multi-site-comparison-analysis)
+
 **Amazon Domains**: 1=US, 2=UK, 3=DE, 4=FR, 5=IN, 6=CA, 7=JP, 8=ES, 9=IT, 10=MX, 11=AE, 12=AU, 13=BR, 14=SA
 
 **Endpoints in this file**: CategoryTree, CategoryRequest, CategoryProducts, CategoryTrend, CategorySearchFromName, CategoryAssistant, SimilarProductFeature

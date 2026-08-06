@@ -3,6 +3,20 @@
 > Data field type definitions for all Shopee endpoints. Each endpoint document only describes the type of the `data` field; for individual fields, see this document.
 > All endpoints share a common outer response structure: `RequestLeft`, `RequestConsumed`, `RequestCount`, `Code`, `Message`, `Data`.
 
+
+## Table of Contents
+
+- [CategoryTreeObject](#categorytreeobject)
+- [CategoryObject](#categoryobject)
+- [ProductSummeryObject](#productsummeryobject)
+- [ProductItemObject](#productitemobject)
+- [ProductRelatedObject](#productrelatedobject)
+- [ProductArrayObject](#productarrayobject)
+- [ProductTrendObject](#producttrendobject)
+- [KeywordQueryPatternObject](#keywordquerypatternobject)
+- [KeywordSummeryObject](#keywordsummeryobject)
+- [ShopObject](#shopobject)
+
 ---
 
 ## CategoryTreeObject

@@ -5,7 +5,9 @@
 - **🌐 English-first international release** — Full documentation in English for global sellers. New 🔴 Language Rule: the skill always replies in the user's language (English or Chinese), never mixed.
 - **🗣️ Bilingual trigger support** — Triggers in both English and Chinese (选品/跟卖预警/跨平台对比/批量查 ASIN/监控部署...). Works for US/UK sellers and Chinese sellers alike.
 - **📋 Parameter naming trap table** — 13 highest-frequency parameter pitfalls (Walmart `NodePath` vs `nodeId`, Temu `Name` casing, `ASINRequestKeyword` all-caps, TikTok creator/video domain=301...) added to SKILL.md.
-- **🔧 Documentation fixes** — All internal cross-references repaired; endpoint count corrected to 117 unique (3 cross-platform account endpoints counted once).
+- **🛠️ Automation workhorses** — `batch.sh` (generic batch runner: rate limiting, retries, resume, disk output), `doctor.sh` (environment self-check with onboarding hints), `gen-index.sh` (auto-refreshing endpoint count matrix).
+- **🗺️ Three-column Shortcut Map** — user intent → command → expected output, covering daily queries, batch ops, and debugging.
+- **🔧 Documentation fixes** — All internal cross-references repaired; endpoint count corrected to 117 unique (3 cross-platform account endpoints counted once); TOC added to all reference files; description within platform limits.
 - **📦 Built on `sorftime-cli@1.0.0`** — The official npm release (Amazon 57 + Shopee 17 + Walmart 17 + 1688 9 + Temu 12 + TikTok 17).
 
 [Full changelog →](CHANGELOG.md)
@@ -56,8 +58,11 @@ All scripts are POSIX bash 4+ (macOS / Linux / Windows Git Bash / WSL). They wra
 |---|---|
 | `scripts/call.sh` | Single API call with auto-cleaned output (drops `info:`, `✔`, ANSI), JSON pretty-print, business-error exit code 2, optional retry |
 | `scripts/one.sh` | One-line status query: `one ProductRequest B0CVM8TXHP` → 11 key fields (title/price/sales/rating/...) for a single ASIN / keyword / category |
+| `scripts/batch.sh` | **Generic batch runner**: `batch.sh ProductRequest asins.txt --param asin --out out.jsonl` — loop any endpoint over a file with rate limiting, retries, resume (`--resume`), dry-run (`--dry-run`) |
+| `scripts/doctor.sh` | **Environment self-check**: `doctor.sh --connect` — node/npm/CLI version/profile/live call, with install hints on failure |
 | `scripts/decode.sh` | Error-code dictionary: `decode 10` → meaning + troubleshooting (no API call needed) |
-| `scripts/_lib.sh` | Shared library sourced by the three scripts above — defines `call_api` / `_pyq` / `py_field` / `py_to_csv` helpers |
+| `scripts/gen-index.sh` | Auto-generates the endpoint count matrix (`resources/_endpoints-index.md`) — run after any resources update |
+| `scripts/_lib.sh` | Shared library sourced by all scripts — defines `call_api` / `_pyq` / `py_field` / `py_to_csv` helpers |
 
 **Exit codes (applies to `call.sh` / `one.sh`)**:
 

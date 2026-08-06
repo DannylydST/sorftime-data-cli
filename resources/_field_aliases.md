@@ -2,6 +2,20 @@
 
 > When you can't find a field in an API response, consult this table first. Do not directly conclude "the endpoint doesn't return this data".
 
+
+## Table of Contents
+
+- [Usage](#usage)
+- [Product-related (ProductRequest / ProductQuery)](#product-related-productrequest--productquery)
+- [Keyword-related (KeywordRequest / ASINRequestKeywordv2 / KeywordQuery)](#keyword-related-keywordrequest--asinrequestkeywordv2--keywordquery)
+- [Category-related (CategoryRequest / CategoryTree / CategoryTrend)](#category-related-categoryrequest--categorytree--categorytrend)
+- [Variant Sales (AsinSalesVolume)](#variant-sales-asinsalesvolume)
+- [Shopee-Specific Fields](#shopee-specific-fields)
+- [Walmart-Specific Fields](#walmart-specific-fields)
+- [Monitoring-related (Monitoring series)](#monitoring-related-monitoring-series)
+- [Common response fields](#common-response-fields)
+- [Casing traps](#casing-traps)
+
 ## Usage
 
 ```bash

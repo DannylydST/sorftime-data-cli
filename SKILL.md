@@ -1,14 +1,12 @@
 ---
 name: sorftime-cli
 description: >
-  Call the Sorftime CLI (npm package `sorftime-cli`, unified entry point `sorftime api <Endpoint> '<json>'`) for 117 unique cross-border e-commerce data endpoints, covering Amazon 57 + Shopee 17 + Walmart 17 + 1688 9 + Temu 12 + TikTok 17 (per-platform counts include 3 shared cross-platform account endpoints: CoinQuery/CoinStream/RequestStreamMonth).
-  When the user or agent needs to: write scripts that batch-query ASINs / categories / keywords / sales / reviews / monitoring; troubleshoot Sorftime API calls, parameters, fields, or error codes;
-  or orchestrate multiple endpoints for product selection / competitor analysis / hijacker monitoring / cross-platform comparison, this skill **MUST** be triggered. Use it whenever the user mentions sorftime-cli, Sorftime data APIs, batch ASIN lookups, monitoring setup, or any platform endpoint (Amazon/Shopee/Walmart/1688/Temu/TikTok) — even if they don't name the CLI explicitly.
-  Trigger words: sorftime api, sorftime-cli, sorftime 接口, cross-border e-commerce data, batch ASIN query, category Best Seller, hijacker monitoring, keyword reverse-lookup, ProductRequest, CategoryRequest, ASINRequestKeyword, 调用 sorftime, 批量查 ASIN, 批量类目数据, 自定义 sorftime 工作流, 写 sorftime 脚本, 采购成本分析, 监控注册, 跟卖预警, 子体销量, 关键词监控部署, Best Seller 榜单抓取, 类目趋势分析, 跨平台对比, 全量扫类目, 把这些ASIN全查一遍, 监控起来, 每天拉数据, 跨平台价差, FBM转FBA批量, 达人分析, 视频标签分析, TikTok 带货数据.
+  Call the Sorftime CLI (npm package `sorftime-cli`, entry point `sorftime api <Endpoint> '<json>'`) for 117 unique data endpoints across Amazon/Shopee/Walmart/1688/Temu/TikTok. Use for: batch-querying ASINs/categories/keywords/sales/reviews/monitoring; troubleshooting API calls, parameters, fields, or error codes; orchestrating endpoints for product selection / competitor analysis / hijacker monitoring / cross-platform comparison. **MUST** trigger whenever the user mentions sorftime-cli, Sorftime data APIs, batch ASIN lookups, monitoring setup, or any platform endpoint — even if the CLI isn't named explicitly.
+  Trigger words: sorftime api, sorftime-cli, batch ASIN query, category Best Seller, hijacker monitoring, keyword reverse-lookup, 批量查 ASIN, 批量类目数据, 调用 sorftime, 写 sorftime 脚本, 采购成本分析, 跟卖预警, 子体销量, 关键词监控, Best Seller 榜单, 类目趋势, 跨平台对比, 全量扫类目, 把这些ASIN全查一遍, 监控起来, 每天拉数据, 跨平台价差, FBM转FBA批量, 达人分析, 视频标签分析, TikTok 带货数据.
 compatibility:
   tools: [Bash, Read]
   dependencies: [node>=16, npm, jq (optional), sorftime-cli@1.0.0]
-version: 1.1.0
+version: 1.2.0
 user-invocable: true
 ---
 
@@ -172,38 +170,41 @@ jq --version || echo "⚠️ jq not installed; pure-CLI JSON processing is limit
 
 ## Shortcut Map (semantic wrappers)
 
-Map common intents to one-line commands.
+Map user intent → command → expected output. If the intent matches, use the command as-is; adapt the values (ASIN / nodeId / keyword / date) to the task.
 
 ### Daily Query Shortcuts
 
-| Intent | Command |
-|------|------|
-| Query a single product | `sorftime api ProductRequest '{"asin":"B0X"}' --domain 1 \| grep -v "^info:" \| jq .` |
-| Query category Best Seller | `sorftime api CategoryRequest '{"nodeId":"3743561"}' --domain 1 \| grep -v "^info:" \| jq '.data.list[0].asinList[:10]'` |
-| Query ASIN variant sales | `sorftime api AsinSalesVolume '{"asin":"B0X","queryDate":"2026-01-01"}' --domain 1 \| grep -v "^info:" \| jq .` |
-| Query keyword traffic | `sorftime api KeywordRequest '{"keyword":"water bottle"}' --domain 1 \| grep -v "^info:" \| jq .` |
-| Reverse-lookup keywords for ASIN | `sorftime api ASINRequestKeyword '{"asin":"B0X","pageSize":50}' --domain 1 \| grep -v "^info:" \| jq .` |
+| User intent | Command | Output |
+|------|------|------|
+| Query a single product | `sorftime api ProductRequest '{"asin":"B0X"}' --domain 1 \| grep -v "^info:" \| jq .` | Full product JSON (price `SalesPrice`, monthly sales `ListingSalesVolumeOfMonth`, rating `Ratings`, buybox `BuyboxSeller`) |
+| Query category Best Seller | `sorftime api CategoryRequest '{"nodeId":"3743561"}' --domain 1 \| grep -v "^info:" \| jq '.data.list[0].asinList[:10]'` | Top-10 ASIN list for the node |
+| Query ASIN variant sales | `sorftime api AsinSalesVolume '{"asin":"B0X","queryDate":"2026-01-01"}' --domain 1 \| grep -v "^info:" \| jq .` | Daily sales per variant, one entry per date |
+| Query keyword traffic | `sorftime api KeywordRequest '{"keyword":"water bottle"}' --domain 1 \| grep -v "^info:" \| jq .` | Keyword volume/share/competition snapshot |
+| Reverse-lookup keywords for ASIN | `sorftime api ASINRequestKeyword '{"asin":"B0X","pageSize":50}' --domain 1 \| grep -v "^info:" \| jq .` | Ranked keyword list the ASIN ranks for |
 
 ### Batch Operations Shortcuts
 
-> All batch commands default to `sleep 1` between requests to avoid rate limits (code 500/501/694).
+> **First choice: `scripts/batch.sh`** — generic batch runner with rate limiting, retries, resume, and disk output. Only fall back to manual `while read` loops when you need per-line custom logic.
 
-| Intent | Command |
-|------|------|
-| Batch product base info | `while read asin; do sorftime api ProductRequest "{\"asin\":\"$asin\"}" --domain 1; sleep 1; done < asins.txt` |
-| Batch variant sales | `while read asin; do sorftime api AsinSalesVolume "{\"asin\":\"$asin\",\"queryDate\":\"2026-01-01\"}" --domain 1; sleep 1; done < asins.txt` |
-| Batch reverse-lookup keywords | `while read asin; do sorftime api ASINRequestKeyword "{\"asin\":\"$asin\",\"pageSize\":100}" --domain 1; sleep 1; done < asins.txt` |
-| Paginate full category tree | Write a manual loop that increments `pageToken` etc. |
+| User intent | Command | Output |
+|------|------|------|
+| Batch product base info | `bash scripts/batch.sh ProductRequest asins.txt --param asin --domain 1 --out products.jsonl` | One response JSON per line in `products.jsonl`; summary `N ok / M failed` |
+| Batch variant sales | `bash scripts/batch.sh AsinSalesVolume asins.txt --param asin --domain 1 --out sales.jsonl` | Same, with `{"queryDate":"YYYY-MM-DD"}` JSON lines input for fixed-date queries |
+| Batch reverse-lookup keywords | `bash scripts/batch.sh ASINRequestKeyword asins.txt --param asin --domain 1 --out kws.jsonl` | One keyword list per ASIN, line-aligned with input |
+| Resume an interrupted batch | `bash scripts/batch.sh ProductRequest asins.txt --param asin --out products.jsonl --resume` | Skips lines already done (progress in `products.jsonl.progress`) |
+| Dry-run preview before paying calls | `bash scripts/batch.sh ProductRequest asins.txt --param asin --dry-run` | Prints every command without executing |
+| Paginate full category tree | `sorftime api CategoryTree '{"nodeId":"0"}' --domain 1 \| grep -v "^info:" \| jq . > tree.json` then `jq` on demand | Local cache; see Large-data Persistence below |
 
 ### Debugging & Pre-flight Shortcuts
 
-| Intent | Command |
-|------|------|
-| Preview a request (see raw return) | `sorftime api ProductRequest '{"asin":"B0X"}' --domain 1` |
-| Check endpoint availability | `sorftime api ProductRequest '{"asin":"B0X"}' --domain 1 \| grep -v "^info:" \| jq '.code'` |
-| Environment connectivity test | `sorftime api CategoryTree '{"nodeId":"0"}' --domain 1` (a return value means connected) |
-| Search field name | Look up `resources/_field_aliases.md` |
-| View actual fields returned by an endpoint | Call the endpoint and inspect the JSON; aliases in `resources/_field_aliases.md` |
+| User intent | Command | Output |
+|------|------|------|
+| Full environment self-check | `bash scripts/doctor.sh --connect` | ✅/❌ per check: node, npm, CLI version, profile, live API call |
+| Preview a request (see raw return) | `sorftime api ProductRequest '{"asin":"B0X"}' --domain 1` | Raw JSON including `info:` lines |
+| Check endpoint availability | `sorftime api ProductRequest '{"asin":"B0X"}' --domain 1 \| grep -v "^info:" \| jq '.code'` | `0` = success; non-zero = error code (see `_common.md` §6) |
+| Environment connectivity test | `sorftime api CategoryTree '{"nodeId":"0"}' --domain 1` | A return value means connected |
+| Search field name | Look up `resources/_field_aliases.md` | Field → actual API name mapping |
+| View actual fields returned by an endpoint | Call the endpoint and inspect the JSON; aliases in `resources/_field_aliases.md` | Live field list |
 
 ### Large-data Persistence
 
@@ -235,10 +236,12 @@ sorftime api CategoryTree --domain 1 | grep -v "^info:" | jq . > category-tree-u
 Skills/sorftime-cli/
 ├── SKILL.md                              # Main index + discovery path + endpoint catalog
 ├── README.md                             # Human quick reference
-├── trigger-eval.json                     # Trigger evaluation queries
+├── CHANGELOG.md                          # Version history
+├── trigger-eval.json                     # Trigger evaluation queries (32, bilingual)
 ├── resources/
 │   ├── _common.md                        # Common: Domain/error codes/CLI template/rate limits/troubleshooting
 │   ├── _field_aliases.md                 # Field alias mapping
+│   ├── _endpoints-index.md               # Auto-generated endpoint count matrix (run gen-index.sh to refresh)
 │   ├── account.md                        # Cross-platform account management (3 endpoints)
 │   ├── amazon-category-api.md                # Amazon category 7 endpoints
 │   ├── amazon-data-types.md              # Amazon data type definitions
@@ -258,6 +261,7 @@ Skills/sorftime-cli/
 │   ├── tiktok-api.md                     # TikTok category+product+seller+creator+video 17 endpoints
 │   ├── tiktok-data-types.md              # TikTok data type definitions
 │   └── use-cases.md                      # Use case documentation
+└── scripts/                              # 7 helper scripts (see Bundled Scripts)
 ```
 
 ---
@@ -313,7 +317,10 @@ The skill ships 4 ready-to-use helper scripts that wrap the raw `sorftime api` c
 | [`scripts/call.sh`](scripts/call.sh) | Single API call with auto-cleaned output (drops `info:`, `✔`, ANSI), JSON pretty-print, business-error exit code 2, optional retry |
 | [`scripts/one.sh`](scripts/one.sh) | One-line status query: `one ProductRequest B0CVM8TXHP` → 11 key fields (title/price/sales/rating/...) for a single ASIN/keyword/category |
 | [`scripts/decode.sh`](scripts/decode.sh) | Error-code dictionary: `decode 10` → meaning + troubleshooting (no API call needed) |
-| [`scripts/_lib.sh`](scripts/_lib.sh) | Shared library sourced by `call.sh` / `one.sh` / `decode.sh` — defines `call_api` / `_pyq` / `py_field` / `py_to_csv` helpers |
+| [`scripts/batch.sh`](scripts/batch.sh) | **Generic batch runner**: loop an endpoint over an input file with rate limiting, retries, resume, disk output (`--out`), and dry-run. The automation workhorse — see Shortcut Map → Batch Operations |
+| [`scripts/doctor.sh`](scripts/doctor.sh) | Environment self-check: node/npm/CLI version/profile/live connectivity, with install-and-configure hints on failure. `doctor.sh --connect` for the full check |
+| [`scripts/gen-index.sh`](scripts/gen-index.sh) | Auto-generates `resources/_endpoints-index.md` (endpoint count matrix) from resource headers — run after any resources update so the 117-endpoint number never goes stale |
+| [`scripts/_lib.sh`](scripts/_lib.sh) | Shared library sourced by all scripts — defines `call_api` / `_pyq` / `py_field` / `py_to_csv` helpers |
 
 **Typical usage** (replace the 5-line `... 2>&1 | grep -v "^info:" | jq .` with 1 line):
 
