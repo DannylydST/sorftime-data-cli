@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Sorftime CLI Skill.
+All notable changes to Sorftime Data CLI Skill.
 
 ---
 

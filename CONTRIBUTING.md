@@ -1,4 +1,4 @@
-# Contributing to Sorftime CLI Skill
+# Contributing to Sorftime Data CLI Skill
 
 Thanks for your interest in contributing.
 

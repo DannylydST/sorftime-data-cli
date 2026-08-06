@@ -1,4 +1,4 @@
-# Sorftime CLI Recipes
+# Sorftime Data CLI Recipes
 
 > This document is **not** an endpoint manual, but rather a set of **executable templates for solving concrete business problems**. Each template = problem description + step-by-step commands + expected output.
 > For common reference (Domain table, error codes, CLI template), see [`_common.md`](./_common.md).

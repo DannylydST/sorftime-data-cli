@@ -1,4 +1,4 @@
-# Sorftime CLI — Cross-Border E-Commerce Data API for AI Agents & Developers
+# Sorftime Data CLI — Cross-Border E-Commerce Data API for AI Agents & Developers
 
 > **Scriptable access to 117 data endpoints across Amazon, Shopee, Walmart, 1688, Temu, and TikTok** — batch ASIN queries, category Best Sellers, keyword research, hijacker monitoring, variation sales, creator analytics.
 >

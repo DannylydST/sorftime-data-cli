@@ -1,4 +1,4 @@
-# Sorftime CLI Common Reference (_common.md)
+# Sorftime Data CLI Common Reference (_common.md)
 
 > For common reference, see [`_common.md`](./_common.md): CLI call template, Domain table, error codes, response structure, rate limits & concurrency. Each endpoint document **only retains the endpoint's own parameters / fields / examples**; common parts are referenced from this file.
 

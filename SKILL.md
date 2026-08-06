@@ -1,8 +1,8 @@
 ---
-name: sorftime-cli
+name: sorftime-data-cli
 description: >
   Call the Sorftime CLI (npm package `sorftime-cli`, entry point `sorftime api <Endpoint> '<json>'`) for 117 unique data endpoints across Amazon/Shopee/Walmart/1688/Temu/TikTok. Use for: batch-querying ASINs/categories/keywords/sales/reviews/monitoring; troubleshooting API calls, parameters, fields, or error codes; orchestrating endpoints for product selection / competitor analysis / hijacker monitoring / cross-platform comparison. **MUST** trigger whenever the user mentions sorftime-cli, Sorftime data APIs, batch ASIN lookups, monitoring setup, or any platform endpoint — even if the CLI isn't named explicitly.
-  Trigger words: sorftime api, sorftime-cli, batch ASIN query, category Best Seller, hijacker monitoring, keyword reverse-lookup, 批量查 ASIN, 批量类目数据, 调用 sorftime, 写 sorftime 脚本, 采购成本分析, 跟卖预警, 子体销量, 关键词监控, Best Seller 榜单, 类目趋势, 跨平台对比, 全量扫类目, 把这些ASIN全查一遍, 监控起来, 每天拉数据, 跨平台价差, FBM转FBA批量, 达人分析, 视频标签分析, TikTok 带货数据.
+  Trigger words: sorftime api, sorftime-cli, sorftime-data-cli, batch ASIN query, category Best Seller, hijacker monitoring, keyword reverse-lookup, 批量查 ASIN, 批量类目数据, 调用 sorftime, 写 sorftime 脚本, 采购成本分析, 跟卖预警, 子体销量, 关键词监控, Best Seller 榜单, 类目趋势, 跨平台对比, 全量扫类目, 把这些ASIN全查一遍, 监控起来, 每天拉数据, 跨平台价差, FBM转FBA批量, 达人分析, 视频标签分析, TikTok 带货数据.
 compatibility:
   tools: [Bash, Read]
   dependencies: [node>=16, npm, jq (optional), sorftime-cli@1.0.0]
@@ -10,7 +10,7 @@ version: 1.2.0
 user-invocable: true
 ---
 
-# Sorftime CLI Skill
+# Sorftime Data CLI Skill
 
 > Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering 117 unique Sorftime data endpoints (Amazon 57 + Shopee 17 + Walmart 17 + 1688 9 + Temu 12 + TikTok 17; CoinQuery/CoinStream/RequestStreamMonth are shared across platforms and counted once).
 
@@ -86,7 +86,7 @@ Run `bash scripts/doctor.sh --connect` → all checks pass → **re-run the user
 
 ---
 
-## Sorftime CLI Recipes
+## Sorftime Data CLI Recipes
 
 Full recipes in [`resources/use-cases.md`](resources/use-cases.md) — organized as Basics / Product Selection / Operations / Research, each recipe = problem description + step-by-step commands + expected output.
 
@@ -151,7 +151,7 @@ jq --version || echo "⚠️ jq not installed; pure-CLI JSON processing is limit
 | [`_common.md`](resources/_common.md) | Amazon/Shopee/Walmart/Temu/TikTok/1688 Domain table, complete error codes (per platform), common response structure, CLI call template, rate limit and concurrency constraints |
 | [`_field_aliases.md`](resources/_field_aliases.md) | Field alias mapping table |
 | [`account.md`](resources/account.md) | Cross-platform account management (3 endpoints): CoinQuery, CoinStream, RequestStreamMonth |
-| [`use-cases.md`](resources/use-cases.md) | Sorftime CLI recipes / use cases |
+| [`use-cases.md`](resources/use-cases.md) | Sorftime Data CLI recipes / use cases |
 
 ### Amazon (57 endpoints: 43 base + 14 monitoring)
 
