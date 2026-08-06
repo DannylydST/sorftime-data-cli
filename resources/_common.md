@@ -222,7 +222,7 @@ Error / no-data response (e.g. `code=11`):
 | `501` | Per-minute request limit reached | Lower the request frequency; retry in 1 minute |
 | `502` | Daily request limit reached | Wait for next day's reset or upgrade plan |
 | `503` | Task registration failed | Task volume at this time exceeded; try another time slot |
-| `694` | Insufficient request remaining | Log in to https://seller.sorftime.com/api to check or buy a resource pack |
+| `694` | Insufficient request remaining | Log in to your Sorftime account (open-intl.sorftime.com) to check or top up request credits |
 
 ---
 
@@ -257,7 +257,7 @@ Error / no-data response (e.g. `code=11`):
 | `501` | Per-minute request limit reached | Lower the request frequency; retry in 1 minute |
 | `502` | Daily request limit reached | Wait for next day's reset or upgrade plan |
 | `503` | Task registration failed | Task volume at this time exceeded; try another time slot |
-| `694` | Insufficient request remaining | Log in to https://seller.sorftime.com/api to check or buy a resource pack |
+| `694` | Insufficient request remaining | Log in to your Sorftime account (open-intl.sorftime.com) to check or top up request credits |
 ---
 
 ### 1688 business error codes
@@ -275,7 +275,7 @@ Error / no-data response (e.g. `code=11`):
 | `500` | Monthly request count limit reached | Wait for next month's reset or upgrade plan |
 | `501` | Per-minute request limit reached | Lower the request frequency; retry in 1 minute |
 | `502` | Daily request limit reached | Wait for next day's reset or upgrade plan |
-| `694` | Insufficient request remaining | Log in to https://seller.sorftime.com/api to check or buy a resource pack |
+| `694` | Insufficient request remaining | Log in to your Sorftime account (open-intl.sorftime.com) to check or top up request credits |
 
 ---
 
@@ -302,7 +302,7 @@ Error / no-data response (e.g. `code=11`):
 | `500` | Monthly request count limit reached | Wait for next month's reset or upgrade plan |
 | `501` | Per-minute request limit reached | Lower the request frequency; retry in 1 minute |
 | `502` | Daily request limit reached | Wait for next day's reset or upgrade plan |
-| `694` | Insufficient request remaining | Log in to https://seller.sorftime.com/api to check or buy a resource pack |
+| `694` | Insufficient request remaining | Log in to your Sorftime account (open-intl.sorftime.com) to check or top up request credits |
 ---
 
 ### Temu business error codes
@@ -323,7 +323,7 @@ Error / no-data response (e.g. `code=11`):
 | `500` | Monthly request count limit reached | Wait for next month's reset or upgrade plan |
 | `501` | Per-minute request limit reached | Lower the request frequency; retry in 1 minute |
 | `502` | Daily request limit reached | Wait for next day's reset or upgrade plan |
-| `694` | Insufficient request remaining | Log in to https://seller.sorftime.com/api to check or buy a resource pack |
+| `694` | Insufficient request remaining | Log in to your Sorftime account (open-intl.sorftime.com) to check or top up request credits |
 
 ---
 

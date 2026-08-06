@@ -268,7 +268,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 
 1. **Pagination range**: Most keyword pagination endpoints have a `PageSize` min 20, default 20, max 200; `GetFavoriteKeyword` allows at most 100 per page.
 2. **Keyword update convention**: `Update` is the latest update time of the keyword, usually corresponding to the previous week of the update (e.g. an update time of 20250421 corresponds to keywords from 20250413 to 20250419).
-3. **Library isolation**: The API library is not shared with the Sorftime Pro favorites; a keyword cannot be added twice to the same folder, and a single folder holds at most 2000 keywords.
+3. **Library isolation**: The API library is not shared with the Sorftime web favorites; a keyword cannot be added twice to the same folder, and a single folder holds at most 2000 keywords.
 
 ### 9.1 Keyword Query (KeywordQuery)
 
@@ -471,7 +471,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 - **Requests consumed**: 1
 - **Supported domains**: 21(us)
 - **Note**:
-  - The API library (favorites) is not shared with the Sorftime Pro favorites
+  - The API library (favorites) is not shared with the Sorftime web favorites
   - A keyword cannot be added twice to the same folder, but the same keyword can be added to different folders
 - **Request parameters**:
   | Parameter | Type | Description |
@@ -492,7 +492,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 - **Endpoint description**: Move a keyword to a specified folder or delete a keyword; a single folder can hold up to 2000 keywords
 - **Requests consumed**: 0
 - **Supported domains**: 21(us)
-- **Note**: The API library (favorites) is not shared with the Sorftime Pro favorites
+- **Note**: The API library (favorites) is not shared with the Sorftime web favorites
 - **Request parameters**:
   | Parameter | Type | Description |
   |------|------|------|
@@ -517,7 +517,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 - **Endpoint description**: Query the keyword library
 - **Requests consumed**: 1
 - **Supported domains**: 21(us)
-- **Note**: The API library (favorites) is not shared with the Sorftime Pro favorites
+- **Note**: The API library (favorites) is not shared with the Sorftime web favorites
 - **Request parameters**:
   | Parameter | Type | Description |
   |------|------|------|

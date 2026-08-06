@@ -21,6 +21,7 @@ All notable changes to Sorftime CLI Skill.
 - **🏷️ Frontmatter metadata**: `version` + `user-invocable` fields for version management.
 
 ### Fixed
+- **Account/setup wording unified for international users**: All registration, Account-SK, and top-up references now point to the international platform (open-intl.sorftime.com) — no other platform entries appear anywhere in the docs.
 - **Endpoint count**: 132 → 117 unique. CoinQuery/CoinStream/RequestStreamMonth are shared across Shopee/Walmart/1688/Temu/TikTok and now counted once.
 - **Cross-reference links**: All internal resource links repaired (amazon-ai-api / amazon-alexa-api / amazon-product-api / amazon-category-api file naming).
 - **Field alias gaps**: Added Walmart-specific fields, monitoring-series fields, common response fields, and casing-traps sections to `_field_aliases.md`.

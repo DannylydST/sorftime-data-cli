@@ -365,7 +365,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 
 ### 4.1 Add keyword to my library (FavoriteKeyword)
 
-- **Endpoint description**: Add a keyword to your keyword library (not limited to ABA keywords). Note: the API library (favorites) is not shared with the Sorftime Pro favorites.
+- **Endpoint description**: Add a keyword to your keyword library (not limited to ABA keywords). Note: the API library (favorites) is not shared with the Sorftime web favorites.
 - **Requests consumed**: 1
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
@@ -384,7 +384,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 
 ### 4.2 Move / Delete library keyword (ChangeFavoriteKeyword)
 
-- **Endpoint description**: Move a keyword to a specified folder or delete a keyword. A single folder can hold at most 2000 keywords. Note: the API library (favorites) is not shared with the Sorftime Pro favorites.
+- **Endpoint description**: Move a keyword to a specified folder or delete a keyword. A single folder can hold at most 2000 keywords. Note: the API library (favorites) is not shared with the Sorftime web favorites.
 - **Requests consumed**: 0
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
@@ -404,7 +404,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 
 ### 4.3 Query library keywords (GetFavoriteKeyword)
 
-- **Endpoint description**: Query the keyword library. Note: the API library (favorites) is not shared with the Sorftime Pro favorites.
+- **Endpoint description**: Query the keyword library. Note: the API library (favorites) is not shared with the Sorftime web favorites.
 - **Requests consumed**: 1
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
@@ -430,7 +430,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
    - FR, IT: keyword trend starts from 2025-01
    - `KeywordSearchResultTrend` does not support sites 4/5/9.
 3. **Site supplement**: `KeywordQuery` / `KeywordSearchResults` / `KeywordExtends` / `CategoryRequestKeyword` / `ASINRequestKeyword` / `KeywordProductRanking` / `FavoriteKeyword` / `ChangeFavoriteKeyword` / `GetFavoriteKeyword` do not support domain 5 (in).
-4. **Library management**: The API library is not shared with Sorftime Pro; a single folder can hold at most 2000 keywords.
+4. **Library management**: The API library is not shared with the Sorftime web favorites; a single folder can hold at most 2000 keywords.
 5. **Paginated query**: At most 200 records per page; it is recommended to set `PageSize` reasonably.
 6. **Endpoint rename**: `ASINRequestKeywordv2` has been renamed to `ASINRequestKeyword`. The old name still works, but the new name is recommended.
 

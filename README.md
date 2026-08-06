@@ -7,7 +7,7 @@
 ## 🆕 What's New (August 6, 2026)
 
 - **🌐 English-first international release** — Full documentation in English for global sellers. New 🔴 Language Rule: the skill always replies in the user's language (English or Chinese), never mixed.
-- **🗣️ Bilingual trigger support** — Triggers in both English and Chinese (选品/跟卖预警/跨平台对比/批量查 ASIN/监控部署...). Works for US/UK sellers and Chinese sellers alike.
+- **🗣️ Bilingual trigger support** — Triggers in both English and Chinese (选品/跟卖预警/跨平台对比/批量查 ASIN/监控部署...).
 - **📋 Parameter naming trap table** — 13 highest-frequency parameter pitfalls (Walmart `NodePath` vs `nodeId`, Temu `Name` casing, `ASINRequestKeyword` all-caps, TikTok creator/video domain=301...) added to SKILL.md.
 - **🛠️ Automation workhorses** — `batch.sh` (generic batch runner: rate limiting, retries, resume, disk output), `doctor.sh` (environment self-check with onboarding hints), `gen-index.sh` (auto-refreshing endpoint count matrix).
 - **🗺️ Three-column Shortcut Map** — user intent → command → expected output, covering daily queries, batch ops, and debugging.
@@ -29,7 +29,7 @@ For the full index (discovery path, recipes, all endpoint references), see [SKIL
 ```bash
 npm install -g sorftime-cli
 
-# Configure a profile (Account-SK from the Sorftime Pro dashboard)
+# Configure a profile (Account-SK from the Sorftime dashboard (open-intl.sorftime.com))
 sorftime add myprofile <your-account-sk>
 sorftime use myprofile
 ```

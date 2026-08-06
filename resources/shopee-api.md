@@ -496,7 +496,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 
 #### 4.3 Add Keyword to My Library (FavoriteKeyword)
 
-- **Endpoint description**: Add a keyword to your keyword library. The API library (favorites) is not shared with the Sorftime Pro favorites.
+- **Endpoint description**: Add a keyword to your keyword library. The API library (favorites) is not shared with the Sorftime web favorites.
 - **Requests consumed**: 1
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Request parameters**:
@@ -521,7 +521,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 
 #### 4.4 Move / Delete Library Keyword (ChangeFavoriteKeyword)
 
-- **Endpoint description**: Move a keyword to a specified folder or delete a keyword. The API library (favorites) is not shared with the Sorftime Pro favorites.
+- **Endpoint description**: Move a keyword to a specified folder or delete a keyword. The API library (favorites) is not shared with the Sorftime web favorites.
 - **Requests consumed**: 0
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Note**: A single folder can hold at most 2000 keywords.
@@ -548,7 +548,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 
 #### 4.5 Query Library Keywords (GetFavoriteKeyword)
 
-- **Endpoint description**: Query the API keyword library. The API library (favorites) is not shared with the Sorftime Pro favorites.
+- **Endpoint description**: Query the API keyword library. The API library (favorites) is not shared with the Sorftime web favorites.
 - **Requests consumed**: 1
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Request parameters**:
@@ -645,7 +645,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 2. **Account configuration**: All endpoints use the Account-SK of the currently active profile by default.
 3. **Data decoding**: Shopee endpoint returns are gzip+base64 encoded data; the CLI automatically decodes and decompresses them.
 4. **Credits and Request**: `CoinQuery`, `CoinStream`, `RequestStreamMonth` do not consume request count, and the balance is not differentiated by site or platform — the result is the account global balance.
-5. **Library isolation**: The API library (favorites) is not shared with the Sorftime Pro favorites; the two are maintained independently.
+5. **Library isolation**: The API library (favorites) is not shared with the Sorftime web favorites; the two are maintained independently.
 6. **Historical lookup range**: `CategoryRequest` historical lookup only supports sub-categories; `QueryDate` is invalid for non-sub-categories. `CategoryTrend` and `ProductSearch` historical lookup supports up to the most recent 2 years.
 7. **Large-data endpoints**: `CategoryTree` response is approx. 10MB+; set a long request timeout.
 8. **Sales data backfill**: Sales data before the `SalesCalcTime` returned by `CategoryRequest` and `ProductRequest` is fixed; data after that time may change, so it is recommended to implement an appropriate sales data backfill mechanism.

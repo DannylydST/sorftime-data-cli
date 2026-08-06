@@ -18,7 +18,7 @@ user-invocable: true
 
 ## 🔴 Language Rule (Mandatory)
 
-**Match the user's language. Always.** If the user writes in English → respond in English. If the user writes in Chinese → respond in Chinese. Never mix. This overrides everything else in this skill. The skill documentation is English by design (international-first); your *replies* follow the user's language. This makes the skill work for both US/UK sellers and Chinese sellers.
+**Match the user's language. Always.** If the user writes in English → respond in English. If the user writes in Chinese → respond in Chinese. Never mix. This overrides everything else in this skill. The skill documentation is English by design (international-first); your *replies* follow the user's language.
 
 ---
 
@@ -28,7 +28,7 @@ user-invocable: true
 # 1. Install
 npm install -g sorftime-cli
 
-# 2. Configure profile (Account-SK from Sorftime Pro dashboard)
+# 2. Configure profile (Account-SK from Sorftime dashboard (open-intl.sorftime.com))
 sorftime add myprofile <your-account-sk>
 sorftime use myprofile
 
@@ -67,7 +67,7 @@ Run `bash scripts/doctor.sh` and identify exactly what's missing (CLI / profile 
 → **[open-intl.sorftime.com](https://open-intl.sorftime.com)** — sign up with Google, free trial credits included, PayPal for additional credits.
 
 ### Step 3 — Get the Account-SK
-After registration, copy the Account-SK from the Sorftime Pro dashboard (account settings). Keep it private.
+After registration, copy the Account-SK from the Sorftime dashboard (open-intl.sorftime.com) (account settings). Keep it private.
 
 ### Step 4 — Configure the profile
 
