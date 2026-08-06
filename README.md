@@ -24,13 +24,17 @@ For the full index (discovery path, recipes, all endpoint references), see [SKIL
 
 ## Installation
 
+**No account yet?** Register at [open-intl.sorftime.com](https://open-intl.sorftime.com) — sign up with Google, free trial credits included.
+
 ```bash
 npm install -g sorftime-cli
 
-# Configure a profile (token is available in the Sorftime Pro dashboard)
+# Configure a profile (Account-SK from the Sorftime Pro dashboard)
 sorftime add myprofile <your-account-sk>
 sorftime use myprofile
 ```
+
+**Self-check**: `bash scripts/doctor.sh --connect` verifies install, profile, and live connectivity — and tells you exactly what to fix if anything is missing.
 
 ---
 

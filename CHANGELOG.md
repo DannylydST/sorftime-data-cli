@@ -7,6 +7,7 @@ All notable changes to Sorftime CLI Skill.
 ## [2026-08-06] — v1.2.0
 
 ### Added
+- **🚀 Onboarding Protocol**: Five-step closed loop (detect → register → get Account-SK → configure profile → verify & return to task), triggered by missing CLI / missing profile / auth errors. Registration points to [open-intl.sorftime.com](https://open-intl.sorftime.com) (Google sign-up, free trial credits).
 - **🛠️ `batch.sh` — generic batch runner**: Loop any endpoint over an input file with rate limiting (`--sleep`), retries (`--retries`), resume (`--resume`), disk output (`--out`), and dry-run preview. The automation workhorse for the CLI-as-data-base story: no more hand-writing `while read` loops.
 - **🩺 `doctor.sh` — environment self-check**: One command verifies node / npm / CLI version / profile / live connectivity (`--connect`), with install-and-configure hints on every failure. Drives onboarding: error message → next action.
 - **📊 `gen-index.sh` + `_endpoints-index.md`**: Auto-generated endpoint count matrix from resource headers. Run after any resources update so the endpoint count never goes stale (no more manual "117 endpoints" claims drifting from the docs).

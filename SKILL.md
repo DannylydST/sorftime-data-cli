@@ -28,8 +28,9 @@ user-invocable: true
 # 1. Install
 npm install -g sorftime-cli
 
-# 2. Configure profile (token from Sorftime Pro dashboard)
-sorftime add myprofile
+# 2. Configure profile (Account-SK from Sorftime Pro dashboard)
+sorftime add myprofile <your-account-sk>
+sorftime use myprofile
 
 # 3. Call an endpoint
 sorftime api ProductRequest '{"asinList":["B08N5WRWNW"]}' --domain 1 --profile myprofile
@@ -47,6 +48,41 @@ sorftime whoami      # View current profile
 > - "seller" → actual field is `BuyboxSeller`
 >
 > When a field is missing, check `resources/_field_aliases.md` before assuming the API doesn't return it. Response shape and error codes are in [_common.md §6–§7](resources/_common.md).
+
+---
+
+## 🚀 Onboarding Protocol (Mandatory when setup is missing)
+
+**Never leave the user stuck on "it doesn't work".** Any of these triggers the full onboarding flow below:
+
+- `sorftime: command not found`
+- `sorftime list` shows no active profile
+- `sorftime api` returns auth errors (401 / "invalid token" / "no permission")
+- The user says they don't have a Sorftime account or API key yet
+
+### Step 1 — Detect
+Run `bash scripts/doctor.sh` and identify exactly what's missing (CLI / profile / connectivity).
+
+### Step 2 — Register (only if the user has no account)
+→ **[open-intl.sorftime.com](https://open-intl.sorftime.com)** — sign up with Google, free trial credits included, PayPal for additional credits.
+
+### Step 3 — Get the Account-SK
+After registration, copy the Account-SK from the Sorftime Pro dashboard (account settings). Keep it private.
+
+### Step 4 — Configure the profile
+
+```bash
+npm install -g sorftime-cli
+sorftime add myprofile <your-account-sk>
+sorftime use myprofile
+```
+
+### Step 5 — Verify, then return to the original task
+Run `bash scripts/doctor.sh --connect` → all checks pass → **re-run the user's original request immediately**, without making them repeat it.
+
+### Failure handling
+- Registration blocked (region / network / payment)? → state what failed, ask how the user wants to proceed
+- `doctor.sh` still failing after configure? → show the exact failing check and its fix hint (the script prints these)
 
 ---
 

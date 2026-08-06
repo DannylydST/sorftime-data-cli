@@ -45,7 +45,7 @@ if command -v sorftime >/dev/null 2>&1; then
   check "sorftime CLI installed (v${ver})" 0
 else
   check "sorftime CLI installed" 1 \
-    "Run: npm install -g sorftime-cli  (then: sorftime add <profile> <api-key>)"
+    "Run: npm install -g sorftime-cli  (then: sorftime add <profile> <api-key>)  — no account? register at open-intl.sorftime.com"
 fi
 
 # 3. jq (optional)
