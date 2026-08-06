@@ -1,17 +1,14 @@
 # Sorftime CLI Quick Reference
 
-## 🆕 What's New
+## 🆕 What's New (August 6, 2026)
 
-<details>
-<summary><b>2026-08-06 — v1.1.0 整合版（市场部整合）</b></summary>
+- **🌐 English-first international release** — Full documentation in English for global sellers. New 🔴 Language Rule: the skill always replies in the user's language (English or Chinese), never mixed.
+- **🗣️ Bilingual trigger support** — Triggers in both English and Chinese (选品/跟卖预警/跨平台对比/批量查 ASIN/监控部署...). Works for US/UK sellers and Chinese sellers alike.
+- **📋 Parameter naming trap table** — 13 highest-frequency parameter pitfalls (Walmart `NodePath` vs `nodeId`, Temu `Name` casing, `ASINRequestKeyword` all-caps, TikTok creator/video domain=301...) added to SKILL.md.
+- **🔧 Documentation fixes** — All internal cross-references repaired; endpoint count corrected to 117 unique (3 cross-platform account endpoints counted once).
+- **📦 Built on `sorftime-cli@1.0.0`** — The official npm release (Amazon 57 + Shopee 17 + Walmart 17 + 1688 9 + Temu 12 + TikTok 17).
 
-- **统一英文版化**：SKILL.md / README / resources 全英文，面向国际卖家；新增 🔴 Language Rule（跟随用户语言回复，中英均支持）
-- **中英双语触发**：description 与 trigger-eval.json（32 条评估集）同时覆盖中英文场景
-- **回填参数命名陷阱表**（13 条高频踩坑）与服务原则
-- **修复 7 处死链**（amazon-ai-api / amazon-alexa-api 等文件名引用）与 `_field_aliases.md` 的失效脚本引用
-- **修正接口计数口径**：117 unique endpoints（原 132 重复计入 3 个跨平台账户接口）
-- 基于产品部官方包 `sorftime-cli@1.0.0`（npm latest），废弃旧 0.1.x 文档
-</details>
+[Full changelog →](CHANGELOG.md)
 
 > Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering **117 unique** Sorftime cross-border e-commerce data endpoints: Amazon 57 + Shopee 17 + Walmart 17 + 1688 9 + Temu 12 + TikTok 17 (per-platform counts include the 3 shared cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth, counted once).
 
