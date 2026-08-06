@@ -7,6 +7,7 @@ All notable changes to Sorftime Data CLI Skill.
 ## [2026-08-06] — v1.2.0
 
 ### Added
+- **🧭 Positioning section — "Why Data CLI (vs the MCP Seller Agent)"**: README comparison table and SKILL.md routing guidance. The CLI is positioned as the raw data foundation (all 117 endpoints, raw JSON, scriptable, deterministic) vs the MCP agent's curated intelligence layer.
 - **🚀 Onboarding Protocol**: Five-step closed loop (detect → register → get Account-SK → configure profile → verify & return to task), triggered by missing CLI / missing profile / auth errors. Registration points to [open-intl.sorftime.com](https://open-intl.sorftime.com) (Google sign-up, free trial credits).
 - **🛠️ `batch.sh` — generic batch runner**: Loop any endpoint over an input file with rate limiting (`--sleep`), retries (`--retries`), resume (`--resume`), disk output (`--out`), and dry-run preview. The automation workhorse for the CLI-as-data-base story: no more hand-writing `while read` loops.
 - **🩺 `doctor.sh` — environment self-check**: One command verifies node / npm / CLI version / profile / live connectivity (`--connect`), with install-and-configure hints on every failure. Drives onboarding: error message → next action.
