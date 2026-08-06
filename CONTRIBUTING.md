@@ -13,7 +13,7 @@ Thanks for your interest in contributing.
 ## Getting Started
 
 ```bash
-git clone https://github.com/DannylydST/sorftime-cli.git
+git clone https://github.com/DannylydST/sorftime-data-cli.git
 cd sorftime-cli
 npm install -g sorftime-cli     # Install the CLI itself
 sorftime add myprofile <api-key>  # Configure your profile (token from Sorftime dashboard (open-intl.sorftime.com))

@@ -22,6 +22,19 @@ user-invocable: true
 
 ---
 
+## 🧭 Positioning: Data CLI vs MCP Agent
+
+This skill is the **raw data foundation**: complete, scriptable, deterministic access to all Sorftime data endpoints. It is the sibling of the [Sorftime Seller Agent](https://github.com/DannylydST/sorftime-seller-agent) (MCP), which packages the same data as agent-friendly intelligence.
+
+Route by what the user needs:
+
+- **Data, scripts, automation, raw fields, custom workflows, monitoring pipelines** → THIS skill (`sorftime-data-cli`). Write the `sorftime api ...` calls / `batch.sh` / `doctor.sh` yourself.
+- **One-shot marketplace intelligence** (product analysis, selection advice, competitor summaries, keyword strategy) delivered as a structured answer → the MCP-based **Sorftime Seller Agent** skill (if installed; otherwise note it exists).
+
+Do not add analysis layers here — deliver the data, let the caller (or the Seller Agent skill) interpret it.
+
+---
+
 ## CLI Quickstart (60 seconds)
 
 ```bash

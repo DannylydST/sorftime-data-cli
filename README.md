@@ -22,6 +22,24 @@ For the full index (discovery path, recipes, all endpoint references), see [SKIL
 
 ---
 
+## Why Sorftime Data CLI — the raw data foundation behind Sorftime's AI agents
+
+Sorftime serves cross-border e-commerce data through two access modes. Both draw from the same 9-years-of-seller-data supply chain across 40+ marketplaces — but they serve different jobs:
+
+| | **Sorftime Seller Agent** (MCP) | **Sorftime Data CLI** (this project) |
+|---|---|---|
+| Best for | Sellers & AI agents — out-of-the-box marketplace intelligence | Developers, data teams & enterprises — building on raw data |
+| Data access | Curated tool calls, structured for agents | **All 117 endpoints, every field, raw JSON** |
+| Automation | Runs inside an AI agent session | **Any pipeline**: cron, CI, shell, Python/Node, Airflow |
+| Determinism | Agent interprets every call | **Reproducible**: same request → same JSON, always |
+| Volume | Per-interaction | **Thousands of records per run** — `batch.sh` rate-limit-safe, resumable |
+| Cost control | Per-call agent overhead | Direct metering + local caching (e.g. CategoryTree → file) |
+| Customization | Tool-defined parameters | **Every parameter, every combination** — pipe straight into `jq` / Python |
+
+**The CLI is the foundation.** The MCP agent is one consumer of this data; the CLI gives you the complete, scriptable, deterministic source. If you are building automation, ETL pipelines, internal dashboards, or monitoring — start here. [Sorftime Seller Agent (MCP)](https://github.com/DannylydST/sorftime-seller-agent) is the right choice when you want the intelligence layer out of the box.
+
+---
+
 ## Installation
 
 **No account yet?** Register at [open-intl.sorftime.com](https://open-intl.sorftime.com) — sign up with Google, free trial credits included.

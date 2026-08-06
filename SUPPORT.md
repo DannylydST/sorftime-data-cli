@@ -11,7 +11,7 @@
 
 - **[README.md](README.md)** — Quick start, helper scripts, field pitfalls, batch operations
 - **[SKILL.md](SKILL.md)** — Full skill reference: endpoint catalog, shortcut map, parameter traps, recipes
-- **[Wiki](https://github.com/DannylydST/sorftime-cli/wiki)** — Quickstart, scripts, trigger evaluation set
+- **[Wiki](https://github.com/DannylydST/sorftime-data-cli/wiki)** — Quickstart, scripts, trigger evaluation set
 
 ## FAQ
 
