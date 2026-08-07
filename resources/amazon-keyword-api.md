@@ -324,12 +324,12 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
   | Parameter | Type | Required | Description |
   |------|------|------|------|
   | Keyword | String | Yes | The ABA keyword to query |
-  | Month | String | Conditional | The month to query; valid only for the US site, other sites do not need to fill this in. Format: yyyy-MM, e.g. 2024-12 |
+  | Month | String | Conditional | The month to query; valid only for the US site, other sites do not need to fill this in. Format: yyyy-MM, e.g. 2025-12 |
   | Page | Integer | No | Page number, default page 1. At most 200 records per page |
 - **Usage example**:
   ```bash
   # US site: query a specific month
-  sorftime api KeywordProductRanking '{"keyword": "power bank", "month": "2024-12"}' --domain 1
+  sorftime api KeywordProductRanking '{"keyword": "power bank", "month": "2025-12"}' --domain 1
 
   # Other sites: month parameter is invalid, returns the last 30 days of data
   sorftime api KeywordProductRanking '{"keyword": "power bank"}' --domain 2
@@ -468,14 +468,14 @@ sorftime api CategoryRequestKeyword '{"nodeid": "7073960011", "pageSize": 100}' 
 
 ```bash
 # Query the ASIN's historical rank under a keyword
-sorftime api ASINKeywordRanking '{"keyword": "power bank", "ASIN": "B0CVM8TXHP", "queryStart": "2024-01-01", "queryEnd": "2024-12-31"}' --domain 1
+sorftime api ASINKeywordRanking '{"keyword": "power bank", "ASIN": "B0CVM8TXHP", "queryStart": "2025-01-01", "queryEnd": "2025-12-31"}' --domain 1
 ```
 
 ### 4. Keyword trend analysis
 
 ```bash
 # Query the trend of products in keyword search results
-sorftime api KeywordSearchResultTrend '{"keyword": "power bank", "queryStart": "2024-01", "queryEnd": "2024-12"}' --domain 1
+sorftime api KeywordSearchResultTrend '{"keyword": "power bank", "queryStart": "2025-01", "queryEnd": "2025-12"}' --domain 1
 ```
 
 ### 5. Library management

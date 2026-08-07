@@ -78,7 +78,7 @@ sorftime api CoinQuery '{}' --domain 1
 sorftime api RequestStreamMonth '{}' --domain 1
 
 # Query credit consumption stream
-sorftime api CoinStream '{"QueryDate": ["2024-01-01", "2024-01-31"]}' --domain 1
+sorftime api CoinStream '{"QueryDate": ["2025-01-01", "2025-01-31"]}' --domain 1
 ```
 
 ### 1.2 Core method basic calls

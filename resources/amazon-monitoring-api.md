@@ -316,7 +316,7 @@ Format: `<which days of the week>|<which time slots each day>|<monitoring freque
   sorftime api KeywordBatchScheduleList '{"TaskId": 12345}' --domain 1
 
   # Query batches after a specific date
-  sorftime api KeywordBatchScheduleList '{"TaskId": 12345, "queryDate": "2024-01-15"}' --domain 1
+  sorftime api KeywordBatchScheduleList '{"TaskId": 12345, "queryDate": "2025-01-15"}' --domain 1
   ```
 - **Response data**: data is a String Array of [KeywordBatchScheduleObject](./amazon-data-types.md#keywordbatchscheduleobject), format `<execution time yyyyMMddHHmm>:<batchId>:<status>:<finish time>`.
 
@@ -445,10 +445,10 @@ Format: `<which days of the week>|<which time slots each day>|<monitoring freque
   sorftime api BestSellerListDataCollect '{"nodeid": "7073960011", "BestSellerListType": 5}' --domain 1
 
   # Query data for a specific date
-  sorftime api BestSellerListDataCollect '{"nodeid": "7073960011", "BestSellerListType": 5, "queryDate": "2024-01-15 00"}' --domain 1
+  sorftime api BestSellerListDataCollect '{"nodeid": "7073960011", "BestSellerListType": 5, "queryDate": "2025-01-15 00"}' --domain 1
 
   # Query data for a specific hour
-  sorftime api BestSellerListDataCollect '{"nodeid": "7073960011", "BestSellerListType": 5, "queryDate": "2024-01-15 06"}' --domain 1
+  sorftime api BestSellerListDataCollect '{"nodeid": "7073960011", "BestSellerListType": 5, "queryDate": "2025-01-15 06"}' --domain 1
   ```
 - **Response data**: data is an Array of [BestSellerListItemObject](./amazon-data-types.md#bestsellerlistitemobject).
 
@@ -588,7 +588,7 @@ sorftime api BestSellerListSubscription '{"nodeid": "7073960011", "Range": 1, "P
 sorftime api BestSellerListTask '{"pageIndex": 1, "pageSize": 20}' --domain 1
 
 # Query list data
-sorftime api BestSellerListDataCollect '{"nodeid": "7073960011", "BestSellerListType": 5, "queryDate": "2024-01-15 00"}' --domain 1
+sorftime api BestSellerListDataCollect '{"nodeid": "7073960011", "BestSellerListType": 5, "queryDate": "2025-01-15 00"}' --domain 1
 
 # Delete a list monitoring task
 sorftime api BestSellerListDelete '{"nodeid": "7073960011", "BestSellerListType": 5}' --domain 1

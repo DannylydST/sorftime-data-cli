@@ -4,6 +4,17 @@ All notable changes to Sorftime Data CLI Skill.
 
 ---
 
+## [2026-08-07] — v1.2.3 (full-interface live verification pass)
+
+### Verified (live API calls, 52 endpoints)
+- Ran every directly-queryable endpoint from the resource docs (52 of 117; the rest require prior subscription/task registration): **40 Code=0, 8 Code=11 (no data — correct params), 4 business responses, 0 parameter errors**. Every endpoint in the docs accepts its documented parameters.
+- Notable business responses (all correct): `ProductRealtimeRequest` → 99 (collection in progress, task created); `ProductAssistant` → -1 "product sales too low for AI interpretation"; `BestSellerListDelete` → -1 (deleting a non-existent subscription); `ASINKeywordRanking` → 23 (sample date exceeded the 2-year window).
+
+### Fixed
+- **Sample dates exceeded the 2-year data limit**: 16 example dates across 7 resource files (account, amazon-category, amazon-keyword, amazon-monitoring, amazon-product, use-cases, walmart) were pinned to 2024 — the API rejects data older than 2 years (Code 23). Rolled all examples forward to 2025 and re-verified (`ASINKeywordRanking` now Code=0). Also fixed an invalid `2025-02-29` (non-leap year) → `2025-02-28`.
+
+---
+
 ## [2026-08-07] — v1.2.2 (description optimized via trigger-eval loop)
 
 ### Changed

@@ -39,7 +39,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
   sorftime api CoinStream '{}' --domain 1
 
   # Query a specific time range
-  sorftime api CoinStream '{"QueryDate": ["2024-01-01", "2024-01-31"]}' --domain 1
+  sorftime api CoinStream '{"QueryDate": ["2025-01-01", "2025-01-31"]}' --domain 1
 
   # Query page 2
   sorftime api CoinStream '{"PageIndex": 2, "PageSize": 20}' --domain 1

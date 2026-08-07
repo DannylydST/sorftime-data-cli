@@ -134,7 +134,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 - **Request parameters**:
   | Parameter | Type | Required | Description |
   |------|------|------|------|
-  | QueryMonth | String | No | Look back at historical monthly product data, supports up to 2 years of data from 2024-01. Optional, format: yyyy-MM. When not specified, real-time data is queried; when the time is earlier than the current month, historical data is queried. AU/BR/IN currently do not support historical lookup; US/GB/DE support the "unlimited" mode of historical lookup; other sites support the Top 100 product historical lookup. |
+  | QueryMonth | String | No | Look back at historical monthly product data, supports up to 2 years of data from 2025-01. Optional, format: yyyy-MM. When not specified, real-time data is queried; when the time is earlier than the current month, historical data is queried. AU/BR/IN currently do not support historical lookup; US/GB/DE support the "unlimited" mode of historical lookup; other sites support the Top 100 product historical lookup. |
   | Page | Integer | No | Paginated query, at most 100 products per page. Default 1, representing page 1 (all result pagination starts from 1, not 0). |
   | ASIN | String | No | Optional. If specified: query similar products based on ASIN (note: not only this ASIN; if you need this product, call the `ProductRequest` endpoint). E.g. B0CVM8TXHP |
   | NodeId | String | No | Optional. If specified: query by category (not limited to sub-categories). E.g. 7073960011 |

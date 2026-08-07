@@ -69,8 +69,8 @@ Field names in this file are PascalCase (e.g. `NodeId`, `TrendIndex`, `Asin`); o
   # Query the current Best Seller data
   sorftime api CategoryRequest '{"nodeId": "7073960011"}' --domain 1
 
-  # Query historical data (2024-01-01 to 2024-01-10, 10 days)
-  sorftime api CategoryRequest '{"nodeId": "7073960011", "queryStart": "2024-01-01", "queryDate": "2024-01-10"}' --domain 1
+  # Query historical data (2025-01-01 to 2025-01-10, 10 days)
+  sorftime api CategoryRequest '{"nodeId": "7073960011", "queryStart": "2025-01-01", "queryDate": "2025-01-10"}' --domain 1
   ```
 - **Response data**:
   - `Products`: List of products in the Best Seller list.
@@ -306,7 +306,7 @@ sorftime api AIResult '{"taskId": "<taskId>"}' --domain 1
 
 ```bash
 # Query Best Seller data for the last 10 days
-sorftime api CategoryRequest '{"nodeId": "7073960011", "queryStart": "2024-01-01", "queryDate": "2024-01-10"}' --domain 1
+sorftime api CategoryRequest '{"nodeId": "7073960011", "queryStart": "2025-01-01", "queryDate": "2025-01-10"}' --domain 1
 
 # A 10-day span costs ceil(10/3) * 10 = 40 requests
 ```

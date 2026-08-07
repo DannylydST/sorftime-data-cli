@@ -202,7 +202,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
   sorftime api ProductSalesVolume '{"ProductId": "1275613286"}' --domain 21
 
   # Query a specific time range
-  sorftime api ProductSalesVolume '{"ProductId": "1275613286", "QueryDate": "2024-02-01", "QueryEndDate": "2024-02-29", "PageIndex": 1}' --domain 21
+  sorftime api ProductSalesVolume '{"ProductId": "1275613286", "QueryDate": "2025-02-01", "QueryEndDate": "2025-02-28", "PageIndex": 1}' --domain 21
   ```
 - **Response data**:
   - `Data`: value description `[ [ "2023-10-05", // record date 100, // sales record 2, // 2: yesterday's daily sales ],.... ]`.
@@ -566,7 +566,7 @@ sorftime api ProductRequest '{"ProductId": "1275613286"}' --domain 21
 sorftime api ProductTrendRequest '{"ProductId": "1275613286"}' --domain 21
 
 # Step 4: Query the officially disclosed variant sales by date
-sorftime api ProductSalesVolume '{"ProductId": "1275613286", "QueryDate": "2024-02-01", "QueryEndDate": "2024-02-29", "PageIndex": 1}' --domain 21
+sorftime api ProductSalesVolume '{"ProductId": "1275613286", "QueryDate": "2025-02-01", "QueryEndDate": "2025-02-28", "PageIndex": 1}' --domain 21
 ```
 
 ### 2. Product Comparison Analysis
