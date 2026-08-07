@@ -7,18 +7,18 @@
 
 | File | Endpoints | Count |
 |------|-----------|-------|
-| [1688-api.md](1688-api.md) | `# ... (9 endpoints)` | 9 |
-| [account.md](account.md) | `# ... (3 endpoints)` | 3 |
-| [amazon-ai-api.md](amazon-ai-api.md) | `# ... (2 endpoints)` | 2 |
-| [amazon-alexa-api.md](amazon-alexa-api.md) | `# ... (4 endpoints)` | 4 |
-| [amazon-category-api.md](amazon-category-api.md) | `# ... (7 endpoints)` | 7 |
-| [amazon-keyword-api.md](amazon-keyword-api.md) | `# ... (12 endpoints)` | 12 |
-| [amazon-monitoring-api.md](amazon-monitoring-api.md) | `# ... (14 endpoints)` | 14 |
-| [amazon-product-api.md](amazon-product-api.md) | `# ... (18 endpoints)` | 18 |
-| [shopee-api.md](shopee-api.md) | `# ... (17 endpoints)` | 17 |
-| [temu-api.md](temu-api.md) | `# ... (12 endpoints)` | 12 |
-| [tiktok-api.md](tiktok-api.md) | `# ... (17 endpoints)` | 17 |
-| [walmart-api.md](walmart-api.md) | `# ... (17 endpoints)` | 17 |
+| [1688-api.md](1688-api.md) | `ProductSearchFromName, CoinQuery, CoinStream, RequestStreamMonth, CategoryTree, ProductSearchFromImage, ProductRequest, ProductVariations, ProductSearch` | 9 |
+| [account.md](account.md) | `CoinQuery, CoinStream, RequestStreamMonth` | 3 |
+| [amazon-ai-api.md](amazon-ai-api.md) | `AIResultQuery, AIResult` | 2 |
+| [amazon-alexa-api.md](amazon-alexa-api.md) | `AlexaQuestionsCollection, AlexaQuestionsCollectionStatusQuery, AlexaQuestionsCollectionResultQuery, AlexaQuestionsQuery` | 4 |
+| [amazon-category-api.md](amazon-category-api.md) | `CategoryTree, CategoryRequest, CategoryProducts, CategoryTrend, CategorySearchFromName, CategoryAssistant, SimilarProductFeature` | 7 |
+| [amazon-keyword-api.md](amazon-keyword-api.md) | `KeywordQuery, KeywordSearchResults, KeywordRequest, KeywordSearchResultTrend, KeywordExtends, CategoryRequestKeyword, ASINRequestKeyword, KeywordProductRanking, ASINKeywordRanking, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword` | 12 |
+| [amazon-monitoring-api.md](amazon-monitoring-api.md) | `KeywordBatchSubscription, KeywordTasks, KeywordBatchTaskUpdate, KeywordBatchScheduleList, KeywordBatchScheduleDetail, BestSellerListSubscription, BestSellerListTask, BestSellerListDelete, BestSellerListDataCollect, ProductSellerSubscription, ProductSellerTasks, ProductSellerTaskUpdate, ProductSellerTaskScheduleList, ProductSellerTaskScheduleDetail` | 14 |
+| [amazon-product-api.md](amazon-product-api.md) | `ProductRequest, ProductSearch, AsinSalesVolume, ProductVariations, ProductReviewsCollection, ProductReviewsCollectionStatusQuery, ProductReviewsQuery, ProductSearchFromName, ProductCustomersSay, ASINSubscription, ASINSubscriptionQuery, ASINSubscriptionCollection, ProductAssistant, ProductRealtimeRequest, ProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequest, SimilarProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequestCollection` | 18 |
+| [shopee-api.md](shopee-api.md) | `CategoryTree, CategorySearchFromName, CategoryRequest, CategoryTrend, ProductRequest, ProductSearchFromName, ProductTrend, ProductSearch, ShopRequest, KeywordSearch, KeywordRelationResults, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword, CoinQuery, CoinStream, RequestStreamMonth` | 17 |
+| [temu-api.md](temu-api.md) | `CategoryTree, CategoryRequest, CategorySearchFromName, CategorySearch, ProductRequest, ProductSearchFromName, ProductTrendRequest, ProductSearch, ShopRequest, CoinQuery, CoinStream, RequestStreamMonth` | 12 |
+| [tiktok-api.md](tiktok-api.md) | `CategoryTree, CategoryRequest, CategorySearchFromName, CategorySearch, CategoryTrend, ProductRequest, ProductSearchFromName, ProductTrendRequest, ProductSearch, ShopSearch, ShopRequest, AuthorRequest, VideoRequest, VideoTagSearch, CoinQuery, CoinStream, RequestStreamMonth` | 17 |
+| [walmart-api.md](walmart-api.md) | `CategoryTree, CategoryRequest, ProductRequest, ProductTrendRequest, ProductSalesVolume, CoinQuery, CoinStream, RequestStreamMonth, KeywordQuery, KeywordSearchFromName, KeywordSearchResults, KeywordRequest, ProductRequestKeyword, KeywordExtends, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword` | 17 |
 
 ## Summary
 

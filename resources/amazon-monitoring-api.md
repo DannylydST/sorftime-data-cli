@@ -1,5 +1,6 @@
 # Amazon Monitoring — Common Rules & All Endpoints (14)
 
+**Endpoints in this file**: KeywordBatchSubscription, KeywordTasks, KeywordBatchTaskUpdate, KeywordBatchScheduleList, KeywordBatchScheduleDetail, BestSellerListSubscription, BestSellerListTask, BestSellerListDelete, BestSellerListDataCollect, ProductSellerSubscription, ProductSellerTasks, ProductSellerTaskUpdate, ProductSellerTaskScheduleList, ProductSellerTaskScheduleDetail
 
 ## Table of Contents
 

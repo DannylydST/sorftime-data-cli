@@ -33,7 +33,10 @@ for f in resources/*.md; do
   # Two header styles: "# X Endpoints (N)" and "# X API (N endpoints)"; strip CRLF
   count=$(tr -d '\r' < "$f" | sed -n '1p' | sed -n 's/^# .*Endpoints *(\([0-9]*\))/\1/p; s/^# .*API *(\([0-9]*\) *endpoints).*/\1/p' | head -1)
   if [ -n "$count" ]; then
-    echo "| [$(basename "$f")]($(basename "$f")) | \`# ... ($count endpoints)\` | $count |" >> "$TMP"
+    # Prefer the real endpoint list from "**Endpoints in this file**: ..." if present
+    list=$(tr -d '\r' < "$f" | sed -n 's/^\*\*Endpoints in this file\*\*: //p' | head -1)
+    [ -z "$list" ] && list="# ... ($count endpoints)"
+    echo "| [$(basename "$f")]($(basename "$f")) | \`$list\` | $count |" >> "$TMP"
     total=$((total + count))
     found=$((found + 1))
   fi

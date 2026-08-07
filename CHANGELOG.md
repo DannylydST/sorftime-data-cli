@@ -4,6 +4,27 @@ All notable changes to Sorftime Data CLI Skill.
 
 ---
 
+## [2026-08-07] — v1.2.1 (full-chain audit pass)
+
+### Fixed
+- **decode.sh crash on macOS default bash**: it used associative arrays (`declare -A`), which the macOS-shipped bash 3.2 does not support — every call died with `bad array subscript`. Rewritten with plain index arrays; works on bash 3.2+ everywhere.
+- **decode.sh dictionary stale & wrong**: only 9 common codes, and `694` was mislabeled "Rate limited" (it actually means **Insufficient request remaining — top up credits**, which misleads users into waiting instead of topping up). Now carries the full 31-code dictionary from `_common.md` §7 with per-platform availability (A/S/W/1/T/K) and `--platform` filtering that actually works.
+- **batch.sh option parsing rewritten**: the old loop matched `$2`/`$3` instead of `$1`/`$2` — fragile, and malformed options were silently swallowed. Now a standard `shift`-driven parser with "needs a value" errors and a real `--help`.
+- **SKILL.md Quickstart example returned Code=10**: `{"asinList":["B0X"]}` is invalid — the correct form is `{"asin":"B0X"}` (comma-separated for batches). Fixed, and verified live (Code=0).
+- **SKILL.md jq field-name bug**: examples used `jq '.code'`, but the success response is PascalCase `Code` (errors are camelCase `code`) — `jq '.code'` returned null on every success. Now documented as `jq -r '.Code // .code'` with a verified note in Quickstart.
+- **Wrong section references**: error-code pointers said `_common.md §6`; the table lives in §7. Fixed both SKILL.md occurrences.
+- **Stale CLI output docs**: removed all `grep -v "^info:"` pipes from SKILL.md/README — CLI 1.0.0 writes clean JSON to stdout and progress lines to stderr, so the filters were redundant and misleading.
+
+### Changed
+- `_endpoints-index.md` now shows the real endpoint list per file (extracted from `**Endpoints in this file**` lines) instead of a `# ... (N endpoints)` placeholder.
+- Added missing `**Endpoints in this file**` lines to amazon-monitoring-api.md and tiktok-api.md — all 12 resource files now carry one, and gen-index.sh prefers it.
+
+### Verified (live API calls, 2026-08-07)
+- 16-case cross-platform matrix, all 6 platforms: batch ASIN (comma form), AsinSalesVolume `queryDate`, ASINRequestKeyword (both casings accepted), CategoryRequestKeyword `Nodeid` (lowercase d), CoinStream casing per platform (Amazon `QueryDate` vs Shopee/Walmart/1688 `Querydate`), Walmart/Shopee/Temu/1688 `ProductId`, Temu `Name` (capital N), TikTok domain=301. All returned Code=0.
+- Confirmed camelCase error responses (`code`/`message`) on 1688/Temu errors, matching `_common.md` §6.2.
+
+---
+
 ## [2026-08-06] — v1.2.0
 
 ### Added

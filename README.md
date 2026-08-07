@@ -72,7 +72,7 @@ sorftime api KeywordRequest '{"keyword": "power bank"}' --domain 1
 sorftime api ProductSearch '{"keyword":"power bank","PriceRangeMin":20,"PriceRangeMax":50,"MonthSaleVolumeRangeMin":500}' --domain 1
 ```
 
-For raw CLI output (a noisy mix of `info:` lines and JSON), pipe through `scripts/call.sh` instead — it drops the noise and pretty-prints the JSON, plus returns a meaningful exit code.
+For raw CLI output (progress lines on stderr, JSON on stdout), pipe through `scripts/call.sh` instead — it drops the noise and pretty-prints the JSON, plus returns a meaningful exit code.
 
 ---
 
@@ -82,7 +82,7 @@ All scripts are POSIX bash 4+ (macOS / Linux / Windows Git Bash / WSL). They wra
 
 | Script | One-liner |
 |---|---|
-| `scripts/call.sh` | Single API call with auto-cleaned output (drops `info:`, `✔`, ANSI), JSON pretty-print, business-error exit code 2, optional retry |
+| `scripts/call.sh` | Single API call with auto-cleaned output (drops ANSI colors and progress lines), JSON pretty-print, business-error exit code 2, optional retry |
 | `scripts/one.sh` | One-line status query: `one ProductRequest B0CVM8TXHP` → 11 key fields (title/price/sales/rating/...) for a single ASIN / keyword / category |
 | `scripts/batch.sh` | **Generic batch runner**: `batch.sh ProductRequest asins.txt --param asin --out out.jsonl` — loop any endpoint over a file with rate limiting, retries, resume (`--resume`), dry-run (`--dry-run`) |
 | `scripts/doctor.sh` | **Environment self-check**: `doctor.sh --connect` — node/npm/CLI version/profile/live call, with install hints on failure |
@@ -100,9 +100,8 @@ All scripts are POSIX bash 4+ (macOS / Linux / Windows Git Bash / WSL). They wra
 **Typical usage**:
 
 ```bash
-# Before (5 segments, hard to grep / chain)
-sorftime api ProductRequest '{"asin":"B0CVM8TXHP"}' --domain 1 2>&1 \
-  | grep -v "^info:" | jq .
+# Raw (stdout is already clean JSON; stderr carries progress lines)
+sorftime api ProductRequest '{"asin":"B0CVM8TXHP"}' --domain 1 | jq .
 
 # After (1 line + checkable exit code)
 scripts/one.sh ProductRequest B0CVM8TXHP
@@ -141,13 +140,13 @@ The Amazon category tree (`CategoryTree`) can be up to ~10MB / several hundred t
 
 ```bash
 # First pull, save to local cache
-sorftime api CategoryTree --domain 1 | grep -v "^info:" | jq . > category-tree-us.json
+sorftime api CategoryTree --domain 1 | jq . > category-tree-us.json
 
 # On-demand jq query of a specific node
 cat category-tree-us.json | jq '.data[] | select(.NodeId=="3743561")'
 
 # Refresh cache
-sorftime api CategoryTree --domain 1 | grep -v "^info:" | jq . > category-tree-us.json
+sorftime api CategoryTree --domain 1 | jq . > category-tree-us.json
 ```
 
 **When to use a cache vs calling the API directly**:

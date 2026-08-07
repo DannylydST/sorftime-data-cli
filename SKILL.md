@@ -46,13 +46,15 @@ sorftime add myprofile <your-account-sk>
 sorftime use myprofile
 
 # 3. Call an endpoint
-sorftime api ProductRequest '{"asinList":["B08N5WRWNW"]}' --domain 1 --profile myprofile
+sorftime api ProductRequest '{"asin":"B08N5WRWNW"}' --domain 1 --profile myprofile
 
 # 4. Common commands
 sorftime list        # List all profiles
 sorftime use myprofile   # Switch default profile
 sorftime whoami      # View current profile
 ```
+
+> **CLI output format (verified on CLI 1.0.0)**: `sorftime api` writes **clean JSON to stdout** — the progress banner (`- 正在调用API...`, `✔`) goes to stderr, so pipe stdout straight into `jq`. The status field is `Code` (PascalCase) on success and `code` (camelCase) on error: use `jq -r '.Code // .code'` to read it either way. Verified live: `{"asin":"B0X"}` → Code=0; `{"asinList":["B0X"]}` → Code=10 (Invalid request parameter).
 
 > **Field-naming warning**: Sorftime API field names are non-standard. Common pitfalls:
 > - "price" → actual field is `SalesPrice`
@@ -114,7 +116,7 @@ Full recipes in [`resources/use-cases.md`](resources/use-cases.md) — organized
 
 ### Level 1: I want to query a single data point
 → Use the daily-query shortcuts in [Shortcut Map](#shortcut-map-semantic-wrappers) below
-→ `sorftime api ProductRequest '{"asin":"B0CVM8TXHP"}' --domain 1 | grep -v "^info:" | jq .`
+→ `sorftime api ProductRequest '{"asin":"B0CVM8TXHP"}' --domain 1 | jq .`
 → Next: try KeywordRequest, CategoryRequest, AsinSalesVolume
 
 ### Level 2: I want to run a batch
@@ -225,11 +227,11 @@ Map user intent → command → expected output. If the intent matches, use the 
 
 | User intent | Command | Output |
 |------|------|------|
-| Query a single product | `sorftime api ProductRequest '{"asin":"B0X"}' --domain 1 \| grep -v "^info:" \| jq .` | Full product JSON (price `SalesPrice`, monthly sales `ListingSalesVolumeOfMonth`, rating `Ratings`, buybox `BuyboxSeller`) |
-| Query category Best Seller | `sorftime api CategoryRequest '{"nodeId":"3743561"}' --domain 1 \| grep -v "^info:" \| jq '.data.list[0].asinList[:10]'` | Top-10 ASIN list for the node |
-| Query ASIN variant sales | `sorftime api AsinSalesVolume '{"asin":"B0X","queryDate":"2026-01-01"}' --domain 1 \| grep -v "^info:" \| jq .` | Daily sales per variant, one entry per date |
-| Query keyword traffic | `sorftime api KeywordRequest '{"keyword":"water bottle"}' --domain 1 \| grep -v "^info:" \| jq .` | Keyword volume/share/competition snapshot |
-| Reverse-lookup keywords for ASIN | `sorftime api ASINRequestKeyword '{"asin":"B0X","pageSize":50}' --domain 1 \| grep -v "^info:" \| jq .` | Ranked keyword list the ASIN ranks for |
+| Query a single product | `sorftime api ProductRequest '{"asin":"B0X"}' --domain 1 \| jq .` | Full product JSON (price `SalesPrice`, monthly sales `ListingSalesVolumeOfMonth`, rating `Ratings`, buybox `BuyboxSeller`) |
+| Query category Best Seller | `sorftime api CategoryRequest '{"nodeId":"3743561"}' --domain 1 \| jq '.data.list[0].asinList[:10]'` | Top-10 ASIN list for the node |
+| Query ASIN variant sales | `sorftime api AsinSalesVolume '{"asin":"B0X","queryDate":"2026-01-01"}' --domain 1 \| jq .` | Daily sales per variant, one entry per date |
+| Query keyword traffic | `sorftime api KeywordRequest '{"keyword":"water bottle"}' --domain 1 \| jq .` | Keyword volume/share/competition snapshot |
+| Reverse-lookup keywords for ASIN | `sorftime api ASINRequestKeyword '{"asin":"B0X","pageSize":50}' --domain 1 \| jq .` | Ranked keyword list the ASIN ranks for |
 
 ### Batch Operations Shortcuts
 
@@ -242,15 +244,15 @@ Map user intent → command → expected output. If the intent matches, use the 
 | Batch reverse-lookup keywords | `bash scripts/batch.sh ASINRequestKeyword asins.txt --param asin --domain 1 --out kws.jsonl` | One keyword list per ASIN, line-aligned with input |
 | Resume an interrupted batch | `bash scripts/batch.sh ProductRequest asins.txt --param asin --out products.jsonl --resume` | Skips lines already done (progress in `products.jsonl.progress`) |
 | Dry-run preview before paying calls | `bash scripts/batch.sh ProductRequest asins.txt --param asin --dry-run` | Prints every command without executing |
-| Paginate full category tree | `sorftime api CategoryTree '{"nodeId":"0"}' --domain 1 \| grep -v "^info:" \| jq . > tree.json` then `jq` on demand | Local cache; see Large-data Persistence below |
+| Paginate full category tree | `sorftime api CategoryTree '{"nodeId":"0"}' --domain 1 \| jq . > tree.json` then `jq` on demand | Local cache; see Large-data Persistence below |
 
 ### Debugging & Pre-flight Shortcuts
 
 | User intent | Command | Output |
 |------|------|------|
 | Full environment self-check | `bash scripts/doctor.sh --connect` | ✅/❌ per check: node, npm, CLI version, profile, live API call |
-| Preview a request (see raw return) | `sorftime api ProductRequest '{"asin":"B0X"}' --domain 1` | Raw JSON including `info:` lines |
-| Check endpoint availability | `sorftime api ProductRequest '{"asin":"B0X"}' --domain 1 \| grep -v "^info:" \| jq '.code'` | `0` = success; non-zero = error code (see `_common.md` §6) |
+| Preview a request (see raw return) | `sorftime api ProductRequest '{"asin":"B0X"}' --domain 1` | Raw JSON on stdout (progress lines go to stderr) |
+| Check endpoint availability | `sorftime api ProductRequest '{"asin":"B0X"}' --domain 1 \| jq -r '.Code // .code'` | `0` = success; non-zero = error code (see `_common.md` §7) |
 | Environment connectivity test | `sorftime api CategoryTree '{"nodeId":"0"}' --domain 1` | A return value means connected |
 | Search field name | Look up `resources/_field_aliases.md` | Field → actual API name mapping |
 | View actual fields returned by an endpoint | Call the endpoint and inspect the JSON; aliases in `resources/_field_aliases.md` | Live field list |
@@ -262,13 +264,13 @@ Map user intent → command → expected output. If the intent matches, use the 
 **Manual caching tip**:
 ```bash
 # First pull: save category tree to a local file
-sorftime api CategoryTree --domain 1 | grep -v "^info:" | jq . > category-tree-us.json
+sorftime api CategoryTree --domain 1 | jq . > category-tree-us.json
 
 # On-demand jq query of a specific node
 cat category-tree-us.json | jq '.data[] | select(.NodeId=="3743561")'
 
 # Refresh cache
-sorftime api CategoryTree --domain 1 | grep -v "^info:" | jq . > category-tree-us.json
+sorftime api CategoryTree --domain 1 | jq . > category-tree-us.json
 ```
 
 **When to use a cache vs calling the API directly**:
@@ -320,7 +322,7 @@ Skills/sorftime-cli/
 1. **Don't guess domain values** — always use the site reference table in `_common.md`
 2. **Wrap JSON parameters in single quotes** — `sorftime api XXX '{"key": "value"}'`
 3. **Set a long timeout for large responses** — CategoryTree returns ~10MB+, configure your CLI client accordingly
-4. **Error code judgement** — based on the `Code` / `code` field (case-insensitive, see [_common.md §6](resources/_common.md))
+4. **Error code judgement** — the status field is `Code` (PascalCase) on success and `code` (camelCase) on error, so jq must handle both: `jq -r '.Code // .code'`. Non-zero = error code (see [_common.md §7](resources/_common.md))
 
 ---
 
@@ -359,7 +361,7 @@ When helping the user solve a problem:
 
 ## Bundled Scripts (`scripts/`)
 
-The skill ships 4 ready-to-use helper scripts that wrap the raw `sorftime api` command with output cleaning, error handling, retries, and convenience features:
+The skill ships 7 helper scripts (3 wrappers + 3 utilities + 1 shared library) that wrap the raw `sorftime api` command with output cleaning, error handling, retries, and convenience features:
 
 | Script | Purpose |
 |------|------|
@@ -371,12 +373,11 @@ The skill ships 4 ready-to-use helper scripts that wrap the raw `sorftime api` c
 | [`scripts/gen-index.sh`](scripts/gen-index.sh) | Auto-generates `resources/_endpoints-index.md` (endpoint count matrix) from resource headers — run after any resources update so the 117-endpoint number never goes stale |
 | [`scripts/_lib.sh`](scripts/_lib.sh) | Shared library sourced by all scripts — defines `call_api` / `_pyq` / `py_field` / `py_to_csv` helpers |
 
-**Typical usage** (replace the 5-line `... 2>&1 | grep -v "^info:" | jq .` with 1 line):
+**Typical usage** (replace `sorftime api ... | jq .` with 1 line):
 
 ```bash
-# Before (5 segments)
-sorftime api ProductRequest '{"asin":"B0CVM8TXHP"}' --domain 1 2>&1 \
-  | grep -v "^info:" | jq .
+# Raw (stdout is already clean JSON; stderr carries progress lines)
+sorftime api ProductRequest '{"asin":"B0CVM8TXHP"}' --domain 1 | jq .
 
 # After (1 line + checkable exit code)
 scripts/one.sh ProductRequest B0CVM8TXHP

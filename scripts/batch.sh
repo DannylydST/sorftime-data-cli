@@ -32,23 +32,46 @@ cd "$(dirname "$0")/.."
 # shellcheck source=scripts/_lib.sh
 source scripts/_lib.sh
 
+usage() {
+  cat >&2 <<'EOF'
+Usage: scripts/batch.sh <Endpoint> <input-file> [options]
+
+Options:
+  --domain <N>     Platform domain (default: 1)
+  --profile <X>    Profile name (default: active profile)
+  --sleep <S>      Seconds between requests (default: 1, rate-limit guard)
+  --retries <R>    Retries per line on transient failure (default: 2)
+  --out <FILE>     Write one response JSON per line to FILE
+  --param <NAME>   Wrap each input line as {"<NAME>":"<line>"}
+  --resume         Skip lines already completed (uses <out>.progress if set,
+                   else <input>.progress)
+  --dry-run        Print the commands without executing
+  -h, --help       Show this help
+EOF
+}
+
+for a in "$@"; do
+  case "$a" in -h|--help) usage; exit 0 ;; esac
+done
+
 ENDPOINT="${1:-}"
 INPUT="${2:-}"
 [ -z "$ENDPOINT" ] && { log_error "usage: batch.sh <Endpoint> <input-file> [--domain N] [--profile X] [--sleep S] [--retries R] [--out FILE] [--resume] [--dry-run]"; exit 3; }
 [ -f "$INPUT" ] || { log_error "input file not found: $INPUT"; exit 3; }
 
 DOMAIN=1; PROFILE=""; SLEEP=1; RETRIES=2; OUT=""; RESUME=0; DRY=0; PARAM=""
-while [ $# -gt 2 ]; do
-  case "$2" in
-    --domain) DOMAIN="$3"; shift 2 ;;
-    --profile) PROFILE="$3"; shift 2 ;;
-    --sleep) SLEEP="$3"; shift 2 ;;
-    --retries) RETRIES="$3"; shift 2 ;;
-    --out) OUT="$3"; shift 2 ;;
-    --param) PARAM="$3"; shift 2 ;;
+shift 2
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --domain) DOMAIN="${2:?--domain needs a value}"; shift 2 ;;
+    --profile) PROFILE="${2:?--profile needs a value}"; shift 2 ;;
+    --sleep) SLEEP="${2:?--sleep needs a value}"; shift 2 ;;
+    --retries) RETRIES="${2:?--retries needs a value}"; shift 2 ;;
+    --out) OUT="${2:?--out needs a value}"; shift 2 ;;
+    --param) PARAM="${2:?--param needs a value}"; shift 2 ;;
     --resume) RESUME=1; shift ;;
     --dry-run) DRY=1; shift ;;
-    *) shift ;;
+    *) log_error "unknown option: $1"; usage; exit 3 ;;
   esac
 done
 

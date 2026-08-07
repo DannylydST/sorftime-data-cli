@@ -1,5 +1,7 @@
 # TikTok API (17 endpoints)
 
+**Endpoints in this file**: CategoryTree, CategoryRequest, CategorySearchFromName, CategorySearch, CategoryTrend, ProductRequest, ProductSearchFromName, ProductTrendRequest, ProductSearch, ShopSearch, ShopRequest, AuthorRequest, VideoRequest, VideoTagSearch, CoinQuery, CoinStream, RequestStreamMonth
+
 **Domains**: 301 = US (United States), 304 = PH (Philippines), 305 = VN (Vietnam), 306 = TH (Thailand), 307 = ID (Indonesia), 309 = GB (United Kingdom), 312 = JP (Japan)
 
 > **US-only endpoints**: AuthorRequest, VideoRequest, VideoTagSearch are limited to domain=301 (US site).
