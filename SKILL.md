@@ -1,12 +1,13 @@
 ---
 name: sorftime-data-cli
 description: >
-  Call the Sorftime CLI (npm package `sorftime-cli`, entry point `sorftime api <Endpoint> '<json>'`) for 117 unique data endpoints across Amazon/Shopee/Walmart/1688/Temu/TikTok. Use for: batch-querying ASINs/categories/keywords/sales/reviews/monitoring; troubleshooting API calls, parameters, fields, or error codes; orchestrating endpoints for product selection / competitor analysis / hijacker monitoring / cross-platform comparison. **MUST** trigger whenever the user mentions sorftime-cli, Sorftime data APIs, batch ASIN lookups, monitoring setup, or any platform endpoint — even if the CLI isn't named explicitly.
-  Trigger words: sorftime api, sorftime-cli, sorftime-data-cli, batch ASIN query, category Best Seller, hijacker monitoring, keyword reverse-lookup, 批量查 ASIN, 批量类目数据, 调用 sorftime, 写 sorftime 脚本, 采购成本分析, 跟卖预警, 子体销量, 关键词监控, Best Seller 榜单, 类目趋势, 跨平台对比, 全量扫类目, 把这些ASIN全查一遍, 监控起来, 每天拉数据, 跨平台价差, FBM转FBA批量, 达人分析, 视频标签分析, TikTok 带货数据.
+  Activate for tasks involving the actual Sorftime product-data platform or CLI: installing/configuring `sorftime-cli` and the API token/profile, calling `sorftime api` endpoints, writing bash/PowerShell loops over ASINs, keywords, or nodeIds, pulling Best Seller lists / monthly sales, comparing prices across Amazon, Shopee, Walmart, 1688, Temu, or TikTok, and setting up hijacker/keyword monitoring or scheduled recurring pulls. Also activate for Sorftime API support: choosing the right endpoint/parameter/field/type, and debugging invalid-parameter errors, non-zero error codes, or response issues.
+
+  Trigger even when "Sorftime" isn't named if the user wants to look up, compare, monitor, or batch-query marketplace product data by ASIN/nodeId/keyword, or asks in Chinese (查 Best Seller 榜单, 批量查 ASIN, 查月销, 跨平台对比价格, 每天拉监控数据, 部署定时任务). Don't use for general e-commerce strategy, translation, or analytics unrelated to Sorftime.
 compatibility:
   tools: [Bash, Read]
   dependencies: [node>=16, npm, jq (optional), sorftime-cli@1.0.0]
-version: 1.2.0
+version: 1.2.1
 user-invocable: true
 ---
 

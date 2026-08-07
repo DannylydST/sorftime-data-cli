@@ -4,6 +4,16 @@ All notable changes to Sorftime Data CLI Skill.
 
 ---
 
+## [2026-08-07] — v1.2.2 (description optimized via trigger-eval loop)
+
+### Changed
+- **Description rewritten via skill-creator trigger-eval loop** (5 iterations, 32-query eval set, 20 train / 12 holdout): semantic "Activate for..." structure replaces the keyword-list format. Train score improved 9/20 → 11/20; holdout tied at 5/12; zero false positives on all 14 negative samples. English-first per the overseas-market positioning, with a compact Chinese trigger line as secondary (查 Best Seller 榜单 / 批量查 ASIN / 查月销 / 跨平台对比价格 / 每天拉监控数据 / 部署定时任务). Negative rule added: "Don't use for general e-commerce strategy, translation, or analytics unrelated to Sorftime."
+
+### Fixed (skill-creator tooling, reusable)
+- `run_eval.py` stream-event parsing: now accepts both the legacy `stream_event` wrapper and the current top-level event format; no longer bails on non-Skill tool calls or early assistant messages without a matching tool_use; matches skill by both injected command name and real skill name.
+
+---
+
 ## [2026-08-07] — v1.2.1 (full-chain audit pass)
 
 ### Fixed
