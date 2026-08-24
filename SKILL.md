@@ -7,7 +7,7 @@ description: >
 compatibility:
   tools: [Bash, Read]
   dependencies: [node>=16, npm, jq (optional), sorftime-cli@1.0.0]
-version: 1.3.0
+version: 1.3.1
 user-invocable: true
 ---
 
@@ -99,7 +99,7 @@ Run `bash scripts/doctor.sh --connect` → all checks pass → **re-run the user
 ### Failure handling
 - Registration blocked (region / network / payment)? → state what failed, ask how the user wants to proceed
 - `doctor.sh` still failing after configure? → show the exact failing check and its fix hint (the script prints these)
-- **401 with a key already configured** → the key is likely an **MCP key** (from `open.sorftime.com/mcp`, used by mcp.sorftime.com), **not an Account-SK**. The two are different credentials: the CLI gateway (`cli.sorftime.com`) accepts only the Account-SK shown on the open-platform dashboard → API/CLI数据服务 page (open-intl.sorftime.com or open.sorftime.com). Re-run `sorftime add <profile> <Account-SK>` with the right key (verified 2026-08-24: MCP key → 401; Account-SK → works).
+- **401 with a key already configured** → the key is likely an **MCP key** (issued for Sorftime's MCP service), **not an Account-SK**. The two are different credentials: the CLI gateway (`cli.sorftime.com`) accepts only the Account-SK shown on the open-platform dashboard (open-intl.sorftime.com → API/CLI service page). Re-run `sorftime add <profile> <Account-SK>` with the right key (verified live: MCP key → 401; Account-SK → works).
 
 ---
 

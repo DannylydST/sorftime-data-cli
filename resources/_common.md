@@ -224,7 +224,7 @@ Error / no-data response (e.g. `code=11`):
 | `501` | Per-minute request limit reached | Lower the request frequency; retry in 1 minute |
 | `502` | Daily request limit reached | Wait for next day's reset or upgrade plan |
 | `503` | Task registration failed | Task volume at this time exceeded; try another time slot |
-| `694` | Insufficient request remaining, or this API is not activated on your account (observed live 2026-08-24: fires even with a healthy balance for not-yet-activated APIs) | Check request credits first; if the balance is fine, the API product needs activation/purchase on your account (dashboard: open-intl.sorftime.com / open.sorftime.com) |
+| `694` | Insufficient request remaining, or this API is not activated on your account (observed live 2026-08-24: fires even with a healthy balance for not-yet-activated APIs) | Check request credits first; if the balance is fine, the API product needs activation/purchase on your account (dashboard: open-intl.sorftime.com) |
 
 ---
 
@@ -259,7 +259,7 @@ Error / no-data response (e.g. `code=11`):
 | `501` | Per-minute request limit reached | Lower the request frequency; retry in 1 minute |
 | `502` | Daily request limit reached | Wait for next day's reset or upgrade plan |
 | `503` | Task registration failed | Task volume at this time exceeded; try another time slot |
-| `694` | Insufficient request remaining, or this API is not activated on your account (observed live 2026-08-24: fires even with a healthy balance for not-yet-activated APIs) | Check request credits first; if the balance is fine, the API product needs activation/purchase on your account (dashboard: open-intl.sorftime.com / open.sorftime.com) |
+| `694` | Insufficient request remaining, or this API is not activated on your account (observed live 2026-08-24: fires even with a healthy balance for not-yet-activated APIs) | Check request credits first; if the balance is fine, the API product needs activation/purchase on your account (dashboard: open-intl.sorftime.com) |
 ---
 
 ### 1688 business error codes
@@ -277,7 +277,7 @@ Error / no-data response (e.g. `code=11`):
 | `500` | Monthly request count limit reached | Wait for next month's reset or upgrade plan |
 | `501` | Per-minute request limit reached | Lower the request frequency; retry in 1 minute |
 | `502` | Daily request limit reached | Wait for next day's reset or upgrade plan |
-| `694` | Insufficient request remaining, or this API is not activated on your account (observed live 2026-08-24: fires even with a healthy balance for not-yet-activated APIs) | Check request credits first; if the balance is fine, the API product needs activation/purchase on your account (dashboard: open-intl.sorftime.com / open.sorftime.com) |
+| `694` | Insufficient request remaining, or this API is not activated on your account (observed live 2026-08-24: fires even with a healthy balance for not-yet-activated APIs) | Check request credits first; if the balance is fine, the API product needs activation/purchase on your account (dashboard: open-intl.sorftime.com) |
 
 ---
 
@@ -304,7 +304,7 @@ Error / no-data response (e.g. `code=11`):
 | `500` | Monthly request count limit reached | Wait for next month's reset or upgrade plan |
 | `501` | Per-minute request limit reached | Lower the request frequency; retry in 1 minute |
 | `502` | Daily request limit reached | Wait for next day's reset or upgrade plan |
-| `694` | Insufficient request remaining, or this API is not activated on your account (observed live 2026-08-24: fires even with a healthy balance for not-yet-activated APIs) | Check request credits first; if the balance is fine, the API product needs activation/purchase on your account (dashboard: open-intl.sorftime.com / open.sorftime.com) |
+| `694` | Insufficient request remaining, or this API is not activated on your account (observed live 2026-08-24: fires even with a healthy balance for not-yet-activated APIs) | Check request credits first; if the balance is fine, the API product needs activation/purchase on your account (dashboard: open-intl.sorftime.com) |
 ---
 
 ### Temu business error codes
@@ -325,7 +325,7 @@ Error / no-data response (e.g. `code=11`):
 | `500` | Monthly request count limit reached | Wait for next month's reset or upgrade plan |
 | `501` | Per-minute request limit reached | Lower the request frequency; retry in 1 minute |
 | `502` | Daily request limit reached | Wait for next day's reset or upgrade plan |
-| `694` | Insufficient request remaining, or this API is not activated on your account (observed live 2026-08-24: fires even with a healthy balance for not-yet-activated APIs) | Check request credits first; if the balance is fine, the API product needs activation/purchase on your account (dashboard: open-intl.sorftime.com / open.sorftime.com) |
+| `694` | Insufficient request remaining, or this API is not activated on your account (observed live 2026-08-24: fires even with a healthy balance for not-yet-activated APIs) | Check request credits first; if the balance is fine, the API product needs activation/purchase on your account (dashboard: open-intl.sorftime.com) |
 
 ---
 

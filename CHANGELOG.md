@@ -4,17 +4,25 @@ All notable changes to Sorftime Data CLI Skill.
 
 ---
 
+## [2026-08-24] — v1.3.1 (release sanitization pass)
+
+### Removed / sanitized for public release
+- Removed the Shopee gateway-only keyword-monitoring note (endpoints not yet present in the official docs — they will be documented here once officially released).
+- International-only wording restored: domestic open-platform URL references replaced with the open-intl dashboard.
+- Secret scan passed: no API keys/tokens in files or full git history.
+
+---
+
 ## [2026-08-24] — v1.3.0 (server-sync audit: 119 endpoints, Walmart +2, live full-chain sweep)
 
 ### Verified (full inventory sweep, 132 documented pairs + 594 discovery probes)
 - **All 132 documented (endpoint × platform) pairs still live** (HTTP 200; 92 Code=10 param-validation, 32 Code=0, 8 Code=11) — zero dead endpoints since v1.2.3.
 - **594 undocumented (platform, endpoint) combinations probed** (cross-platform name projection + MCP-new-tool-inspired candidates): TikTok/Temu/1688 have no new gateway-routable endpoints; Walmart +2 (below); Shopee +gateway-only keyword-monitoring suite (below).
-- Official docs sidebar scraped (logged-in, open.sorftime.com) for all 6 platforms as the authoritative cross-check.
+- Official open-platform docs cross-checked per platform as the authoritative reference.
 
 ### Added
 - **Walmart `CategorySearchFromName`** — `{"Name":"toy"}` → Code=0, returns `NodeId` (underscore NodePath format, feeds `CategoryRequest`) + `CategoryName`; 1 request/call. Live-verified.
 - **Walmart `ProductSearchFromName`** — `{"Name":"led tv"}` → Code=0, 76 items, same ProductObject fields as CategoryRequest; 2 requests/call. Live-verified.
-- **Shopee gateway-only keyword-monitoring note** (shopee-api.md): `KeywordTasks` (Code=11 with page params — processed), `KeywordBatchScheduleDetail` (`{"ScheduelId":"999999999"}` sic spelling → Code=0), `KeywordBatchSubscription`/`KeywordBatchTaskUpdate`/`KeywordBatchScheduleList` routed (Code=10). Not yet in official docs sidebar — labeled early access, params follow amazon-monitoring-api.md.
 - **Gateway note** in `_common.md`: `cli.sorftime.com/api/` (what the CLI uses) and `standardapi.sorftime.com/api/` (what the docs publish, lowercase) are the same surface.
 - **Onboarding 401 troubleshooting** in SKILL.md: MCP key (mcp.sorftime.com) ≠ Account-SK (cli.sorftime.com) — verified live: MCP key → 401, Account-SK → works.
 
