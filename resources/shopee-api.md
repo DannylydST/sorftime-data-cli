@@ -639,6 +639,24 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 
 ---
 
+## Gateway-only: Keyword Monitoring Suite (verified live 2026-08-24, not yet in official docs)
+
+The following Amazon-style keyword-monitoring endpoints are **routable and functional on Shopee domains** (live-verified with the 2026-08-24 audit) but do **not yet appear in the official Shopee API docs sidebar**. Treat as early access — verify stability before production use:
+
+| Endpoint | Live evidence on Shopee (domain=201) |
+|------|------|
+| `KeywordTasks` | `{"pageIndex":1,"pageSize":20}` → Code=11 (no tasks on account — request processed) |
+| `KeywordBatchScheduleList` | routed (Code=10 with `{}` and with `{"pageIndex":1,"pageSize":20}` — exact param shape not yet confirmed) |
+| `KeywordBatchScheduleDetail` | `{"ScheduelId":"999999999"}` (sic spelling) → **Code=0** |
+| `KeywordBatchSubscription` | routed (Code=10 on `{}`); **write endpoint — creates monitoring tasks, do not test blindly** |
+| `KeywordBatchTaskUpdate` | routed (Code=10 on `{}`); write endpoint, same caution |
+
+Parameters and semantics follow [amazon-monitoring-api.md](./amazon-monitoring-api.md) (same implementation family; `KeywordBatchScheduleDetail` uses the API's own `ScheduelId` spelling).
+
+Related routed-but-gated observations (code=694 "not activated / insufficient quota" on this account, may require separate activation): `KeywordSearchResults`, `ProductRequestKeyword`, `ProductRealtimeRequest` on Shopee; `ProductRealtimeRequest` on Walmart.
+
+---
+
 ## Notes and Best Practices
 
 1. **Request rate**: At most 10 requests/second; control the rate when batch querying.

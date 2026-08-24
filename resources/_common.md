@@ -36,7 +36,7 @@ sorftime api <Endpoint> '<json-params>' --domain <N> --profile <name>
 
 | Option | Description |
 |------|------|
-| `<Endpoint>` | Endpoint name, **case-sensitive**, use the PascalCase form as documented in each file in this directory (e.g. `ProductRequest`, `KeywordBatchSubscription`). Lowercase forms in the CLI README are only examples; actual requests must use PascalCase. |
+| `<Endpoint>` | Endpoint name. Use the documented PascalCase form (e.g. `ProductRequest`, `KeywordBatchSubscription`). Verified live 2026-08-24: gateway routing is **case-insensitive** (`productrequest` and `ProductRequest` both resolve; the official docs even advertise lowercase URLs), and names containing `_` are rejected with 404 — PascalCase without separators is the documented convention. |
 | `<json-params>` | JSON string wrapped in single quotes. For endpoints with multiple parameters, non-required fields can be omitted; pass them as required per the endpoint document. |
 | `--domain` | Site code (see the table below). Amazon 1-14, Shopee 201-208, Walmart 21, Temu 701/705, 1688 601, TikTok 301-312. **Omitting or passing an incorrect value directly returns 401/404**. |
 | `--profile` | Profile name, corresponding to the auth config (containing the token and default domain) created by `sorftime add`. Optional; when omitted, uses the profile currently selected by `sorftime use`. |
@@ -50,6 +50,8 @@ sorftime use <profile-name>                    # Switch default profile-name
 sorftime whoami                                # View current profile-name
 sorftime rm <profile-name>                     # Delete profile-name
 ```
+
+> **Gateway**: the CLI posts to `https://cli.sorftime.com/api/<Endpoint>?domain=<N>`; the open-platform docs publish the same surface as `https://standardapi.sorftime.com/api/<endpoint>` (lowercase). Both are live entry points of the same API — scripts may hardcode either; `cli.sorftime.com` is what the official CLI uses. Response bodies of Shopee/Walmart (and some large payloads) arrive gzip-compressed then base64-encoded; the `sorftime` CLI decodes this automatically (plain-text JSON on stdout), raw HTTP clients must decode manually.
 
 ---
 
@@ -222,7 +224,7 @@ Error / no-data response (e.g. `code=11`):
 | `501` | Per-minute request limit reached | Lower the request frequency; retry in 1 minute |
 | `502` | Daily request limit reached | Wait for next day's reset or upgrade plan |
 | `503` | Task registration failed | Task volume at this time exceeded; try another time slot |
-| `694` | Insufficient request remaining | Log in to your Sorftime account (open-intl.sorftime.com) to check or top up request credits |
+| `694` | Insufficient request remaining, or this API is not activated on your account (observed live 2026-08-24: fires even with a healthy balance for not-yet-activated APIs) | Check request credits first; if the balance is fine, the API product needs activation/purchase on your account (dashboard: open-intl.sorftime.com / open.sorftime.com) |
 
 ---
 
@@ -257,7 +259,7 @@ Error / no-data response (e.g. `code=11`):
 | `501` | Per-minute request limit reached | Lower the request frequency; retry in 1 minute |
 | `502` | Daily request limit reached | Wait for next day's reset or upgrade plan |
 | `503` | Task registration failed | Task volume at this time exceeded; try another time slot |
-| `694` | Insufficient request remaining | Log in to your Sorftime account (open-intl.sorftime.com) to check or top up request credits |
+| `694` | Insufficient request remaining, or this API is not activated on your account (observed live 2026-08-24: fires even with a healthy balance for not-yet-activated APIs) | Check request credits first; if the balance is fine, the API product needs activation/purchase on your account (dashboard: open-intl.sorftime.com / open.sorftime.com) |
 ---
 
 ### 1688 business error codes
@@ -275,7 +277,7 @@ Error / no-data response (e.g. `code=11`):
 | `500` | Monthly request count limit reached | Wait for next month's reset or upgrade plan |
 | `501` | Per-minute request limit reached | Lower the request frequency; retry in 1 minute |
 | `502` | Daily request limit reached | Wait for next day's reset or upgrade plan |
-| `694` | Insufficient request remaining | Log in to your Sorftime account (open-intl.sorftime.com) to check or top up request credits |
+| `694` | Insufficient request remaining, or this API is not activated on your account (observed live 2026-08-24: fires even with a healthy balance for not-yet-activated APIs) | Check request credits first; if the balance is fine, the API product needs activation/purchase on your account (dashboard: open-intl.sorftime.com / open.sorftime.com) |
 
 ---
 
@@ -302,7 +304,7 @@ Error / no-data response (e.g. `code=11`):
 | `500` | Monthly request count limit reached | Wait for next month's reset or upgrade plan |
 | `501` | Per-minute request limit reached | Lower the request frequency; retry in 1 minute |
 | `502` | Daily request limit reached | Wait for next day's reset or upgrade plan |
-| `694` | Insufficient request remaining | Log in to your Sorftime account (open-intl.sorftime.com) to check or top up request credits |
+| `694` | Insufficient request remaining, or this API is not activated on your account (observed live 2026-08-24: fires even with a healthy balance for not-yet-activated APIs) | Check request credits first; if the balance is fine, the API product needs activation/purchase on your account (dashboard: open-intl.sorftime.com / open.sorftime.com) |
 ---
 
 ### Temu business error codes
@@ -323,7 +325,7 @@ Error / no-data response (e.g. `code=11`):
 | `500` | Monthly request count limit reached | Wait for next month's reset or upgrade plan |
 | `501` | Per-minute request limit reached | Lower the request frequency; retry in 1 minute |
 | `502` | Daily request limit reached | Wait for next day's reset or upgrade plan |
-| `694` | Insufficient request remaining | Log in to your Sorftime account (open-intl.sorftime.com) to check or top up request credits |
+| `694` | Insufficient request remaining, or this API is not activated on your account (observed live 2026-08-24: fires even with a healthy balance for not-yet-activated APIs) | Check request credits first; if the balance is fine, the API product needs activation/purchase on your account (dashboard: open-intl.sorftime.com / open.sorftime.com) |
 
 ---
 

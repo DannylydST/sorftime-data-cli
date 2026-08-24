@@ -7,13 +7,13 @@ description: >
 compatibility:
   tools: [Bash, Read]
   dependencies: [node>=16, npm, jq (optional), sorftime-cli@1.0.0]
-version: 1.2.1
+version: 1.3.0
 user-invocable: true
 ---
 
 # Sorftime Data CLI Skill
 
-> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering 117 unique Sorftime data endpoints (Amazon 57 + Shopee 17 + Walmart 17 + 1688 9 + Temu 12 + TikTok 17; CoinQuery/CoinStream/RequestStreamMonth are shared across platforms and counted once).
+> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering 119 unique Sorftime data endpoints (Amazon 57 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 17; CoinQuery/CoinStream/RequestStreamMonth are shared across platforms and counted once). Full-chain live audit 2026-08-24: all documented (endpoint × platform) pairs still return HTTP 200; Walmart gained CategorySearchFromName + ProductSearchFromName.
 
 ---
 
@@ -99,6 +99,7 @@ Run `bash scripts/doctor.sh --connect` → all checks pass → **re-run the user
 ### Failure handling
 - Registration blocked (region / network / payment)? → state what failed, ask how the user wants to proceed
 - `doctor.sh` still failing after configure? → show the exact failing check and its fix hint (the script prints these)
+- **401 with a key already configured** → the key is likely an **MCP key** (from `open.sorftime.com/mcp`, used by mcp.sorftime.com), **not an Account-SK**. The two are different credentials: the CLI gateway (`cli.sorftime.com`) accepts only the Account-SK shown on the open-platform dashboard → API/CLI数据服务 page (open-intl.sorftime.com or open.sorftime.com). Re-run `sorftime add <profile> <Account-SK>` with the right key (verified 2026-08-24: MCP key → 401; Account-SK → works).
 
 ---
 
@@ -189,11 +190,11 @@ jq --version || echo "⚠️ jq not installed; pure-CLI JSON processing is limit
 | [`shopee-api.md`](resources/shopee-api.md) | 17 | CategoryTree, CategorySearchFromName, CategoryRequest, CategoryTrend, ProductRequest, ProductSearchFromName, ProductTrend, ProductSearch, ShopRequest, KeywordSearch, KeywordRelationResults, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword, CoinQuery, CoinStream, RequestStreamMonth |
 | [`shopee-data-types.md`](resources/shopee-data-types.md) | — | Shopee data type definitions |
 
-### Walmart (17 endpoints)
+### Walmart (19 endpoints)
 
 | File | Count | Endpoints |
 |------|--------|---------|
-| [`walmart-api.md`](resources/walmart-api.md) | 17 | All 17 endpoints: CategoryTree, CategoryRequest, ProductRequest, ProductTrendRequest, ProductSalesVolume, CoinQuery, CoinStream, RequestStreamMonth, KeywordQuery, KeywordSearchFromName, KeywordSearchResults, KeywordRequest, ProductRequestKeyword, KeywordExtends, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword |
+| [`walmart-api.md`](resources/walmart-api.md) | 19 | All 19 endpoints: CategoryTree, CategoryRequest, CategorySearchFromName, ProductRequest, ProductTrendRequest, ProductSearchFromName, ProductSalesVolume, CoinQuery, CoinStream, RequestStreamMonth, KeywordQuery, KeywordSearchFromName, KeywordSearchResults, KeywordRequest, ProductRequestKeyword, KeywordExtends, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword |
 | [`walmart-data-types.md`](resources/walmart-data-types.md) | — | Walmart data type definitions |
 
 ### 1688 (9 endpoints)
@@ -339,6 +340,7 @@ Skills/sorftime-cli/
 | Walmart product ID | `{"ProductId":"xxx"}` | `{"asin":"xxx"}` |
 | Walmart category | `{"NodePath":"4044_90548"}` | `{"nodeId":"xxx"}` |
 | Temu search | `{"Name":"keyword"}` (capital N) | `{"name":"keyword"}` |
+| Walmart search by name | `{"Name":"led tv"}` — new 2026-08-24: `CategorySearchFromName` / `ProductSearchFromName` | searching via `nodeId`/`asin` |
 | 1688 image search | `{"ImageUrl":"https://..."}` | `{"image":"..."}` |
 | CategoryRequestKeyword | `{"Nodeid":"xxx"}` (lowercase d) | `{"NodeId":"xxx"}` |
 | ASINRequestKeyword | `{"ASIN":"B0X"}` (all caps) | `{"asin":"B0X"}` |

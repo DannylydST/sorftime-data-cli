@@ -53,7 +53,11 @@ fi
   echo "## Summary"
   echo ""
   echo "- Files with endpoint counts: $found"
-  echo "- **Sum of per-file counts: $total** (cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth are counted once per platform they appear in; unique endpoint count = 117, see SKILL.md)"
+  acct_listings=$(cat resources/*.md | tr -d '\r' | sed -n 's/^\*\*Endpoints in this file\*\*: //p' | tr ',' '\n' | sed 's/^ *//;s/ *$//' | grep -cxE 'CoinQuery|CoinStream|RequestStreamMonth')
+  uniq_names=$(cat resources/*.md | tr -d '\r' | sed -n 's/^\*\*Endpoints in this file\*\*: //p' | tr ',' '\n' | sed 's/^ *//;s/ *$//' | grep -v '^$' | sort -u | wc -l | tr -d ' ')
+  uniq_platform=$((total - acct_listings + 3))
+  echo "- **Sum of per-file counts: $total** (cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth are counted once per platform they appear in)"
+  echo "- **Unique endpoint names across files: $uniq_names**; **unique per SKILL.md counting (account trio counted once): $uniq_platform** — see SKILL.md"
 } >> "$TMP"
 
 mv "$TMP" "$OUT"

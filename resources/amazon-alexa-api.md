@@ -13,6 +13,8 @@
 
 **Endpoints in this file**: AlexaQuestionsCollection, AlexaQuestionsCollectionStatusQuery, AlexaQuestionsCollectionResultQuery, AlexaQuestionsQuery
 
+> **Deprecation notice (2026-08-24 audit)**: `AlexaQuestionsQuery` has been removed from the official open-platform docs (docs now list only the 3 collection/status/result endpoints). The gateway still routes it (`Code`-normal response), but treat it as deprecated — prefer `AlexaQuestionsCollectionResultQuery` for new integrations.
+
 **Amazon Domains**: 1=US, 2=UK, 3=DE, 4=FR, 5=IN, 6=CA, 7=JP, 8=ES, 9=IT
 
 For common reference, see [`_common.md`](./_common.md): CLI call template, Domain table, error codes, response structure, rate limits & concurrency.

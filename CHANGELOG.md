@@ -4,6 +4,30 @@ All notable changes to Sorftime Data CLI Skill.
 
 ---
 
+## [2026-08-24] — v1.3.0 (server-sync audit: 119 endpoints, Walmart +2, live full-chain sweep)
+
+### Verified (full inventory sweep, 132 documented pairs + 594 discovery probes)
+- **All 132 documented (endpoint × platform) pairs still live** (HTTP 200; 92 Code=10 param-validation, 32 Code=0, 8 Code=11) — zero dead endpoints since v1.2.3.
+- **594 undocumented (platform, endpoint) combinations probed** (cross-platform name projection + MCP-new-tool-inspired candidates): TikTok/Temu/1688 have no new gateway-routable endpoints; Walmart +2 (below); Shopee +gateway-only keyword-monitoring suite (below).
+- Official docs sidebar scraped (logged-in, open.sorftime.com) for all 6 platforms as the authoritative cross-check.
+
+### Added
+- **Walmart `CategorySearchFromName`** — `{"Name":"toy"}` → Code=0, returns `NodeId` (underscore NodePath format, feeds `CategoryRequest`) + `CategoryName`; 1 request/call. Live-verified.
+- **Walmart `ProductSearchFromName`** — `{"Name":"led tv"}` → Code=0, 76 items, same ProductObject fields as CategoryRequest; 2 requests/call. Live-verified.
+- **Shopee gateway-only keyword-monitoring note** (shopee-api.md): `KeywordTasks` (Code=11 with page params — processed), `KeywordBatchScheduleDetail` (`{"ScheduelId":"999999999"}` sic spelling → Code=0), `KeywordBatchSubscription`/`KeywordBatchTaskUpdate`/`KeywordBatchScheduleList` routed (Code=10). Not yet in official docs sidebar — labeled early access, params follow amazon-monitoring-api.md.
+- **Gateway note** in `_common.md`: `cli.sorftime.com/api/` (what the CLI uses) and `standardapi.sorftime.com/api/` (what the docs publish, lowercase) are the same surface.
+- **Onboarding 401 troubleshooting** in SKILL.md: MCP key (mcp.sorftime.com) ≠ Account-SK (cli.sorftime.com) — verified live: MCP key → 401, Account-SK → works.
+
+### Fixed
+- **"Endpoint names are case-sensitive" was wrong**: gateway routing is case-insensitive (`productrequest` → Code=10, same as `ProductRequest`; official docs advertise lowercase URLs). Names containing `_` 404. PascalCase kept as the documented convention. Fixed in `_common.md` and walmart-api.md.
+- **Error code 694 semantics refined** (all 5 platform tables): fires not only on exhausted balance but also when the API product is **not activated** on the account (observed with 971k requests remaining: Shopee `KeywordSearchResults`, Walmart `ProductRealtimeRequest`).
+- **Amazon `AlexaQuestionsQuery` marked deprecated**: removed from the official docs sidebar (docs now list 3 Alexa endpoints); gateway still routes it.
+
+### Counts
+- Unique endpoints 117 → **119** (Walmart 17 → 19). Per-file counts refreshed via `gen-index.sh`.
+
+---
+
 ## [2026-08-07] — v1.2.3 (full-interface live verification pass)
 
 ### Verified (live API calls, 52 endpoints)

@@ -1,4 +1,4 @@
-# Walmart Endpoints (17)
+# Walmart Endpoints (19)
 
 
 ## Table of Contents
@@ -6,8 +6,10 @@
 - [Call Conventions](#call-conventions)
 - [1. Category Tree (CategoryTree)](#1-category-tree-categorytree)
 - [2. Category Market Report (CategoryRequest)](#2-category-market-report-categoryrequest)
+- [2a. Search Categories by Name (CategorySearchFromName)](#2a-search-categories-by-name-categorysearchfromname)
 - [3. Product Data Query (ProductRequest)](#3-product-data-query-productrequest)
 - [4. Product Historical Trend Query (ProductTrendRequest)](#4-product-historical-trend-query-producttrendrequest)
+- [4a. Search Products by Name (ProductSearchFromName)](#4a-search-products-by-name-productsearchfromname)
 - [5. Product Officially Disclosed Variant Sales (ProductSalesVolume)](#5-product-officially-disclosed-variant-sales-productsalesvolume)
 - [6. Query This Month's Remaining Credits (CoinQuery)](#6-query-this-months-remaining-credits-coinquery)
 - [7. Query Credit Usage Details (CoinStream)](#7-query-credit-usage-details-coinstream)
@@ -32,12 +34,12 @@
 - [5. Keyword Filtering](#5-keyword-filtering)
 - [6. Library Management](#6-library-management)
 
-**Endpoints in this file**: CategoryTree, CategoryRequest, ProductRequest, ProductTrendRequest, ProductSalesVolume, CoinQuery, CoinStream, RequestStreamMonth, KeywordQuery, KeywordSearchFromName, KeywordSearchResults, KeywordRequest, ProductRequestKeyword, KeywordExtends, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword
+**Endpoints in this file**: CategoryTree, CategoryRequest, CategorySearchFromName, ProductRequest, ProductTrendRequest, ProductSearchFromName, ProductSalesVolume, CoinQuery, CoinStream, RequestStreamMonth, KeywordQuery, KeywordSearchFromName, KeywordSearchResults, KeywordRequest, ProductRequestKeyword, KeywordExtends, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword
 
 ## Call Conventions
 
 - Walmart currently only supports the US site, i.e. `domain=21`.
-- CLI call format: `sorftime api <Endpoint> '<json-params>' --domain 21`. Endpoint names are case-sensitive.
+- CLI call format: `sorftime api <Endpoint> '<json-params>' --domain 21`. Use the documented PascalCase endpoint names (gateway routing is case-insensitive, but PascalCase is the documented convention).
 - All endpoints share a common response envelope: `RequestLeft`, `RequestConsumed`, `RequestCount`, `Code`, `Message`, `Data`. The Walmart response additionally includes the `RequestCount: 0` field. The "Response data" sections below describe only the business fields within each endpoint's `data`.
 - Request parameters do not have a separate Required flag; whether a parameter is optional should be judged from the "Optional" label or default value in the field description.
 
@@ -114,6 +116,26 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 
 ---
 
+## 2a. Search Categories by Name (CategorySearchFromName)
+
+- **Endpoint description**: Search Walmart category markets by name; used to obtain the NodePath of matching categories (verified live 2026-08-24)
+- **Requests consumed**: 1
+- **Supported domains**: 21(us)
+- **Note**: Name matching works on indexed category names; generic terms may return `Code=11` (no data) — try more specific names (e.g. `toy` returns matches, `kitchen` does not).
+- **Request parameters**:
+  | Parameter | Type | Description |
+  |------|------|------|
+  | Name | String | Category name keyword to search |
+- **Usage example**:
+  ```bash
+  sorftime api CategorySearchFromName '{"Name": "toy"}' --domain 21
+  ```
+- **Response data**: `Data` is an array of:
+  - `NodeId`: Category node path in Walmart's underscore format, e.g. `3734780_9703589_2216795` — feed directly into `CategoryRequest`'s `NodePath` parameter.
+  - `CategoryName`: Display name of the category, e.g. `Bluey in Toys by Brand`.
+
+---
+
 ## 3. Product Data Query (ProductRequest)
 
 - **Endpoint description**: Product data query
@@ -180,6 +202,23 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
   - `ReviewsTrend`: Review count trend. Value description: `[2020-10-01,1251,2020-10-02,1252,2020-10-03,1301.....]`. Even array indices are dates (e.g. 20201001), odd array indices are review count.
   - `StarTrend`: Star rating trend. Value description: `[2020-10-01,450,2020-10-02,450,2020-10-03,440.....]`. Even array indices are dates (e.g. 20201001), odd array indices are star ratings; 450 = 4.5 stars.
   - `RankTrend`: The product's rank in each category. Value description: `[ [ "<Category node name>", "<Category node>", "<Date(yyyy-MM-dd)>", "<Rank>", "<Date(yyyy-MM-dd)>", "<Rank>", "<Date(yyyy-MM-dd)>", "<Rank>",.... ],.... ]`.
+
+---
+
+## 4a. Search Products by Name (ProductSearchFromName)
+
+- **Endpoint description**: Search Walmart products by name, returning up to ~100 matches per call, sorted by monthly sales (verified live 2026-08-24: `"led tv"` → 76 items)
+- **Requests consumed**: 2
+- **Supported domains**: 21(us)
+- **Request parameters**:
+  | Parameter | Type | Description |
+  |------|------|------|
+  | Name | String | Product name keyword to search |
+- **Usage example**:
+  ```bash
+  sorftime api ProductSearchFromName '{"Name": "led tv"}' --domain 21
+  ```
+- **Response data**: `Data` is a ProductObject array with the same fields as [CategoryRequest](#2-category-market-report-categoryrequest) (Title, Photo, Price, Brand, Seller, Shipedby, WFSFee, Attribute, FirstReviewsDate, ReviewsCount, Ratings, ListingSalesVolumeOfMonth, ListingSalesOfMonth, ParentProductId, ProductId, NodePath, Label, PopularPick, Clearance, ReducedPrice, Rollback, FlashDeal, Size, Weight, Variants, NumberOfStar).
 
 ---
 

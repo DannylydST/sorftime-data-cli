@@ -18,9 +18,10 @@
 | [shopee-api.md](shopee-api.md) | `CategoryTree, CategorySearchFromName, CategoryRequest, CategoryTrend, ProductRequest, ProductSearchFromName, ProductTrend, ProductSearch, ShopRequest, KeywordSearch, KeywordRelationResults, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword, CoinQuery, CoinStream, RequestStreamMonth` | 17 |
 | [temu-api.md](temu-api.md) | `CategoryTree, CategoryRequest, CategorySearchFromName, CategorySearch, ProductRequest, ProductSearchFromName, ProductTrendRequest, ProductSearch, ShopRequest, CoinQuery, CoinStream, RequestStreamMonth` | 12 |
 | [tiktok-api.md](tiktok-api.md) | `CategoryTree, CategoryRequest, CategorySearchFromName, CategorySearch, CategoryTrend, ProductRequest, ProductSearchFromName, ProductTrendRequest, ProductSearch, ShopSearch, ShopRequest, AuthorRequest, VideoRequest, VideoTagSearch, CoinQuery, CoinStream, RequestStreamMonth` | 17 |
-| [walmart-api.md](walmart-api.md) | `CategoryTree, CategoryRequest, ProductRequest, ProductTrendRequest, ProductSalesVolume, CoinQuery, CoinStream, RequestStreamMonth, KeywordQuery, KeywordSearchFromName, KeywordSearchResults, KeywordRequest, ProductRequestKeyword, KeywordExtends, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword` | 17 |
+| [walmart-api.md](walmart-api.md) | `CategoryTree, CategoryRequest, CategorySearchFromName, ProductRequest, ProductTrendRequest, ProductSearchFromName, ProductSalesVolume, CoinQuery, CoinStream, RequestStreamMonth, KeywordQuery, KeywordSearchFromName, KeywordSearchResults, KeywordRequest, ProductRequestKeyword, KeywordExtends, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword` | 19 |
 
 ## Summary
 
 - Files with endpoint counts: 12
-- **Sum of per-file counts: 132** (cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth are counted once per platform they appear in; unique endpoint count = 117, see SKILL.md)
+- **Sum of per-file counts: 134** (cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth are counted once per platform they appear in)
+- **Unique endpoint names across files: 74**; **unique per SKILL.md counting (account trio counted once): 119** — see SKILL.md
