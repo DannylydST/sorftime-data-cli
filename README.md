@@ -1,22 +1,18 @@
 # Sorftime Data CLI — Cross-Border E-Commerce Data API for AI Agents & Developers
 
-> **Scriptable access to 117 data endpoints across Amazon, Shopee, Walmart, 1688, Temu, and TikTok** — batch ASIN queries, category Best Sellers, keyword research, hijacker monitoring, variation sales, creator analytics.
+> **Scriptable access to 119 data endpoints across Amazon, Shopee, Walmart, 1688, Temu, and TikTok** — batch ASIN queries, category Best Sellers, keyword research, hijacker monitoring, variation sales, creator analytics.
 >
 > One npm package. One unified command: `sorftime api <Endpoint> '<json>'`. Works with any AI agent and any automation pipeline. Open source.
 
-## 🆕 What's New (August 6, 2026)
+## 🆕 What's New (August 24, 2026)
 
-- **🌐 English-first international release** — Full documentation in English for global sellers. New 🔴 Language Rule: the skill always replies in the user's language (English or Chinese), never mixed.
-- **🗣️ Bilingual trigger support** — Triggers in both English and Chinese (选品/跟卖预警/跨平台对比/批量查 ASIN/监控部署...).
-- **📋 Parameter naming trap table** — 13 highest-frequency parameter pitfalls (Walmart `NodePath` vs `nodeId`, Temu `Name` casing, `ASINRequestKeyword` all-caps, TikTok creator/video domain=301...) added to SKILL.md.
-- **🛠️ Automation workhorses** — `batch.sh` (generic batch runner: rate limiting, retries, resume, disk output), `doctor.sh` (environment self-check with onboarding hints), `gen-index.sh` (auto-refreshing endpoint count matrix).
-- **🗺️ Three-column Shortcut Map** — user intent → command → expected output, covering daily queries, batch ops, and debugging.
-- **🔧 Documentation fixes** — All internal cross-references repaired; endpoint count corrected to 117 unique (3 cross-platform account endpoints counted once); TOC added to all reference files; description within platform limits.
-- **📦 Built on `sorftime-cli@1.0.0`** — The official npm release (Amazon 57 + Shopee 17 + Walmart 17 + 1688 9 + Temu 12 + TikTok 17).
+- **➕ Walmart search-by-name endpoints** — `CategorySearchFromName` (find category NodePath by name) and `ProductSearchFromName` (up to ~100 products by name); endpoint coverage grows to **119 unique endpoints**.
+- **🩺 Clearer error guidance** — error `694` now documented as "insufficient credits *or* API not activated"; onboarding adds a 401 troubleshooting note (MCP key vs Account-SK).
+- **📝 Docs accuracy** — endpoint-name casing at the gateway corrected (routing is case-insensitive); Amazon `AlexaQuestionsQuery` marked deprecated in favor of `AlexaQuestionsCollectionResultQuery`.
 
 [Full changelog →](CHANGELOG.md)
 
-> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering **117 unique** Sorftime cross-border e-commerce data endpoints: Amazon 57 + Shopee 17 + Walmart 17 + 1688 9 + Temu 12 + TikTok 17 (per-platform counts include the 3 shared cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth, counted once).
+> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering **119 unique** Sorftime cross-border e-commerce data endpoints: Amazon 57 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 17 (per-platform counts include the 3 shared cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth, counted once).
 
 For the full index (discovery path, recipes, all endpoint references), see [SKILL.md](SKILL.md).
 
@@ -29,7 +25,7 @@ Sorftime serves cross-border e-commerce data through two access modes. Both draw
 | | **Sorftime Seller Agent** (MCP) | **Sorftime Data CLI** (this project) |
 |---|---|---|
 | Best for | Sellers & AI agents — out-of-the-box marketplace intelligence | Developers, data teams & enterprises — building on raw data |
-| Data access | Curated tool calls, structured for agents | **All 117 endpoints, every field, raw JSON** |
+| Data access | Curated tool calls, structured for agents | **All 119 endpoints, every field, raw JSON** |
 | Automation | Runs inside an AI agent session | **Any pipeline**: cron, CI, shell, Python/Node, Airflow |
 | Determinism | Agent interprets every call | **Reproducible**: same request → same JSON, always |
 | Volume | Per-interaction | **Thousands of records per run** — `batch.sh` rate-limit-safe, resumable |

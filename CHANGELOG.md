@@ -4,35 +4,18 @@ All notable changes to Sorftime Data CLI Skill.
 
 ---
 
-## [2026-08-24] — v1.3.1 (release sanitization pass)
-
-### Removed / sanitized for public release
-- Removed the Shopee gateway-only keyword-monitoring note (endpoints not yet present in the official docs — they will be documented here once officially released).
-- International-only wording restored: domestic open-platform URL references replaced with the open-intl dashboard.
-- Secret scan passed: no API keys/tokens in files or full git history.
-
----
-
-## [2026-08-24] — v1.3.0 (server-sync audit: 119 endpoints, Walmart +2, live full-chain sweep)
-
-### Verified (full inventory sweep, 132 documented pairs + 594 discovery probes)
-- **All 132 documented (endpoint × platform) pairs still live** (HTTP 200; 92 Code=10 param-validation, 32 Code=0, 8 Code=11) — zero dead endpoints since v1.2.3.
-- **594 undocumented (platform, endpoint) combinations probed** (cross-platform name projection + MCP-new-tool-inspired candidates): TikTok/Temu/1688 have no new gateway-routable endpoints; Walmart +2 (below); Shopee +gateway-only keyword-monitoring suite (below).
-- Official open-platform docs cross-checked per platform as the authoritative reference.
+## [2026-08-24] — v1.3.1 (119 endpoints: Walmart additions & docs fixes)
 
 ### Added
-- **Walmart `CategorySearchFromName`** — `{"Name":"toy"}` → Code=0, returns `NodeId` (underscore NodePath format, feeds `CategoryRequest`) + `CategoryName`; 1 request/call. Live-verified.
-- **Walmart `ProductSearchFromName`** — `{"Name":"led tv"}` → Code=0, 76 items, same ProductObject fields as CategoryRequest; 2 requests/call. Live-verified.
-- **Gateway note** in `_common.md`: `cli.sorftime.com/api/` (what the CLI uses) and `standardapi.sorftime.com/api/` (what the docs publish, lowercase) are the same surface.
-- **Onboarding 401 troubleshooting** in SKILL.md: MCP key (mcp.sorftime.com) ≠ Account-SK (cli.sorftime.com) — verified live: MCP key → 401, Account-SK → works.
+- **Walmart `CategorySearchFromName`** — search categories by name, returns `NodeId` (underscore NodePath format, feeds `CategoryRequest`) + `CategoryName`; 1 request/call.
+- **Walmart `ProductSearchFromName`** — search products by name (`{"Name":"led tv"}`), up to ~100 matches per call with full ProductObject fields; 2 requests/call.
+- Onboarding troubleshooting: a configured key returning **401** is usually an MCP key, not an Account-SK — re-add the profile with the Account-SK from the open-intl dashboard.
 
 ### Fixed
-- **"Endpoint names are case-sensitive" was wrong**: gateway routing is case-insensitive (`productrequest` → Code=10, same as `ProductRequest`; official docs advertise lowercase URLs). Names containing `_` 404. PascalCase kept as the documented convention. Fixed in `_common.md` and walmart-api.md.
-- **Error code 694 semantics refined** (all 5 platform tables): fires not only on exhausted balance but also when the API product is **not activated** on the account (observed with 971k requests remaining: Shopee `KeywordSearchResults`, Walmart `ProductRealtimeRequest`).
-- **Amazon `AlexaQuestionsQuery` marked deprecated**: removed from the official docs sidebar (docs now list 3 Alexa endpoints); gateway still routes it.
-
-### Counts
-- Unique endpoints 117 → **119** (Walmart 17 → 19). Per-file counts refreshed via `gen-index.sh`.
+- Endpoint-name casing: gateway routing is case-insensitive (the docs previously claimed case-sensitivity). Names containing `_` return 404.
+- Error `694` can also mean "API not activated on your account", not only insufficient credits (all 5 platform error tables updated).
+- **Amazon `AlexaQuestionsQuery` marked deprecated** — prefer `AlexaQuestionsCollectionResultQuery`.
+- Endpoint count updated 117 → **119** across SKILL.md, resource headers and the auto-generated index.
 
 ---
 
@@ -63,7 +46,7 @@ All notable changes to Sorftime Data CLI Skill.
 - **decode.sh crash on macOS default bash**: it used associative arrays (`declare -A`), which the macOS-shipped bash 3.2 does not support — every call died with `bad array subscript`. Rewritten with plain index arrays; works on bash 3.2+ everywhere.
 - **decode.sh dictionary stale & wrong**: only 9 common codes, and `694` was mislabeled "Rate limited" (it actually means **Insufficient request remaining — top up credits**, which misleads users into waiting instead of topping up). Now carries the full 31-code dictionary from `_common.md` §7 with per-platform availability (A/S/W/1/T/K) and `--platform` filtering that actually works.
 - **batch.sh option parsing rewritten**: the old loop matched `$2`/`$3` instead of `$1`/`$2` — fragile, and malformed options were silently swallowed. Now a standard `shift`-driven parser with "needs a value" errors and a real `--help`.
-- **SKILL.md Quickstart example returned Code=10**: `{"asinList":["B0X"]}` is invalid — the correct form is `{"asin":"B0X"}` (comma-separated for batches). Fixed, and verified live (Code=0).
+- **SKILL.md Quickstart example returned Code=10**: `{"asinList":["B0X"]}` is invalid — the correct form is `{"asin":"B0X"}` (comma-separated for batches). Fixed.
 - **SKILL.md jq field-name bug**: examples used `jq '.code'`, but the success response is PascalCase `Code` (errors are camelCase `code`) — `jq '.code'` returned null on every success. Now documented as `jq -r '.Code // .code'` with a verified note in Quickstart.
 - **Wrong section references**: error-code pointers said `_common.md §6`; the table lives in §7. Fixed both SKILL.md occurrences.
 - **Stale CLI output docs**: removed all `grep -v "^info:"` pipes from SKILL.md/README — CLI 1.0.0 writes clean JSON to stdout and progress lines to stderr, so the filters were redundant and misleading.

@@ -86,7 +86,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
   sorftime api CategoryRequest '{"NodePath": "4044_90548_90546"}' --domain 21
   ```
 - **Response data**:
-  - `Data` is directly a ProductObject array (no `Products` wrapper; corrected 2026-07-20):
+  - `Data` is directly a ProductObject array (no `Products` wrapper):
     - `Title`: Product name.
     - `Photo`: This product's main image, URL format.
     - `ListingSalesVolumeOfMonth`: Estimated link-level monthly sales (variants not distinguished). Recommended for product sales evaluation.
@@ -118,7 +118,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 
 ## 2a. Search Categories by Name (CategorySearchFromName)
 
-- **Endpoint description**: Search Walmart category markets by name; used to obtain the NodePath of matching categories (verified live 2026-08-24)
+- **Endpoint description**: Search Walmart category markets by name; used to obtain the NodePath of matching categories
 - **Requests consumed**: 1
 - **Supported domains**: 21(us)
 - **Note**: Name matching works on indexed category names; generic terms may return `Code=11` (no data) — try more specific names (e.g. `toy` returns matches, `kitchen` does not).
@@ -207,7 +207,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 
 ## 4a. Search Products by Name (ProductSearchFromName)
 
-- **Endpoint description**: Search Walmart products by name, returning up to ~100 matches per call, sorted by monthly sales (verified live 2026-08-24: `"led tv"` → 76 items)
+- **Endpoint description**: Search Walmart products by name, returning up to ~100 matches per call, sorted by monthly sales
 - **Requests consumed**: 2
 - **Supported domains**: 21(us)
 - **Request parameters**:

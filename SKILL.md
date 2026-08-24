@@ -13,7 +13,7 @@ user-invocable: true
 
 # Sorftime Data CLI Skill
 
-> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering 119 unique Sorftime data endpoints (Amazon 57 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 17; CoinQuery/CoinStream/RequestStreamMonth are shared across platforms and counted once). Full-chain live audit 2026-08-24: all documented (endpoint × platform) pairs still return HTTP 200; Walmart gained CategorySearchFromName + ProductSearchFromName.
+> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering 119 unique Sorftime data endpoints (Amazon 57 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 17; CoinQuery/CoinStream/RequestStreamMonth are shared across platforms and counted once).
 
 ---
 
@@ -55,7 +55,7 @@ sorftime use myprofile   # Switch default profile
 sorftime whoami      # View current profile
 ```
 
-> **CLI output format (verified on CLI 1.0.0)**: `sorftime api` writes **clean JSON to stdout** — the progress banner (`- 正在调用API...`, `✔`) goes to stderr, so pipe stdout straight into `jq`. The status field is `Code` (PascalCase) on success and `code` (camelCase) on error: use `jq -r '.Code // .code'` to read it either way. Verified live: `{"asin":"B0X"}` → Code=0; `{"asinList":["B0X"]}` → Code=10 (Invalid request parameter).
+> **CLI output format**: `sorftime api` writes **clean JSON to stdout** — the progress banner (`- 正在调用API...`, `✔`) goes to stderr, so pipe stdout straight into `jq`. The status field is `Code` (PascalCase) on success and `code` (camelCase) on error: use `jq -r '.Code // .code'` to read it either way. Note: `{"asin":"B0X"}` returns Code=0, while `{"asinList":["B0X"]}` returns Code=10 (invalid parameter) — the field is `asin`, not `asinList`.
 
 > **Field-naming warning**: Sorftime API field names are non-standard. Common pitfalls:
 > - "price" → actual field is `SalesPrice`
@@ -99,7 +99,7 @@ Run `bash scripts/doctor.sh --connect` → all checks pass → **re-run the user
 ### Failure handling
 - Registration blocked (region / network / payment)? → state what failed, ask how the user wants to proceed
 - `doctor.sh` still failing after configure? → show the exact failing check and its fix hint (the script prints these)
-- **401 with a key already configured** → the key is likely an **MCP key** (issued for Sorftime's MCP service), **not an Account-SK**. The two are different credentials: the CLI gateway (`cli.sorftime.com`) accepts only the Account-SK shown on the open-platform dashboard (open-intl.sorftime.com → API/CLI service page). Re-run `sorftime add <profile> <Account-SK>` with the right key (verified live: MCP key → 401; Account-SK → works).
+- **401 with a key already configured** → the key is likely an **MCP key** (issued for Sorftime's MCP service), **not an Account-SK**. The two are different credentials: the CLI gateway (`cli.sorftime.com`) accepts only the Account-SK shown on the open-platform dashboard (open-intl.sorftime.com → API/CLI service page). Re-run `sorftime add <profile> <Account-SK>` with the right key.
 
 ---
 
@@ -340,7 +340,7 @@ Skills/sorftime-cli/
 | Walmart product ID | `{"ProductId":"xxx"}` | `{"asin":"xxx"}` |
 | Walmart category | `{"NodePath":"4044_90548"}` | `{"nodeId":"xxx"}` |
 | Temu search | `{"Name":"keyword"}` (capital N) | `{"name":"keyword"}` |
-| Walmart search by name | `{"Name":"led tv"}` — new 2026-08-24: `CategorySearchFromName` / `ProductSearchFromName` | searching via `nodeId`/`asin` |
+| Walmart search by name | `{"Name":"led tv"}` for `CategorySearchFromName` / `ProductSearchFromName` | searching via `nodeId`/`asin` |
 | 1688 image search | `{"ImageUrl":"https://..."}` | `{"image":"..."}` |
 | CategoryRequestKeyword | `{"Nodeid":"xxx"}` (lowercase d) | `{"NodeId":"xxx"}` |
 | ASINRequestKeyword | `{"ASIN":"B0X"}` (all caps) | `{"asin":"B0X"}` |
