@@ -498,7 +498,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### Common notes for real-time endpoints
 
 1. **Credit cost**: `ProductRealtimeRequest` consumes credits (2 credits on the JP site, 1 credit on other sites); suitable for real-time monitoring of key products.
-2. **Image search**: Only 9 sites are supported (US/GB/DE/FR/IN/JP/ES/IT), and the credit cost is higher (5 credits, 6 credits on the JP site). Note that `SimilarProductRealtimeRequest` and `SimilarProductRealtimeRequestStatusQuery` only support these 9 sites, but `SimilarProductRealtimeRequestCollection` supports all 14 sites.
+2. **Image search**: Only 8 sites are supported (US/GB/DE/FR/IN/JP/ES/IT); submitting a search consumes 0 requests, while `SimilarProductRealtimeRequestCollection` result queries consume 5 credits (6 on the JP site). Note that `SimilarProductRealtimeRequest` and `SimilarProductRealtimeRequestStatusQuery` only support these 9 sites, but `SimilarProductRealtimeRequestCollection` supports all 14 sites.
 3. **Real-time fetch time**: All real-time endpoints are expected to take about 5 minutes; for some sites (Middle East (AE) / Australia (AU) / Saudi Arabia (SA) / Brazil (BR)), some trend fields (e.g. ListingSalesVolumeOfDailyTrend) are not yet supported.
 4. **Image search tips**: The searched product should occupy greater than 80% of the image and the background should be as clean as possible to improve recognition accuracy.
 
@@ -550,10 +550,10 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 - **Request parameters**:
   | Parameter | Type | Required | Description |
   |------|------|------|------|
-  | Image | String | Yes | The image to query, encoded in Base64. Image size should be around 1MB or so. |
+  | imageUrl | String | Yes | Publicly accessible image URL (max 1MB), e.g. `"https://example.com/image.jpg"` |
 - **Usage example**:
   ```bash
-  sorftime api SimilarProductRealtimeRequest '{"image": "<base64-data>"}' --domain 1
+  sorftime api SimilarProductRealtimeRequest '{"ImageUrl": "https://m.media-amazon.com/images/I/41QWC4JiJRL._SY300_SX300_QL70_FMwebp_.jpg"}' --domain 1
   ```
 - **Response data**:
   - `Data`: Actually returns an Integer.
@@ -657,7 +657,7 @@ sorftime api ProductRequest '{"asin": "B0CVM8TXHP"}' --domain 1
 
 ```bash
 # Step 1: Submit the image search request
-sorftime api SimilarProductRealtimeRequest '{"image": "<base64-data>"}' --domain 1
+sorftime api SimilarProductRealtimeRequest '{"ImageUrl": "https://m.media-amazon.com/images/I/41QWC4JiJRL._SY300_SX300_QL70_FMwebp_.jpg"}' --domain 1
 
 # Step 2: Query the task status
 sorftime api SimilarProductRealtimeRequestStatusQuery '{"update": 48}' --domain 1

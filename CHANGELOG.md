@@ -4,6 +4,14 @@ All notable changes to Sorftime Data CLI Skill.
 
 ---
 
+## [2026-08-25] — v1.3.2 (image-search parameter fix)
+
+### Fixed
+- **Amazon `SimilarProductRealtimeRequest` parameter updated**: the API now takes an image **URL** (`imageUrl`, publicly accessible, max 1MB), not a Base64-encoded image. Examples and the parameter table corrected.
+- Image-search site list corrected to 8 sites (US/GB/DE/FR/IN/JP/ES/IT); submit consumes 0 requests — result queries via `SimilarProductRealtimeRequestCollection` consume 5 credits (6 on JP).
+
+---
+
 ## [2026-08-24] — v1.3.1 (119 endpoints: Walmart additions & docs fixes)
 
 ### Added
