@@ -779,7 +779,6 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 
 > Only domain=301 (US) was tested for the by-name family; behavior on other domains is untested.
 
-
 - **Endpoint description**: Search TikTok brands by name.
 - **Requests consumed**: 2 (verified)
 - **Request parameters**:
