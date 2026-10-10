@@ -21,7 +21,7 @@
 
 [Full changelog →](CHANGELOG.md)
 
-> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering **119 unique** Sorftime cross-border e-commerce data endpoints: Amazon 57 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 17 (per-platform counts include the 3 shared cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth, counted once).
+> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering **127 unique** Sorftime cross-border e-commerce data endpoints: Amazon 61 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21 (per-platform counts include the 3 shared cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth, counted once).
 
 For the full index (discovery path, recipes, all endpoint references), see [SKILL.md](SKILL.md).
 

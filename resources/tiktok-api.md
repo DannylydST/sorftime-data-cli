@@ -35,7 +35,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 - [4. Creator (US site only)](#4-creator-us-site-only)
   - [4.1 Creator Query (AuthorRequest)](#41-creator-query-authorrequest)
   - [4.2 Search Creator by Name (AuthorSearchFromName)](#42-search-creator-by-name-authorsearchfromname)
-- [5. Video (US site only)](#5-video-us-site-only)
+- [5. Video & Brand (US site only)](#5-video--brand-us-site-only)
   - [5.1 Video Query (VideoRequest)](#51-video-query-videorequest)
   - [5.2 Video Tag Search (VideoTagSearch)](#52-video-tag-search-videotagsearch)
   - [5.3 Search Video by Name (VideoSearchFromName)](#53-search-video-by-name-videosearchfromname)
@@ -678,7 +678,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 
 ---
 
-## 5. Video (US site only)
+## 5. Video & Brand (US site only)
 
 ### 5.1 Video Query (VideoRequest)
 
@@ -776,6 +776,9 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ---
 
 ### 5.4 Search Brand by Name (BrandSearchFromName)
+
+> Only domain=301 (US) was tested for the by-name family; behavior on other domains is untested.
+
 
 - **Endpoint description**: Search TikTok brands by name.
 - **Requests consumed**: 2 (verified)

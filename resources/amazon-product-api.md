@@ -601,8 +601,6 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 
 ---
 
----
-
 ## 7. Seller & Brand (new, 2026-10-10 live check)
 
 > Live-verified on 2026-10-10. Amazon seller/brand dimension endpoints; the seller

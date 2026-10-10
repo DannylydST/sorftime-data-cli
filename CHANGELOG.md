@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-10-10] — v1.4.1（review fixes: stale counts in body tables）
+
+- SKILL.md 正文清单与树同步 v1.4.0 口径（amazon-product 18→22 补 4 端点名；TikTok 17→21 补 4 端点名；树 walmart 17→19 存量债顺手清）；README 概览行 119/57/17→127/61/21
+- tiktok-api.md：§5 标题扩为 Video & Brand、5.4 补「仅 301 实测、他域未测」注记、§6 前补分隔；amazon-product-api.md §7 前双 `---` 去重
+
 ## [2026-10-10] — v1.4.0（server sync: +8 endpoints, live sweep 127）
 
 - **Live sweep 2026-10-10**: all 74 previously-documented endpoint names re-verified alive (zero removals) with the documented `--domain` routing; full probe across Amazon/Shopee/Walmart/1688/Temu/TikTok domains.

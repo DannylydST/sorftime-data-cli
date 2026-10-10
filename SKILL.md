@@ -7,7 +7,7 @@ description: >
 compatibility:
   tools: [Bash, Read]
   dependencies: [node>=16, npm, jq (optional), sorftime-cli@1.0.0]
-version: 1.4.0
+version: 1.4.1
 user-invocable: true
 ---
 
@@ -175,7 +175,7 @@ jq --version || echo "⚠️ jq not installed; pure-CLI JSON processing is limit
 | File | Count | Endpoints |
 |------|--------|---------|
 | [`amazon-category-api.md`](resources/amazon-category-api.md) | 7 | CategoryTree, CategoryRequest, CategoryProducts, CategoryTrend, CategorySearchFromName, CategoryAssistant, SimilarProductFeature |
-| [`amazon-product-api.md`](resources/amazon-product-api.md) | 18 | All 18 endpoints: ProductRequest, ProductSearch, AsinSalesVolume, ProductVariations, ProductReviewsCollection, ProductReviewsCollectionStatusQuery, ProductReviewsQuery, ProductSearchFromName, ProductCustomersSay, ASINSubscription, ASINSubscriptionQuery, ASINSubscriptionCollection, ProductAssistant, ProductRealtimeRequest, ProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequest, SimilarProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequestCollection |
+| [`amazon-product-api.md`](resources/amazon-product-api.md) | 22 | All 22 endpoints: ProductRequest, ProductSearch, AsinSalesVolume, ProductVariations, ProductReviewsCollection, ProductReviewsCollectionStatusQuery, ProductReviewsQuery, ProductSearchFromName, ProductCustomersSay, ASINSubscription, ASINSubscriptionQuery, ASINSubscriptionCollection, ProductAssistant, ProductRealtimeRequest, ProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequest, SimilarProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequestCollection, SellerSearch, SellerSearchFromName, SellerRequest, BrandRequest |
 | [`amazon-keyword-api.md`](resources/amazon-keyword-api.md) | 12 | KeywordQuery, KeywordSearchResults, KeywordRequest, KeywordSearchResultTrend, KeywordExtends, CategoryRequestKeyword, ASINRequestKeyword, KeywordProductRanking, ASINKeywordRanking, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword |
 | [`amazon-alexa-api.md`](resources/amazon-alexa-api.md) | 4 | AlexaQuestionsCollection, AlexaQuestionsCollectionStatusQuery, AlexaQuestionsCollectionResultQuery, AlexaQuestionsQuery |
 | [`amazon-ai-api.md`](resources/amazon-ai-api.md) | 2 | AIResultQuery, AIResult |
@@ -210,11 +210,11 @@ jq --version || echo "⚠️ jq not installed; pure-CLI JSON processing is limit
 | [`temu-api.md`](resources/temu-api.md) | 12 | CategoryTree, CategoryRequest, CategorySearchFromName, CategorySearch, ProductRequest, ProductSearchFromName, ProductTrendRequest, ProductSearch, ShopRequest, CoinQuery, CoinStream, RequestStreamMonth |
 | [`temu-data-types.md`](resources/temu-data-types.md) | — | Temu data type definitions |
 
-### TikTok (17 endpoints)
+### TikTok (21 endpoints)
 
 | File | Count | Endpoints |
 |------|--------|---------|
-| [`tiktok-api.md`](resources/tiktok-api.md) | 17 | CategoryTree, CategoryRequest, CategorySearchFromName, CategorySearch, CategoryTrend, ProductRequest, ProductSearchFromName, ProductTrendRequest, ProductSearch, ShopSearch, ShopRequest, AuthorRequest, VideoRequest, VideoTagSearch, CoinQuery, CoinStream, RequestStreamMonth |
+| [`tiktok-api.md`](resources/tiktok-api.md) | 21 | CategoryTree, CategoryRequest, CategorySearchFromName, CategorySearch, CategoryTrend, ProductRequest, ProductSearchFromName, ProductTrendRequest, ProductSearch, ShopSearch, ShopRequest, AuthorRequest, VideoRequest, VideoTagSearch, CoinQuery, CoinStream, RequestStreamMonth , ShopSearchFromName, AuthorSearchFromName, VideoSearchFromName, BrandSearchFromName|
 | [`tiktok-data-types.md`](resources/tiktok-data-types.md) | — | TikTok data type definitions |
 
 > **US only**: AuthorRequest, VideoRequest, VideoTagSearch are limited to the US site (domain=301).
@@ -298,7 +298,7 @@ Skills/sorftime-cli/
 │   ├── account.md                        # Cross-platform account management (3 endpoints)
 │   ├── amazon-category-api.md                # Amazon category 7 endpoints
 │   ├── amazon-data-types.md              # Amazon data type definitions
-│   ├── amazon-product-api.md                 # Amazon product: 18 endpoints (core 13 + real-time 5)
+│   ├── amazon-product-api.md                 # Amazon product: 22 endpoints (core 13 + real-time 5 + seller/brand 4)
 │   ├── amazon-keyword-api.md                 # Amazon keyword 12 endpoints
 │   ├── amazon-alexa-api.md                   # Amazon Alexa question collection/query 4 endpoints
 │   ├── amazon-ai-api.md                      # Amazon AI interpretation 2 endpoints
@@ -306,12 +306,12 @@ Skills/sorftime-cli/
 │   ├── amazon-recipes.md                 # Multi-endpoint orchestration recipes
 │   ├── shopee-api.md                     # Shopee category+product+shop+keyword 17 endpoints
 │   ├── shopee-data-types.md              # Shopee data type definitions
-│   ├── walmart-api.md                    # Walmart 17 endpoints (category+product+account 8 + keyword+library 9)
+│   ├── walmart-api.md                    # Walmart 19 endpoints (category+product+account 10 + keyword+library 9)
 │   ├── walmart-data-types.md             # Walmart data type definitions
 │   ├── 1688-api.md                       # 1688 sourcing search+product detail 9 endpoints
 │   ├── temu-api.md                       # Temu category+product+shop 12 endpoints
 │   ├── temu-data-types.md                # Temu data type definitions
-│   ├── tiktok-api.md                     # TikTok category+product+seller+creator+video 17 endpoints
+│   ├── tiktok-api.md                     # TikTok category+product+seller+creator+video+brand 21 endpoints
 │   ├── tiktok-data-types.md              # TikTok data type definitions
 │   └── use-cases.md                      # Use case documentation
 └── scripts/                              # 7 helper scripts (see Bundled Scripts)
