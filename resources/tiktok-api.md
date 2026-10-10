@@ -795,6 +795,9 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
   sorftime api BrandSearchFromName '{"Name": "Anker", "QueryType": 1}' --domain 301
   ```
 - **Response data**: array of brand entries — verified fields `BrandName` (e.g. ANKER), `Photo` (brand image URL).
+
+---
+
 ## 6. Account
 
 ### 6.1 Query This Month's Remaining Credits (CoinQuery)
@@ -858,7 +861,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 
 ## Notes
 
-1. **Domain support**: The available domains for the 17 endpoints in this file come from the `SiteStr` field of the JSON, which has been converted to `301: us | 304: ph | 305: vn | 306: th | 307: id | 309: uk | 312: jp`. The `303=MY` listed in `_common.md` has no mapping in the JSON and has been omitted.
+1. **Domain support**: The available domains for the 21 endpoints in this file come from the `SiteStr` field of the JSON, which has been converted to `301: us | 304: ph | 305: vn | 306: th | 307: id | 309: uk | 312: jp`. The `303=MY` listed in `_common.md` has no mapping in the JSON and has been omitted.
 2. **US-only endpoints**: The `SiteStr` of `AuthorRequest`, `VideoRequest`, `VideoTagSearch` only has `301: us`; passing other domains usually returns 401/404.
 3. **Account endpoints are not differentiated by domain**: The data of `CoinQuery`, `CoinStream`, `RequestStreamMonth` is account-level (total credits / total request balance); the 7 domains listed in the `SiteStr` field can all be called, and the result is the same.
 4. **Endpoints that consume 0 requests**: The `RequestNum` of `CoinQuery`, `CoinStream`, `RequestStreamMonth` is `0`, and the call does not consume requests. The remaining 14 endpoints all deduct from the account's request balance according to `RequestNum`.

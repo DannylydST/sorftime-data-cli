@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-10-10] — v1.4.2（review round-2 fixes）
+
+- tiktok-api.md 域说明行残留 17→21；§6 Account 前分隔线补齐（v1.4.1 变更记录中该声明当时未实际落地，本条同时订正）；SKILL.md gen-index 描述行 117→127；表格空格打磨
+
 ## [2026-10-10] — v1.4.1（review fixes: stale counts in body tables）
 
 - SKILL.md 正文清单与树同步 v1.4.0 口径（amazon-product 18→22 补 4 端点名；TikTok 17→21 补 4 端点名；树 walmart 17→19 存量债顺手清）；README 概览行 119/57/17→127/61/21

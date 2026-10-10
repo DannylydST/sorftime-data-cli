@@ -7,7 +7,7 @@ description: >
 compatibility:
   tools: [Bash, Read]
   dependencies: [node>=16, npm, jq (optional), sorftime-cli@1.0.0]
-version: 1.4.1
+version: 1.4.2
 user-invocable: true
 ---
 
@@ -214,7 +214,7 @@ jq --version || echo "⚠️ jq not installed; pure-CLI JSON processing is limit
 
 | File | Count | Endpoints |
 |------|--------|---------|
-| [`tiktok-api.md`](resources/tiktok-api.md) | 21 | CategoryTree, CategoryRequest, CategorySearchFromName, CategorySearch, CategoryTrend, ProductRequest, ProductSearchFromName, ProductTrendRequest, ProductSearch, ShopSearch, ShopRequest, AuthorRequest, VideoRequest, VideoTagSearch, CoinQuery, CoinStream, RequestStreamMonth , ShopSearchFromName, AuthorSearchFromName, VideoSearchFromName, BrandSearchFromName|
+| [`tiktok-api.md`](resources/tiktok-api.md) | 21 | CategoryTree, CategoryRequest, CategorySearchFromName, CategorySearch, CategoryTrend, ProductRequest, ProductSearchFromName, ProductTrendRequest, ProductSearch, ShopSearch, ShopRequest, AuthorRequest, VideoRequest, VideoTagSearch, CoinQuery, CoinStream, RequestStreamMonth, ShopSearchFromName, AuthorSearchFromName, VideoSearchFromName, BrandSearchFromName |
 | [`tiktok-data-types.md`](resources/tiktok-data-types.md) | — | TikTok data type definitions |
 
 > **US only**: AuthorRequest, VideoRequest, VideoTagSearch are limited to the US site (domain=301).
@@ -384,7 +384,7 @@ The skill ships 7 helper scripts (3 wrappers + 3 utilities + 1 shared library) t
 | [`scripts/decode.sh`](scripts/decode.sh) | Error-code dictionary: `decode 10` → meaning + troubleshooting (no API call needed) |
 | [`scripts/batch.sh`](scripts/batch.sh) | **Generic batch runner**: loop an endpoint over an input file with rate limiting, retries, resume, disk output (`--out`), and dry-run. The automation workhorse — see Shortcut Map → Batch Operations |
 | [`scripts/doctor.sh`](scripts/doctor.sh) | Environment self-check: node/npm/CLI version/profile/live connectivity, with install-and-configure hints on failure. `doctor.sh --connect` for the full check |
-| [`scripts/gen-index.sh`](scripts/gen-index.sh) | Auto-generates `resources/_endpoints-index.md` (endpoint count matrix) from resource headers — run after any resources update so the 117-endpoint number never goes stale |
+| [`scripts/gen-index.sh`](scripts/gen-index.sh) | Auto-generates `resources/_endpoints-index.md` (endpoint count matrix) from resource headers — run after any resources update so the 127-endpoint number never goes stale |
 | [`scripts/_lib.sh`](scripts/_lib.sh) | Shared library sourced by all scripts — defines `call_api` / `_pyq` / `py_field` / `py_to_csv` helpers |
 
 **Typical usage** (replace `sorftime api ... | jq .` with 1 line):
