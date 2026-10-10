@@ -216,7 +216,7 @@ sorftime-cli/
 │   ├── _field_aliases.md                    # Field alias mapping
 │   ├── account.md                           # Cross-platform account management (3 endpoints)
 │   ├── amazon-category-api.md               # Amazon category (7 endpoints)
-│   ├── amazon-product-api.md                # Amazon product (18 endpoints)
+│   ├── amazon-product-api.md                # Amazon product (22 endpoints)
 │   ├── amazon-keyword-api.md                # Amazon keyword (12 endpoints)
 │   ├── amazon-alexa-api.md                  # Amazon Alexa question (4 endpoints)
 │   ├── amazon-ai-api.md                     # Amazon AI interpretation (2 endpoints)
