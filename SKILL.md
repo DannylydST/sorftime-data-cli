@@ -7,7 +7,7 @@ description: >
 compatibility:
   tools: [Bash, Read]
   dependencies: [node>=16, npm, jq (optional), sorftime-cli@1.0.0]
-version: 1.4.5
+version: 1.5.0
 user-invocable: true
 ---
 
@@ -35,6 +35,10 @@ Route by what the user needs:
 Do not add analysis layers here — deliver the data, let the caller (or the Seller Agent skill) interpret it.
 
 ---
+
+## 🧭 社媒舆情（Reddit / Quora）走 MCP 通道
+
+CLI 网关暂无社媒端点（2026-10-10 全命名空间探测确认）。需要 Reddit 帖子/评论与 Quora 问答数据的，走 MCP 通道：`https://mcp.sorftime.com/social`（Reddit 三件套 + Quora 三件套，与 amazon 端点双侧同挂）——用 [Sorftime Seller Agent (MCP)](https://github.com/DannylydST/sorftime-seller-agent) 技能或直接配置该 MCP 端点。
 
 ## CLI Quickstart (60 seconds)
 
