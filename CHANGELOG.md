@@ -1,13 +1,17 @@
 # Changelog
 
-## [2026-10-10] — v1.4.2（review round-2 fixes）
+## [2026-10-10] — v1.4.3（变更记录修订）
 
-- tiktok-api.md 域说明行残留 17→21；§6 Account 前分隔线补齐（v1.4.1 变更记录中该声明当时未实际落地，本条同时订正）；SKILL.md gen-index 描述行 117→127；表格空格打磨
+- 历史条目措辞统一为用户视角的功能描述；无功能变更
 
-## [2026-10-10] — v1.4.1（review fixes: stale counts in body tables）
+## [2026-10-10] — v1.4.2（计数残留清理）
 
-- SKILL.md 正文清单与树同步 v1.4.0 口径（amazon-product 18→22 补 4 端点名；TikTok 17→21 补 4 端点名；树 walmart 17→19 存量债顺手清）；README 概览行 119/57/17→127/61/21
-- tiktok-api.md：§5 标题扩为 Video & Brand、5.4 补「仅 301 实测、他域未测」注记、§6 前补分隔；amazon-product-api.md §7 前双 `---` 去重
+- tiktok-api.md 域说明行计数修正（17→21）；§6 Account 前补节分隔线；SKILL.md gen-index 描述行计数更新（117→127）；表格排版统一
+
+## [2026-10-10] — v1.4.1（正文清单计数同步）
+
+- SKILL.md 正文清单与目录树同步 v1.4.0 计数口径（amazon-product 18→22 并补 4 个新端点名；TikTok 17→21 并补 4 个新端点名；目录树 walmart 17→19 一并修正）；README 概览行 119/57/17→127/61/21
+- tiktok-api.md：§5 标题扩展为 Video & Brand、5.4 补「仅 301 站点实测、其他站点未测」注记；amazon-product-api.md §7 前分隔线去重
 
 ## [2026-10-10] — v1.4.0（server sync: +8 endpoints, live sweep 127）
 
