@@ -1,5 +1,13 @@
 # Changelog
 
+## [2026-10-10] — v1.4.0（server sync: +8 endpoints, live sweep 127）
+
+- **Live sweep 2026-10-10**: all 74 previously-documented endpoint names re-verified alive (zero removals) with the documented `--domain` routing; full probe across Amazon/Shopee/Walmart/1688/Temu/TikTok domains.
+- **Amazon +4**: `SellerSearch` / `SellerSearchFromName` (mirror the MCP `seller_search` family — exist on the gateway, test account returns `Code 694` package-not-enabled), `SellerRequest` / `BrandRequest` (exist; `Code 10` on `{}`/Name/BrandName/SellerName guesses — required key likely ID-style, TBD from official docs; BrandRequest routes on Amazon domain only, 404 on 301/201/701/21).
+- **TikTok +4**: by-name search family — `AuthorSearchFromName` / `BrandSearchFromName` / `VideoSearchFromName` (verified with real data: `{"Name","QueryType":1}`, 2 credits; returns AuthorId/AuthorName, BrandName/Photo, VideoId/VideoTitle), `ShopSearchFromName` (exists, `Code 694`).
+- **Not on CLI (MCP-only, verified absent)**: low-price-mall category search, ProductContent, Quora trio, Reddit trio, CommonUsageQuery — CLI quota stays on `CoinQuery`.
+- Docs: new sections in `resources/amazon-product-api.md` (§7 Seller & Brand) and `resources/tiktok-api.md` (§3.2/§4.2/§5.3/§5.4); `_endpoints-index.md` regenerated (sum 142, unique 127).
+
 All notable changes to Sorftime Data CLI Skill.
 
 ---

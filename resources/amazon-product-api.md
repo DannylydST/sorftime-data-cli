@@ -1,8 +1,8 @@
-# Amazon Product Endpoints (18)
+# Amazon Product Endpoints (22)
 
 **Amazon Domains**: 1=US, 2=UK, 3=DE, 4=FR, 5=IN, 6=CA, 7=JP, 8=ES, 9=IT, 10=MX, 11=AE, 12=AU, 13=BR, 14=SA
 
-**Endpoints in this file**: ProductRequest, ProductSearch, AsinSalesVolume, ProductVariations, ProductReviewsCollection, ProductReviewsCollectionStatusQuery, ProductReviewsQuery, ProductSearchFromName, ProductCustomersSay, ASINSubscription, ASINSubscriptionQuery, ASINSubscriptionCollection, ProductAssistant, ProductRealtimeRequest, ProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequest, SimilarProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequestCollection
+**Endpoints in this file**: ProductRequest, ProductSearch, AsinSalesVolume, ProductVariations, ProductReviewsCollection, ProductReviewsCollectionStatusQuery, ProductReviewsQuery, ProductSearchFromName, ProductCustomersSay, ASINSubscription, ASINSubscriptionQuery, ASINSubscriptionCollection, ProductAssistant, ProductRealtimeRequest, ProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequest, SimilarProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequestCollection, SellerSearch, SellerSearchFromName, SellerRequest, BrandRequest
 
 > **Endpoint rename**:
 > - `ProductVariationHistory` has been renamed to `ProductVariations` (the old name still works, but the new name is recommended).
@@ -40,6 +40,11 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
     - [6.2.1 Image Search Submit (SimilarProductRealtimeRequest)](#621-image-search-submit-similarproductrealtimerequest)
     - [6.2.2 Image Search Status (SimilarProductRealtimeRequestStatusQuery)](#622-image-search-status-similarproductrealtimerequeststatusquery)
     - [6.2.3 Image Search Result (SimilarProductRealtimeRequestCollection)](#623-image-search-result-similarproductrealtimerequestcollection)
+- [7. Seller & Brand (new, 2026-10-10 live check)](#7-seller--brand-new-2026-10-10-live-check)
+  - [7.1 Seller Search (SellerSearch)](#71-seller-search-sellersearch)
+  - [7.2 Search Seller by Name (SellerSearchFromName)](#72-search-seller-by-name-sellersearchfromname)
+  - [7.3 Seller Query (SellerRequest)](#73-seller-query-sellerrequest)
+  - [7.4 Brand Query (BrandRequest)](#74-brand-query-brandrequest)
 
 ---
 
@@ -593,6 +598,44 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
   ```
 - **Response data**:
   - `Data`: Actually returns an Array (elements are objects).
+
+---
+
+---
+
+## 7. Seller & Brand (new, 2026-10-10 live check)
+
+> Live-verified on 2026-10-10. Amazon seller/brand dimension endpoints; the seller
+> search family mirrors the MCP `seller_search` tools released with the platform split.
+
+### 7.1 Seller Search (SellerSearch)
+
+- **Endpoint description**: Multi-dimensional Amazon seller search (40+ filters: Chinese-seller flag, product/brand counts, Top10/Top100 occupancy, monthly sales, FBM count, A+ count, no-brand share, avg price/reviews, seller online date, feedback — filter names TBD from official docs).
+- **Status (2026-10-10)**: endpoint exists; test account returns `Code 694 Insufficient request quota` (data package not enabled) — parameter names to be confirmed once the package is enabled. Mirrors MCP `seller_search` (site param `amz_site`, all filters optional).
+- **Usage example**:
+  ```bash
+  sorftime api SellerSearch '{}' --domain 1   # → Code 694 until the account package is enabled
+  ```
+
+### 7.2 Search Seller by Name (SellerSearchFromName)
+
+- **Endpoint description**: Search Amazon sellers by name. Mirrors MCP `seller_search_from_name` (`query_type`: 1 = by seller name, 2 = by brand).
+- **Status (2026-10-10)**: exists; `Code 694` on the test account.
+- **Usage example**:
+  ```bash
+  sorftime api SellerSearchFromName '{"Name": "Anker", "QueryType": 1}' --domain 1
+  ```
+
+### 7.3 Seller Query (SellerRequest)
+
+- **Endpoint description**: Amazon seller details by ID.
+- **Status (2026-10-10)**: exists; returns `Code 10 Invalid request parameter` for `{}`, `SellerName`, and `Name` guesses — the required key is likely an ID-style field, shape TBD from official docs.
+
+### 7.4 Brand Query (BrandRequest)
+
+- **Endpoint description**: Amazon brand details.
+- **Routing**: Amazon-domain endpoint (`--domain 1` responds; TikTok/Shopee/Temu/Walmart domains 404).
+- **Status (2026-10-10)**: exists; `Code 10` for `{}` / `BrandName` / `Name` — required key TBD (likely brand ID).
 
 ---
 

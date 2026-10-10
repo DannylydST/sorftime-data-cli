@@ -1,6 +1,6 @@
-# TikTok API (17 endpoints)
+# TikTok API (21 endpoints)
 
-**Endpoints in this file**: CategoryTree, CategoryRequest, CategorySearchFromName, CategorySearch, CategoryTrend, ProductRequest, ProductSearchFromName, ProductTrendRequest, ProductSearch, ShopSearch, ShopRequest, AuthorRequest, VideoRequest, VideoTagSearch, CoinQuery, CoinStream, RequestStreamMonth
+**Endpoints in this file**: CategoryTree, CategoryRequest, CategorySearchFromName, CategorySearch, CategoryTrend, ProductRequest, ProductSearchFromName, ProductTrendRequest, ProductSearch, ShopSearch, ShopSearchFromName, ShopRequest, AuthorRequest, AuthorSearchFromName, VideoRequest, VideoSearchFromName, VideoTagSearch, BrandSearchFromName, CoinQuery, CoinStream, RequestStreamMonth
 
 **Domains**: 301 = US (United States), 304 = PH (Philippines), 305 = VN (Vietnam), 306 = TH (Thailand), 307 = ID (Indonesia), 309 = GB (United Kingdom), 312 = JP (Japan)
 
@@ -8,7 +8,7 @@
 >
 > **Account endpoints are not differentiated by domain**: CoinQuery, CoinStream, RequestStreamMonth can be called on all 7 sites; the result is account-level data.
 
-**Endpoints in this file (17)**: CategoryTree, CategoryRequest, CategorySearchFromName, CategorySearch, CategoryTrend, ProductRequest, ProductSearchFromName, ProductTrendRequest, ProductSearch, ShopSearch, ShopRequest, AuthorRequest, VideoRequest, VideoTagSearch, CoinQuery, CoinStream, RequestStreamMonth
+**Endpoints in this file (21)**: CategoryTree, CategoryRequest, CategorySearchFromName, CategorySearch, CategoryTrend, ProductRequest, ProductSearchFromName, ProductTrendRequest, ProductSearch, ShopSearch, ShopSearchFromName, ShopRequest, AuthorRequest, AuthorSearchFromName, VideoRequest, VideoSearchFromName, VideoTagSearch, BrandSearchFromName, CoinQuery, CoinStream, RequestStreamMonth
 
 For common reference, see [`_common.md`](./_common.md): CLI call template, Domain table, error codes, response structure, rate limits & concurrency.
 For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md). This document covers only parameters and fields unique to TikTok endpoints.
@@ -30,12 +30,16 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
   - [2.4 Product Search (ProductSearch)](#24-product-search-productsearch)
 - [3. Seller](#3-seller)
   - [3.1 Seller Search (ShopSearch)](#31-seller-search-shopsearch)
-  - [3.2 Seller Query (ShopRequest)](#32-seller-query-shoprequest)
+  - [3.2 Search Seller by Name (ShopSearchFromName)](#32-search-seller-by-name-shopsearchfromname)
+  - [3.3 Seller Query (ShopRequest)](#33-seller-query-shoprequest)
 - [4. Creator (US site only)](#4-creator-us-site-only)
   - [4.1 Creator Query (AuthorRequest)](#41-creator-query-authorrequest)
+  - [4.2 Search Creator by Name (AuthorSearchFromName)](#42-search-creator-by-name-authorsearchfromname)
 - [5. Video (US site only)](#5-video-us-site-only)
   - [5.1 Video Query (VideoRequest)](#51-video-query-videorequest)
   - [5.2 Video Tag Search (VideoTagSearch)](#52-video-tag-search-videotagsearch)
+  - [5.3 Search Video by Name (VideoSearchFromName)](#53-search-video-by-name-videosearchfromname)
+  - [5.4 Search Brand by Name (BrandSearchFromName)](#54-search-brand-by-name-brandsearchfromname)
 - [6. Account](#6-account)
   - [6.1 Query This Month's Remaining Credits (CoinQuery)](#61-query-this-months-remaining-credits-coinquery)
   - [6.2 Query Credit Usage Details (CoinStream)](#62-query-credit-usage-details-coinstream)
@@ -568,8 +572,27 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 
 ---
 
-### 3.2 Seller Query (ShopRequest)
+### 3.2 Search Seller by Name (ShopSearchFromName)
 
+- **Endpoint description**: Search TikTok sellers/shops by name (by-name counterpart of `ShopSearch`).
+- **Requests consumed**: 2 (per verified siblings)
+- **Status (2026-10-10 live check)**: endpoint exists; test account returns `Code 694 Insufficient request quota` (data package not enabled for the account) — params below mirror the by-name family, to be confirmed once the package is enabled.
+- **Request parameters**:
+
+  | Parameter | Type | Required | Description |
+  |------|------|------|------|
+  | Name | String | Yes | The seller/shop name to search |
+  | QueryType | Integer | Yes | 1 = by name (verified on siblings); other values follow the by-name family convention — unverified |
+  | Page | Integer | No | Pagination |
+
+- **Usage example**:
+  ```bash
+  sorftime api ShopSearchFromName '{"Name": "kitchen", "QueryType": 1}' --domain 301
+  ```
+
+---
+
+### 3.3 Seller Query (ShopRequest)
 - **Endpoint description**: Query shop details.
 - **Requests consumed**: 1
 - **Request parameters**:
@@ -632,6 +655,26 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
   - `IsBlueVerified`: Blue V certified. E.g. true.
   - `IsMCN`: Organization account. E.g. false.
   - `IsRelationShop`: Whether there is a related shop. E.g. true.
+
+---
+
+### 4.2 Search Creator by Name (AuthorSearchFromName)
+
+- **Endpoint description**: Search TikTok creators by name (by-name counterpart of `AuthorRequest`).
+- **Requests consumed**: 2 (verified)
+- **Request parameters**:
+
+  | Parameter | Type | Required | Description |
+  |------|------|------|------|
+  | Name | String | Yes | The creator name to search. E.g. Anker |
+  | QueryType | Integer | Yes | 1 = by name (verified); 2/3/4 = product/brand/seller per the by-name family convention — unverified |
+  | Page | Integer | No | Pagination |
+
+- **Usage example** (verified, returns real data):
+  ```bash
+  sorftime api AuthorSearchFromName '{"Name": "Anker", "QueryType": 1}' --domain 301
+  ```
+- **Response data**: array of creator entries — verified fields `AuthorId` (e.g. 7118825600051233838), `AuthorName`; remaining fields mirror `AuthorRequest` items.
 
 ---
 
@@ -712,6 +755,43 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 
 ---
 
+### 5.3 Search Video by Name (VideoSearchFromName)
+
+- **Endpoint description**: Search TikTok videos by name/title (by-name counterpart of `VideoRequest`).
+- **Requests consumed**: 2 (verified)
+- **Request parameters**:
+
+  | Parameter | Type | Required | Description |
+  |------|------|------|------|
+  | Name | String | Yes | The video title/keyword to search. E.g. yoga |
+  | QueryType | Integer | Yes | 1 = title match (verified); other values unverified |
+  | Page | Integer | No | Pagination |
+
+- **Usage example** (verified, returns real data):
+  ```bash
+  sorftime api VideoSearchFromName '{"Name": "Anker", "QueryType": 1}' --domain 301
+  ```
+- **Response data**: array of video entries — verified fields `VideoId` (e.g. 7675366351828978974), `VideoTitle`; remaining fields mirror `VideoRequest` items.
+
+---
+
+### 5.4 Search Brand by Name (BrandSearchFromName)
+
+- **Endpoint description**: Search TikTok brands by name.
+- **Requests consumed**: 2 (verified)
+- **Request parameters**:
+
+  | Parameter | Type | Required | Description |
+  |------|------|------|------|
+  | Name | String | Yes | The brand name to search. E.g. Anker |
+  | QueryType | Integer | Yes | 1 = by name (verified); other values unverified |
+  | Page | Integer | No | Pagination |
+
+- **Usage example** (verified, returns real data):
+  ```bash
+  sorftime api BrandSearchFromName '{"Name": "Anker", "QueryType": 1}' --domain 301
+  ```
+- **Response data**: array of brand entries — verified fields `BrandName` (e.g. ANKER), `Photo` (brand image URL).
 ## 6. Account
 
 ### 6.1 Query This Month's Remaining Credits (CoinQuery)

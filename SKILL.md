@@ -7,13 +7,13 @@ description: >
 compatibility:
   tools: [Bash, Read]
   dependencies: [node>=16, npm, jq (optional), sorftime-cli@1.0.0]
-version: 1.3.2
+version: 1.4.0
 user-invocable: true
 ---
 
 # Sorftime Data CLI Skill
 
-> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering 119 unique Sorftime data endpoints (Amazon 57 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 17; CoinQuery/CoinStream/RequestStreamMonth are shared across platforms and counted once).
+> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering 127 unique Sorftime data endpoints (Amazon 61 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21; CoinQuery/CoinStream/RequestStreamMonth are shared across platforms and counted once; live-synced 2026-10-10).
 
 ---
 
@@ -170,7 +170,7 @@ jq --version || echo "⚠️ jq not installed; pure-CLI JSON processing is limit
 | [`account.md`](resources/account.md) | Cross-platform account management (3 endpoints): CoinQuery, CoinStream, RequestStreamMonth |
 | [`use-cases.md`](resources/use-cases.md) | Sorftime Data CLI recipes / use cases |
 
-### Amazon (57 endpoints: 43 base + 14 monitoring)
+### Amazon (61 endpoints: 47 base + 14 monitoring)
 
 | File | Count | Endpoints |
 |------|--------|---------|
@@ -348,6 +348,17 @@ Skills/sorftime-cli/
 | CoinStream date (Shopee/Walmart/1688) | `{"Querydate":[...]}` (lowercase d) | `{"QueryDate":...}` |
 | CoinStream date (Amazon) | `{"QueryDate":[...]}` (capital D) | `{"Querydate":...}` |
 | TikTok creator/video | domain=301 (US only) | other domains return 401 |
+
+---
+
+## Realtime Task Semantics (RealtimeRequest 家族，2026-10-05 空转事故实证)
+
+> 适用 `SimilarProductRealtimeRequest` / `ProductRealtimeRequest` / `*ReviewsCollection` 等「提交任务→异步收取」端点。
+
+1. **按入参幂等**：同一张图片/同一个 ASIN 重复提交，返回**同一个任务 ID**（图搜实证：两天后重提同图仍返回 128710）。任务终态（含失败）永久冻结在该 ID 上——**重提同入参不是重试，是拿回同一个死任务**。
+2. **先查状态再判定**：`SimilarProductRealtimeRequestStatusQuery` 不收 taskId——只收 `{"Update": 小时数}`（1-240），返回该窗口全量任务列表 [{TaskId, Status}]。状态码：0=完成、4=积分不足、11=无采集任务、97=无匹配商品（图搜无同款）、98=采集失败、99=采集中。**零积分消耗**。
+3. **Collection 的 Data=None 有两种含义**：任务在途（99）或终态无结果（97/98）——只看 Collection 永远分不清，必须配 StatusQuery 分流。97/98 终态后 Collection 永远返回 None，超期重提策略会永久空转（实证：135 提交/3 收数）。
+4. **业务解读**：图搜 97=「无同款」是有效业务信号（差异化机会），不是失败；4=提交时积分不足，任务根本没执行。
 
 ---
 

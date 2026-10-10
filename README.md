@@ -1,10 +1,19 @@
 # Sorftime Data CLI — Cross-Border E-Commerce Data API for AI Agents & Developers
 
-> **Scriptable access to 119 data endpoints across Amazon, Shopee, Walmart, 1688, Temu, and TikTok** — batch ASIN queries, category Best Sellers, keyword research, hijacker monitoring, variation sales, creator analytics.
+> **Scriptable access to 127 data endpoints across Amazon, Shopee, Walmart, 1688, Temu, and TikTok** — batch ASIN queries, category Best Sellers, keyword research, hijacker monitoring, variation sales, creator analytics.
 >
 > One npm package. One unified command: `sorftime api <Endpoint> '<json>'`. Works with any AI agent and any automation pipeline. Open source.
 
-## 🆕 What's New (August 24, 2026)
+## 🆕 What's New (October 10, 2026) — v1.4.0: Seller/Brand & TikTok By-Name Families
+
+- **🔍 Amazon seller & brand dimension (4 new endpoints)**: `SellerSearch` (40+ filters mirroring the MCP `seller_search`), `SellerSearchFromName`, `SellerRequest`, `BrandRequest`. All verified live on the gateway; seller search returns `Code 694` (data package) on our test account — status documented honestly.
+- **🎵 TikTok by-name search (4 new endpoints)**: `AuthorSearchFromName`, `BrandSearchFromName`, `VideoSearchFromName` — verified with real data (`{"Name": "Anker", "QueryType": 1}`, 2 credits each), plus `ShopSearchFromName` (package-gated). TikTok file now covers 21 endpoints.
+- **✅ Full live re-sweep**: all previously documented endpoints re-verified alive with correct `--domain` routing — zero removals. Unique endpoint count: 119 → **127**.
+- **[Full changelog →](CHANGELOG.md)**
+
+---
+
+## What's New (August 24, 2026)
 
 - **➕ Walmart search-by-name endpoints** — `CategorySearchFromName` (find category NodePath by name) and `ProductSearchFromName` (up to ~100 products by name); endpoint coverage grows to **119 unique endpoints**.
 - **🩺 Clearer error guidance** — error `694` now documented as "insufficient credits *or* API not activated"; onboarding adds a 401 troubleshooting note (MCP key vs Account-SK).
@@ -25,7 +34,7 @@ Sorftime serves cross-border e-commerce data through two access modes. Both draw
 | | **Sorftime Seller Agent** (MCP) | **Sorftime Data CLI** (this project) |
 |---|---|---|
 | Best for | Sellers & AI agents — out-of-the-box marketplace intelligence | Developers, data teams & enterprises — building on raw data |
-| Data access | Curated tool calls, structured for agents | **All 119 endpoints, every field, raw JSON** |
+| Data access | Curated tool calls, structured for agents | **All 127 endpoints, every field, raw JSON** |
 | Automation | Runs inside an AI agent session | **Any pipeline**: cron, CI, shell, Python/Node, Airflow |
 | Determinism | Agent interprets every call | **Reproducible**: same request → same JSON, always |
 | Volume | Per-interaction | **Thousands of records per run** — `batch.sh` rate-limit-safe, resumable |
@@ -216,12 +225,12 @@ sorftime-cli/
 │   ├── amazon-recipes.md                    # Multi-endpoint orchestration recipes
 │   ├── shopee-api.md                        # Shopee (17 endpoints)
 │   ├── shopee-data-types.md                 # Shopee data type definitions
-│   ├── walmart-api.md                       # Walmart (17 endpoints)
+│   ├── walmart-api.md                       # Walmart (19 endpoints)
 │   ├── walmart-data-types.md                # Walmart data type definitions
 │   ├── 1688-api.md                          # 1688 (9 endpoints)
 │   ├── temu-api.md                          # Temu (12 endpoints)
 │   ├── temu-data-types.md                   # Temu data type definitions
-│   ├── tiktok-api.md                        # TikTok (17 endpoints)
+│   ├── tiktok-api.md                        # TikTok (21 endpoints)
 │   ├── tiktok-data-types.md                 # TikTok data type definitions
 │   └── use-cases.md                         # Use case documentation / recipes
 └── scripts/

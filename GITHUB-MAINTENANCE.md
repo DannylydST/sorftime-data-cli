@@ -18,7 +18,7 @@ Internal release checklist for maintaining the sorftime-cli repository. Run thro
 | Mistake | Fix |
 |---------|------|
 | Editing the wrong skill (sorftime-cli vs sorftime-seller-agent) | Both repos exist — check `git remote -v` before committing |
-| Editing a doc but not the skill directory copy | `~/.claude/skills/sorftime-cli/` is the source; push from there |
+| Editing a doc but not the skill directory copy | 权威源=协作区/skills-master（ZCode 副本 `~/.zcode/skills/sorftime-data-cli/`）；从权威源改起 |
 | Forgetting to regenerate `_endpoints-index.md` | Run `bash scripts/gen-index.sh` after any resources change |
 | Breaking the header format `# X Endpoints (N)` | gen-index.sh depends on it — keep the format when adding files |
 | Internal process details leaking into public docs | README/CHANGELOG/Wiki: features and fixes only, no team/backup/release-process internals |
