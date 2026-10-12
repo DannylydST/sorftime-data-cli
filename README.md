@@ -61,7 +61,7 @@ Sorftime serves cross-border e-commerce data through two access modes. Both draw
 npm install -g sorftime-cli
 # Mainland China and npm is slow? Add: --registry=https://registry.npmmirror.com
 
-# Configure a profile (Account-SK from the Sorftime dashboard (open-intl.sorftime.com))
+# Configure a profile (Account-SK from your Sorftime dashboard — open-intl.sorftime.com or open.sorftime.com)
 sorftime add myprofile <your-account-sk>
 sorftime use myprofile
 ```

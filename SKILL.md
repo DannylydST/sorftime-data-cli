@@ -7,7 +7,7 @@ description: >
 compatibility:
   tools: [Bash, Read]
   dependencies: [node>=16, npm, jq (optional), sorftime-cli@1.0.0]
-version: 1.6.3
+version: 1.6.4
 user-invocable: true
 ---
 
@@ -46,7 +46,7 @@ CLI 已支持（2026-10-12 实测上线）：**Reddit 三件套 domain=801、Quo
 # 1. Install
 npm install -g sorftime-cli
 
-# 2. Configure profile (Account-SK from Sorftime dashboard (open-intl.sorftime.com))
+# 2. Configure profile (Account-SK from your Sorftime dashboard — open-intl.sorftime.com or open.sorftime.com)
 sorftime add myprofile <your-account-sk>
 sorftime use myprofile
 
@@ -86,7 +86,7 @@ Run `bash scripts/doctor.sh` and identify exactly what's missing (CLI / profile 
 ### Step 2 — Register (only if the user has no account)
 → **[open-intl.sorftime.com](https://open-intl.sorftime.com)** — sign up with Google, free trial credits included, PayPal for additional credits.
 
-**Mainland-China users**: [open.sorftime.com](https://open.sorftime.com) is the more convenient entrance — phone-number (+86) or WeChat sign-up, CNY payment. Either site works; the Account-SK is honored by the same CLI gateway.
+**Mainland-China users**: [open.sorftime.com](https://open.sorftime.com) is the more convenient entrance — phone-number (+86) or WeChat sign-up, CNY payment. Both sites are one platform built around the same CLI gateway; the Account-SK from either site's dashboard is what it accepts.
 
 **npm slow in mainland China?** Use the npmmirror registry mirror:
 ```bash
@@ -94,7 +94,7 @@ npm install -g sorftime-cli --registry=https://registry.npmmirror.com
 ```
 
 ### Step 3 — Get the Account-SK
-After registration, copy the Account-SK from the Sorftime dashboard (open-intl.sorftime.com) (account settings). Keep it private.
+After registration, copy the Account-SK from the dashboard of **the site you registered on** ([open-intl.sorftime.com](https://open-intl.sorftime.com) or [open.sorftime.com](https://open.sorftime.com)) (account settings). Keep it private.
 
 ### Step 4 — Configure the profile
 
@@ -110,7 +110,7 @@ Run `bash scripts/doctor.sh --connect` → all checks pass → **re-run the user
 ### Failure handling
 - Registration blocked (region / network / payment)? → state what failed, ask how the user wants to proceed
 - `doctor.sh` still failing after configure? → show the exact failing check and its fix hint (the script prints these)
-- **401 with a key already configured** → the key is likely an **MCP key** (issued for Sorftime's MCP service), **not an Account-SK**. The two are different credentials: the CLI gateway (`cli.sorftime.com`) accepts only the Account-SK shown on the open-platform dashboard (open-intl.sorftime.com → API/CLI service page). Re-run `sorftime add <profile> <Account-SK>` with the right key.
+- **401 with a key already configured** → the key is likely an **MCP key** (issued for Sorftime's MCP service), **not an Account-SK**. The two are different credentials: the CLI gateway (`cli.sorftime.com`) accepts only the Account-SK shown on the open-platform dashboard (whichever site you registered on — open-intl or open → API/CLI service page). Re-run `sorftime add <profile> <Account-SK>` with the right key.
 
 ---
 

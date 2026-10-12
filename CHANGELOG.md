@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-10-12] — v1.6.4（注册路径一致性修复）
+
+- Step 3 取 Key、401 排障、两处代码注释的 open-intl 硬编码改为「以你注册的站点为准（open-intl 或 open）」——与 Step 2 双入口口径一致，消除大陆用户路径断裂
+- 「两站通用」表述软化为设计口径（同一平台的同一 CLI 网关；Account-SK 取自任一站后台）
+
 ## [2026-10-12] — v1.6.3（大陆用户引导补全）
 
 - 注册指引补大陆入口：open.sorftime.com（手机号/微信注册、人民币付费），与 open-intl（Google/PayPal）二选一，同一 CLI 网关通用——SKILL.md Onboarding 与 README Installation 同步
