@@ -4,7 +4,7 @@
 
 **Domains**: 801 = Reddit, 802 = Quora（2026-10-12 实测：803-810 均 404 未开放）
 
-> **响应格式**：本族成功/错误均为 **camelCase**（与 1688/Temu/TikTok 同风格，见 `_common.md` §6.2）。
+> **响应格式**：成功 **PascalCase** / 错误 **camelCase**（同 1688/Temu/TikTok 族，见 `_common.md` §6.2——成功字段如 `RedditId`/`PublishedTime`，错误字段如 `code`/`message`）。
 > **计费**（实测）：搜索类 5 credits/次，详情/列表类 1 credit/次。
 > **MCP 双通道**：同一能力在 MCP 端点 `https://mcp.sorftime.com/social`（工具名 `reddit_*` / `quora_*`）也可用，适合 agent 直连；本文件面向 CLI 调用。
 
@@ -38,7 +38,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
   | Parameter | Type | Required | Description |
   |------|------|------|------|
   | SearchName | String | Yes | The keyword to search. E.g. yoga mat / Anker |
-  | Page | Integer | No | Pagination (from 1) |
+  | Page | Integer | No | Pagination (from 1)——P1/P2 翻页实测可调（2026-10-12） |
 
 - **Usage example**（verified, returns real data）:
   ```bash
@@ -80,7 +80,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
   | Parameter | Type | Required | Description |
   |------|------|------|------|
   | SearchName | String | Yes | The keyword to search. E.g. anker |
-  | Page | Integer | No | Pagination (from 1) |
+  | Page | Integer | No | Pagination (from 1)——P1 实测可调；P2 实测返回空结果（Data:null、不扣费），结果集小时翻页常为空 |
 
 - **Usage example**（verified, returns real data）:
   ```bash

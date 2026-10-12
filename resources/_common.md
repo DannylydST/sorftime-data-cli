@@ -15,7 +15,7 @@
 - [5d. Social Media Domain Table (2 families)](#5d-social-media-domain-table-2-families)
 - [6. Common Response Structure](#6-common-response-structure)
 - [6.1 Amazon / Shopee / Walmart — PascalCase](#61-amazon--shopee--walmart--pascalcase)
-- [6.2 1688 / Temu / TikTok / Social — PascalCase on success, camelCase on error](#62-1688--temu--tiktok--pascalcase-on-success-camelcase-on-error)
+- [6.2 1688 / Temu / TikTok / Social — PascalCase on success, camelCase on error](#62-1688--temu--tiktok--social--pascalcase-on-success-camelcase-on-error)
 - [6.3 Common Field Description](#63-common-field-description)
 - [7. Error Code Table](#7-error-code-table)
 - [Amazon business error codes](#amazon-business-error-codes)
@@ -163,7 +163,7 @@ All endpoints return JSON uniformly. **Actual field naming varies by platform as
 
 - The Walmart response **additionally** includes a `RequestCount: 0` field (other platforms do not have this field).
 
-### 6.2 1688 / Temu / TikTok — PascalCase on success, camelCase on error
+### 6.2 1688 / Temu / TikTok / Social — PascalCase on success, camelCase on error
 
 Success response (e.g. `code=0`):
 ```json

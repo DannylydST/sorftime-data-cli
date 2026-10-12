@@ -7,7 +7,7 @@ description: >
 compatibility:
   tools: [Bash, Read]
   dependencies: [node>=16, npm, jq (optional), sorftime-cli@1.0.0]
-version: 1.6.0
+version: 1.6.1
 user-invocable: true
 ---
 
@@ -172,7 +172,7 @@ jq --version || echo "⚠️ jq not installed; pure-CLI JSON processing is limit
 | [`_common.md`](resources/_common.md) | Amazon/Shopee/Walmart/Temu/TikTok/1688 Domain table, complete error codes (per platform), common response structure, CLI call template, rate limit and concurrency constraints |
 | [`_field_aliases.md`](resources/_field_aliases.md) | Field alias mapping table |
 | [`account.md`](resources/account.md) | Cross-platform account management (3 endpoints): CoinQuery, CoinStream, RequestStreamMonth |
-| [`social-api.md`](resources/social-api.md) | 6 | RedditPostSearch, RedditPostRequest, RedditCommentRequest, QuoraQuestionSearch, QuoraQuestionRequest, QuoraAnswerRequest |
+| [`social-api.md`](resources/social-api.md) | Social media sentiment (6 endpoints): RedditPostSearch, RedditPostRequest, RedditCommentRequest (domain=801); QuoraQuestionSearch, QuoraQuestionRequest, QuoraAnswerRequest (domain=802) |
 | [`use-cases.md`](resources/use-cases.md) | Sorftime Data CLI recipes / use cases |
 
 ### Amazon (61 endpoints: 47 base + 14 monitoring)

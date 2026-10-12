@@ -1,8 +1,12 @@
 # Changelog
 
+## [2026-10-12] — v1.6.1（社媒文档勘误）
+
+- social-api.md 响应格式表述修正（成功 PascalCase / 错误 camelCase，同 §6.2——原表述与实测字段矛盾）；SKILL.md 社媒行改两列结构修复渲染；§6.2 标题补 Social；搜索端点 Page 参数翻页实测补注（Reddit 可调；Quora 越界页空结果不扣费）；变更记录措辞对齐
+
 ## [2026-10-12] — v1.6.0（社媒端点上线：Reddit@801 + Quora@802，+6）
 
-- **新增 6 个社媒端点**（2026-10-12 实测，产品同事反馈触发核对）：Reddit 三件套 `RedditPostSearch`/`RedditPostRequest`/`RedditCommentRequest`（domain=801）与 Quora 三件套 `QuoraQuestionSearch`/`QuoraQuestionRequest`/`QuoraAnswerRequest`（domain=802）——全部真数据验证（搜索 5 credits/详情 1 credit；RedditId 带 t3_ 前缀、QuoraId 纯数字；评论含 t1_/ParentCommentId 可重建讨论树）
+- **新增 6 个社媒端点**（2026-10-12 实测上线）：Reddit 三件套 `RedditPostSearch`/`RedditPostRequest`/`RedditCommentRequest`（domain=801）与 Quora 三件套 `QuoraQuestionSearch`/`QuoraQuestionRequest`/`QuoraAnswerRequest`（domain=802）——全部真数据验证（搜索 5 credits/详情 1 credit；RedditId 带 t3_ 前缀、QuoraId 纯数字；评论含 t1_/ParentCommentId 可重建讨论树）
 - 新增 `resources/social-api.md`（参数表/计费/舆情选品工作流/相关性注记）；`_common.md` 域表补 5d 节（801/802；803-810 实测 404）
 - v1.5.0 的「社媒走 MCP 通道」路标更新为双通道口径（CLI 已支持 + MCP 并行）
 - 唯一端点数 127→133
