@@ -62,7 +62,7 @@ DICT=(
   "501|A S W T K|Per-minute request limit reached|Lower frequency / add sleep 1+; retry in 1 minute"
   "502|A S W T|Daily request limit reached|Wait for next day's reset or upgrade the plan"
   "503|A S|Task registration failed|Task volume exceeded; try another time slot"
-  "694|A S W T|Insufficient request remaining (credits exhausted)|Log in to open-intl.sorftime.com to check or top up request credits"
+  "694|A S W T|Insufficient request remaining (credits exhausted)|Log in to your registration site (open-intl.sorftime.com or open.sorftime.com) to check or top up request credits"
 )
 
 # ---------- Utility functions ----------

@@ -62,7 +62,7 @@ if command -v sorftime >/dev/null 2>&1; then
     log_info "✅ Profile configured: $(echo "$profiles" | grep -o '→.*\|当前活跃 profile' | head -1)"
   else
     check "at least one profile configured" 1 \
-      "Run: sorftime add <profile-name> <api-key>  (api-key from Sorftime dashboard (open-intl.sorftime.com))"
+      "Run: sorftime add <profile-name> <api-key>  (api-key from the dashboard of the site you registered on (open-intl.sorftime.com or open.sorftime.com))"
   fi
 fi
 

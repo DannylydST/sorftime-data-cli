@@ -2,9 +2,9 @@
 
 ## Getting Started
 
-- **No account?** Register at [open-intl.sorftime.com](https://open-intl.sorftime.com) — sign up with Google, free trial credits included
+- **No account?** Register at [open-intl.sorftime.com](https://open-intl.sorftime.com) — sign up with Google, free trial credits included. Mainland-China users: [open.sorftime.com](https://open.sorftime.com) (phone/WeChat, CNY) is more convenient
 - **Install**: `npm install -g sorftime-cli`
-- **API key**: Get your Account-SK from the Sorftime dashboard (open-intl.sorftime.com) → configure with `sorftime add <profile-name> <api-key>`
+- **API key**: Get your Account-SK from the dashboard of the site you registered on (open-intl.sorftime.com or open.sorftime.com) → configure with `sorftime add <profile-name> <api-key>`
 - **Self-check**: `bash scripts/doctor.sh --connect` verifies install, profile, and live connectivity in one command
 
 ## Documentation

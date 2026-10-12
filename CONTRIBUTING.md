@@ -16,7 +16,7 @@ Thanks for your interest in contributing.
 git clone https://github.com/DannylydST/sorftime-data-cli.git
 cd sorftime-cli
 npm install -g sorftime-cli     # Install the CLI itself
-sorftime add myprofile <api-key>  # Configure your profile (token from Sorftime dashboard (open-intl.sorftime.com))
+sorftime add myprofile <api-key>  # Configure your profile (token from your Sorftime dashboard (open-intl.sorftime.com or open.sorftime.com))
 bash scripts/doctor.sh          # Verify everything works
 ```
 

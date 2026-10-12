@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-10-12] — v1.6.5（双站口径全仓清扫）
+
+- doctor.sh 缺 profile 提示、SUPPORT.md（注册+取 Key）、decode.sh 694 充值指引、CONTRIBUTING.md 注释、_common.md 694 行×5——运行时提示与支持文档面的 open-intl 硬编码全部改为双站口径；README 断言同步软化为设计口径
+
 ## [2026-10-12] — v1.6.4（注册路径一致性修复）
 
 - Step 3 取 Key、401 排障、两处代码注释的 open-intl 硬编码改为「以你注册的站点为准（open-intl 或 open）」——与 Step 2 双入口口径一致，消除大陆用户路径断裂
