@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-10-12] — v1.6.3（大陆用户引导补全）
+
+- 注册指引补大陆入口：open.sorftime.com（手机号/微信注册、人民币付费），与 open-intl（Google/PayPal）二选一，同一 CLI 网关通用——SKILL.md Onboarding 与 README Installation 同步
+- npm 安装补国内镜像提示（--registry=https://registry.npmmirror.com）
+
 ## [2026-10-12] — v1.6.2（注记精确化）
 
 - Reddit 搜索 Page 注记对齐实际验证范围（P1 实测；P2 未测）
