@@ -38,7 +38,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
   | Parameter | Type | Required | Description |
   |------|------|------|------|
   | SearchName | String | Yes | The keyword to search. E.g. yoga mat / Anker |
-  | Page | Integer | No | Pagination (from 1)——P1/P2 翻页实测可调（2026-10-12） |
+  | Page | Integer | No | Pagination (from 1)——P1 实测可调（2026-10-12，P2 未测） |
 
 - **Usage example**（verified, returns real data）:
   ```bash

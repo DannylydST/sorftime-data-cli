@@ -7,7 +7,7 @@ description: >
 compatibility:
   tools: [Bash, Read]
   dependencies: [node>=16, npm, jq (optional), sorftime-cli@1.0.0]
-version: 1.6.1
+version: 1.6.2
 user-invocable: true
 ---
 
