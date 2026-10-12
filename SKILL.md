@@ -1,19 +1,19 @@
 ---
 name: sorftime-data-cli
 description: >
-  Activate for tasks involving the actual Sorftime product-data platform or CLI: installing/configuring `sorftime-cli` and the API token/profile, calling `sorftime api` endpoints, writing bash/PowerShell loops over ASINs, keywords, or nodeIds, pulling Best Seller lists / monthly sales, comparing prices across Amazon, Shopee, Walmart, 1688, Temu, or TikTok, and setting up hijacker/keyword monitoring or scheduled recurring pulls. Also activate for Sorftime API support: choosing the right endpoint/parameter/field/type, and debugging invalid-parameter errors, non-zero error codes, or response issues.
+  Activate for tasks involving the actual Sorftime product-data platform or CLI: installing/configuring `sorftime-cli` and the API token/profile, calling `sorftime api` endpoints, writing bash/PowerShell loops over ASINs, keywords, or nodeIds, pulling Best Seller lists / monthly sales, comparing prices across Amazon, Shopee, Walmart, 1688, Temu, or TikTok, and setting up hijacker/keyword monitoring or scheduled recurring pulls, Reddit/Quora social listening (posts, comments, Q&A mining). Also activate for Sorftime API support: choosing the right endpoint/parameter/field/type, and debugging invalid-parameter errors, non-zero error codes, or response issues.
 
   Trigger even when "Sorftime" isn't named if the user wants to look up, compare, monitor, or batch-query marketplace product data by ASIN/nodeId/keyword, or asks in Chinese (查 Best Seller 榜单, 批量查 ASIN, 查月销, 跨平台对比价格, 每天拉监控数据, 部署定时任务). Don't use for general e-commerce strategy, translation, or analytics unrelated to Sorftime.
 compatibility:
   tools: [Bash, Read]
   dependencies: [node>=16, npm, jq (optional), sorftime-cli@1.0.0]
-version: 1.5.0
+version: 1.6.0
 user-invocable: true
 ---
 
 # Sorftime Data CLI Skill
 
-> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering 127 unique Sorftime data endpoints (Amazon 61 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21; CoinQuery/CoinStream/RequestStreamMonth are shared across platforms and counted once; live-synced 2026-10-10).
+> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering 133 unique Sorftime data endpoints (Amazon 61 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21 + Social 6; CoinQuery/CoinStream/RequestStreamMonth are shared across platforms and counted once; live-synced 2026-10-12).
 
 ---
 
@@ -36,9 +36,9 @@ Do not add analysis layers here — deliver the data, let the caller (or the Sel
 
 ---
 
-## 🧭 社媒舆情（Reddit / Quora）走 MCP 通道
+## 🧭 社媒舆情（Reddit / Quora）
 
-CLI 网关暂无社媒端点（2026-10-10 全命名空间探测确认）。需要 Reddit 帖子/评论与 Quora 问答数据的，走 MCP 通道：`https://mcp.sorftime.com/social`（Reddit 三件套 + Quora 三件套，与 amazon 端点双侧同挂）——用 [Sorftime Seller Agent (MCP)](https://github.com/DannylydST/sorftime-seller-agent) 技能或直接配置该 MCP 端点。
+CLI 已支持（2026-10-12 实测上线）：**Reddit 三件套 domain=801、Quora 三件套 domain=802**，完整参数/计费/串联键见 [`resources/social-api.md`](resources/social-api.md)。MCP 通道（`https://mcp.sorftime.com/social`）同能力并行可用，适合 agent 直连。
 
 ## CLI Quickstart (60 seconds)
 
@@ -172,6 +172,7 @@ jq --version || echo "⚠️ jq not installed; pure-CLI JSON processing is limit
 | [`_common.md`](resources/_common.md) | Amazon/Shopee/Walmart/Temu/TikTok/1688 Domain table, complete error codes (per platform), common response structure, CLI call template, rate limit and concurrency constraints |
 | [`_field_aliases.md`](resources/_field_aliases.md) | Field alias mapping table |
 | [`account.md`](resources/account.md) | Cross-platform account management (3 endpoints): CoinQuery, CoinStream, RequestStreamMonth |
+| [`social-api.md`](resources/social-api.md) | 6 | RedditPostSearch, RedditPostRequest, RedditCommentRequest, QuoraQuestionSearch, QuoraQuestionRequest, QuoraAnswerRequest |
 | [`use-cases.md`](resources/use-cases.md) | Sorftime Data CLI recipes / use cases |
 
 ### Amazon (61 endpoints: 47 base + 14 monitoring)

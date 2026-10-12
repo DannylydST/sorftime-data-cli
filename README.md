@@ -1,10 +1,18 @@
 # Sorftime Data CLI — Cross-Border E-Commerce Data API for AI Agents & Developers
 
-> **Scriptable access to 127 data endpoints across Amazon, Shopee, Walmart, 1688, Temu, and TikTok** — batch ASIN queries, category Best Sellers, keyword research, hijacker monitoring, variation sales, creator analytics.
+> **Scriptable access to 133 data endpoints across Amazon, Shopee, Walmart, 1688, Temu, TikTok, and social media (Reddit/Quora)** — batch ASIN queries, category Best Sellers, keyword research, hijacker monitoring, variation sales, creator analytics.
 >
 > One npm package. One unified command: `sorftime api <Endpoint> '<json>'`. Works with any AI agent and any automation pipeline. Open source.
 
-## 🆕 What's New (October 10, 2026) — v1.4.0: Seller/Brand & TikTok By-Name Families
+## 🆕 What's New (October 12, 2026) — v1.6.0: Social Media Endpoints (Reddit & Quora)
+
+- **🗣️ +6 social endpoints** (live-verified): the Reddit trio (`RedditPostSearch` / `RedditPostRequest` / `RedditCommentRequest`, domain=801) and the Quora trio (`QuoraQuestionSearch` / `QuoraQuestionRequest` / `QuoraAnswerRequest`, domain=802). Searches cost 5 credits, detail calls 1; Reddit IDs carry the `t3_` prefix, Quora IDs are numeric; comments include `ParentCommentId` for thread reconstruction. New [`resources/social-api.md`](resources/social-api.md) covers params, pricing, and a sentiment-mining workflow.
+- **✅ Endpoint count: 127 → 133**; `_common.md` gains the §5d social domain table (803-810 verified absent).
+- **[Full changelog →](CHANGELOG.md)**
+
+---
+
+## What's New (October 10, 2026) — v1.4.0: Seller/Brand & TikTok By-Name Families
 
 - **🔍 Amazon seller & brand dimension (4 new endpoints)**: `SellerSearch` (40+ filters mirroring the MCP `seller_search`), `SellerSearchFromName`, `SellerRequest`, `BrandRequest`. All verified live on the gateway; seller search returns `Code 694` (data package) on our test account — status documented honestly.
 - **🎵 TikTok by-name search (4 new endpoints)**: `AuthorSearchFromName`, `BrandSearchFromName`, `VideoSearchFromName` — verified with real data (`{"Name": "Anker", "QueryType": 1}`, 2 credits each), plus `ShopSearchFromName` (package-gated). TikTok file now covers 21 endpoints.
@@ -21,7 +29,7 @@
 
 [Full changelog →](CHANGELOG.md)
 
-> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering **127 unique** Sorftime cross-border e-commerce data endpoints: Amazon 61 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21 (per-platform counts include the 3 shared cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth, counted once).
+> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering **133 unique** Sorftime cross-border e-commerce data endpoints: Amazon 61 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21 + Social 6 (per-platform counts include the 3 shared cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth, counted once).
 
 For the full index (discovery path, recipes, all endpoint references), see [SKILL.md](SKILL.md).
 

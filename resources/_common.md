@@ -12,9 +12,10 @@
 - [5. Walmart Domain Table (1 site)](#5-walmart-domain-table-1-site)
 - [5b. Temu Domain Table (2 sites)](#5b-temu-domain-table-2-sites)
 - [5c. TikTok Domain Table (8 sites)](#5c-tiktok-domain-table-8-sites)
+- [5d. Social Media Domain Table (2 families)](#5d-social-media-domain-table-2-families)
 - [6. Common Response Structure](#6-common-response-structure)
 - [6.1 Amazon / Shopee / Walmart — PascalCase](#61-amazon--shopee--walmart--pascalcase)
-- [6.2 1688 / Temu / TikTok — PascalCase on success, camelCase on error](#62-1688--temu--tiktok--pascalcase-on-success-camelcase-on-error)
+- [6.2 1688 / Temu / TikTok / Social — PascalCase on success, camelCase on error](#62-1688--temu--tiktok--pascalcase-on-success-camelcase-on-error)
 - [6.3 Common Field Description](#63-common-field-description)
 - [7. Error Code Table](#7-error-code-table)
 - [Amazon business error codes](#amazon-business-error-codes)
@@ -38,7 +39,7 @@ sorftime api <Endpoint> '<json-params>' --domain <N> --profile <name>
 |------|------|
 | `<Endpoint>` | Endpoint name. Use the documented PascalCase form (e.g. `ProductRequest`, `KeywordBatchSubscription`). Gateway routing is **case-insensitive** (`productrequest` and `ProductRequest` both resolve; the official docs even advertise lowercase URLs), and names containing `_` are rejected with 404 — PascalCase without separators is the documented convention. |
 | `<json-params>` | JSON string wrapped in single quotes. For endpoints with multiple parameters, non-required fields can be omitted; pass them as required per the endpoint document. |
-| `--domain` | Site code (see the table below). Amazon 1-14, Shopee 201-208, Walmart 21, Temu 701/705, 1688 601, TikTok 301-312. **Omitting or passing an incorrect value directly returns 401/404**. |
+| `--domain` | Site code (see the table below). Amazon 1-14, Shopee 201-208, Walmart 21, Temu 701/705, 1688 601, TikTok 301-312, Social 801(Reddit)/802(Quora). **Omitting or passing an incorrect value directly returns 401/404**. |
 | `--profile` | Profile name, corresponding to the auth config (containing the token and default domain) created by `sorftime add`. Optional; when omitted, uses the profile currently selected by `sorftime use`. |
 
 
@@ -134,6 +135,15 @@ sorftime rm <profile-name>                     # Delete profile-name
 > **Note**: AuthorRequest, VideoRequest, VideoTagSearch are limited to domain=301 (US site) only.
 
 ---
+
+## 5d. Social Media Domain Table (2 families)
+
+| Domain | Family | Endpoints |
+|------|------|------|
+| 801 | Reddit | RedditPostSearch, RedditPostRequest, RedditCommentRequest（见 [social-api.md](social-api.md)） |
+| 802 | Quora | QuoraQuestionSearch, QuoraQuestionRequest, QuoraAnswerRequest |
+
+> 2026-10-12 实测：803-810 均 404（未开放）。响应 camelCase，搜索 5 credits / 详情 1 credit。
 
 ## 6. Common Response Structure
 
