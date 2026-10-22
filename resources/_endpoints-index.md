@@ -12,7 +12,7 @@
 | [amazon-ai-api.md](amazon-ai-api.md) | `AIResultQuery, AIResult` | 2 |
 | [amazon-alexa-api.md](amazon-alexa-api.md) | `AlexaQuestionsCollection, AlexaQuestionsCollectionStatusQuery, AlexaQuestionsCollectionResultQuery, AlexaQuestionsQuery` | 4 |
 | [amazon-category-api.md](amazon-category-api.md) | `CategoryTree, CategoryRequest, CategoryProducts, CategoryTrend, CategorySearchFromName, CategoryAssistant, SimilarProductFeature` | 7 |
-| [amazon-keyword-api.md](amazon-keyword-api.md) | `KeywordQuery, KeywordSearchResults, KeywordRequest, KeywordSearchResultTrend, KeywordExtends, CategoryRequestKeyword, ASINRequestKeyword, KeywordProductRanking, ASINKeywordRanking, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword` | 12 |
+| [amazon-keyword-api.md](amazon-keyword-api.md) | `KeywordQuery, KeywordSearchResults, KeywordRequest, KeywordSearchResultTrend, KeywordExtends, CategoryRequestKeyword, ASINRequestKeyword, KeywordProductRanking, ASINKeywordRanking, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword, KeywordSearchRealtimeRequest, KeywordSearchRealtimeRequestStatusQuery, KeywordSearchRealtimeRequestCollection` | 15 |
 | [amazon-monitoring-api.md](amazon-monitoring-api.md) | `KeywordBatchSubscription, KeywordTasks, KeywordBatchTaskUpdate, KeywordBatchScheduleList, KeywordBatchScheduleDetail, BestSellerListSubscription, BestSellerListTask, BestSellerListDelete, BestSellerListDataCollect, ProductSellerSubscription, ProductSellerTasks, ProductSellerTaskUpdate, ProductSellerTaskScheduleList, ProductSellerTaskScheduleDetail` | 14 |
 | [amazon-product-api.md](amazon-product-api.md) | `ProductRequest, ProductSearch, AsinSalesVolume, ProductVariations, ProductReviewsCollection, ProductReviewsCollectionStatusQuery, ProductReviewsQuery, ProductSearchFromName, ProductCustomersSay, ASINSubscription, ASINSubscriptionQuery, ASINSubscriptionCollection, ProductAssistant, ProductRealtimeRequest, ProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequest, SimilarProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequestCollection, SellerSearch, SellerSearchFromName, SellerRequest, BrandRequest` | 22 |
 | [shopee-api.md](shopee-api.md) | `CategoryTree, CategorySearchFromName, CategoryRequest, CategoryTrend, ProductRequest, ProductSearchFromName, ProductTrend, ProductSearch, ShopRequest, KeywordSearch, KeywordRelationResults, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword, CoinQuery, CoinStream, RequestStreamMonth` | 17 |
@@ -24,5 +24,5 @@
 ## Summary
 
 - Files with endpoint counts: 13
-- **Sum of per-file counts: 148** (cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth are counted once per platform they appear in)
-- **Unique endpoint names across files: 88**; **unique per SKILL.md counting (account trio counted once): 133** — see SKILL.md
+- **Sum of per-file counts: 151** (cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth are counted once per platform they appear in)
+- **Unique endpoint names across files: 91**; **unique per SKILL.md counting (account trio counted once): 136** — see SKILL.md

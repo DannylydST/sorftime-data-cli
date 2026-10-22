@@ -1,19 +1,19 @@
 ---
 name: sorftime-data-cli
 description: >
-  Activate for tasks involving the actual Sorftime product-data platform or CLI: installing/configuring `sorftime-cli` and the API token/profile, calling `sorftime api` endpoints, writing bash/PowerShell loops over ASINs, keywords, or nodeIds, pulling Best Seller lists / monthly sales, comparing prices across Amazon, Shopee, Walmart, 1688, Temu, or TikTok, and setting up hijacker/keyword monitoring or scheduled recurring pulls, Reddit/Quora social listening (posts, comments, Q&A mining). Also activate for Sorftime API support: choosing the right endpoint/parameter/field/type, and debugging invalid-parameter errors, non-zero error codes, or response issues.
+  Activate for tasks involving the actual Sorftime product-data platform or CLI: installing/configuring `sorftime-cli` and the API token/profile, calling `sorftime api` endpoints, writing bash/PowerShell loops over ASINs, keywords, or nodeIds, pulling Best Seller lists / monthly sales, comparing prices across Amazon, Shopee, Walmart, 1688, Temu, or TikTok, and setting up hijacker/keyword monitoring, realtime keyword search-result collection (live SERP snapshots for any keyword), or scheduled recurring pulls, Reddit/Quora social listening (posts, comments, Q&A mining). Also activate for Sorftime API support: choosing the right endpoint/parameter/field/type, and debugging invalid-parameter errors, non-zero error codes, or response issues.
 
   Trigger even when "Sorftime" isn't named if the user wants to look up, compare, monitor, or batch-query marketplace product data by ASIN/nodeId/keyword, or asks in Chinese (查 Best Seller 榜单, 批量查 ASIN, 查月销, 跨平台对比价格, 每天拉监控数据, 部署定时任务). Don't use for general e-commerce strategy, translation, or analytics unrelated to Sorftime.
 compatibility:
   tools: [Bash, Read]
   dependencies: [node>=16, npm, jq (optional), sorftime-cli@1.0.0]
-version: 1.6.5
+version: 1.7.0
 user-invocable: true
 ---
 
 # Sorftime Data CLI Skill
 
-> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering 133 unique Sorftime data endpoints (Amazon 61 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21 + Social 6; CoinQuery/CoinStream/RequestStreamMonth are shared across platforms and counted once; live-synced 2026-10-12).
+> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering 136 unique Sorftime data endpoints (Amazon 64 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21 + Social 6; CoinQuery/CoinStream/RequestStreamMonth are shared across platforms and counted once; live-synced 2026-10-22).
 
 ---
 
@@ -182,13 +182,13 @@ jq --version || echo "⚠️ jq not installed; pure-CLI JSON processing is limit
 | [`social-api.md`](resources/social-api.md) | Social media sentiment (6 endpoints): RedditPostSearch, RedditPostRequest, RedditCommentRequest (domain=801); QuoraQuestionSearch, QuoraQuestionRequest, QuoraAnswerRequest (domain=802) |
 | [`use-cases.md`](resources/use-cases.md) | Sorftime Data CLI recipes / use cases |
 
-### Amazon (61 endpoints: 47 base + 14 monitoring)
+### Amazon (64 endpoints: 50 base + 14 monitoring)
 
 | File | Count | Endpoints |
 |------|--------|---------|
 | [`amazon-category-api.md`](resources/amazon-category-api.md) | 7 | CategoryTree, CategoryRequest, CategoryProducts, CategoryTrend, CategorySearchFromName, CategoryAssistant, SimilarProductFeature |
 | [`amazon-product-api.md`](resources/amazon-product-api.md) | 22 | All 22 endpoints: ProductRequest, ProductSearch, AsinSalesVolume, ProductVariations, ProductReviewsCollection, ProductReviewsCollectionStatusQuery, ProductReviewsQuery, ProductSearchFromName, ProductCustomersSay, ASINSubscription, ASINSubscriptionQuery, ASINSubscriptionCollection, ProductAssistant, ProductRealtimeRequest, ProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequest, SimilarProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequestCollection, SellerSearch, SellerSearchFromName, SellerRequest, BrandRequest |
-| [`amazon-keyword-api.md`](resources/amazon-keyword-api.md) | 12 | KeywordQuery, KeywordSearchResults, KeywordRequest, KeywordSearchResultTrend, KeywordExtends, CategoryRequestKeyword, ASINRequestKeyword, KeywordProductRanking, ASINKeywordRanking, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword |
+| [`amazon-keyword-api.md`](resources/amazon-keyword-api.md) | 15 | KeywordQuery, KeywordSearchResults, KeywordRequest, KeywordSearchResultTrend, KeywordExtends, CategoryRequestKeyword, ASINRequestKeyword, KeywordProductRanking, ASINKeywordRanking, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword, KeywordSearchRealtimeRequest, KeywordSearchRealtimeRequestStatusQuery, KeywordSearchRealtimeRequestCollection |
 | [`amazon-alexa-api.md`](resources/amazon-alexa-api.md) | 4 | AlexaQuestionsCollection, AlexaQuestionsCollectionStatusQuery, AlexaQuestionsCollectionResultQuery, AlexaQuestionsQuery |
 | [`amazon-ai-api.md`](resources/amazon-ai-api.md) | 2 | AIResultQuery, AIResult |
 | [`amazon-monitoring-api.md`](resources/amazon-monitoring-api.md) | 14 | Common rules + all 14 endpoints: KeywordBatchSubscription, KeywordTasks, KeywordBatchTaskUpdate, KeywordBatchScheduleList, KeywordBatchScheduleDetail, BestSellerListSubscription, BestSellerListTask, BestSellerListDelete, BestSellerListDataCollect, ProductSellerSubscription, ProductSellerTasks, ProductSellerTaskUpdate, ProductSellerTaskScheduleList, ProductSellerTaskScheduleDetail |
@@ -302,7 +302,7 @@ Skills/sorftime-cli/
 ├── SKILL.md                              # Main index + discovery path + endpoint catalog
 ├── README.md                             # Human quick reference
 ├── CHANGELOG.md                          # Version history
-├── trigger-eval.json                     # Trigger evaluation queries (32, bilingual)
+├── trigger-eval.json                     # Trigger evaluation queries (34, bilingual)
 ├── resources/
 │   ├── _common.md                        # Common: Domain/error codes/CLI template/rate limits/troubleshooting
 │   ├── _field_aliases.md                 # Field alias mapping
@@ -311,7 +311,7 @@ Skills/sorftime-cli/
 │   ├── amazon-category-api.md                # Amazon category 7 endpoints
 │   ├── amazon-data-types.md              # Amazon data type definitions
 │   ├── amazon-product-api.md                 # Amazon product: 22 endpoints (core 13 + real-time 5 + seller/brand 4)
-│   ├── amazon-keyword-api.md                 # Amazon keyword 12 endpoints
+│   ├── amazon-keyword-api.md                 # Amazon keyword 15 endpoints (incl. realtime SERP collection trio)
 │   ├── amazon-alexa-api.md                   # Amazon Alexa question collection/query 4 endpoints
 │   ├── amazon-ai-api.md                      # Amazon AI interpretation 2 endpoints
 │   ├── amazon-monitoring-api.md          # Amazon monitoring: common rules + 14 endpoints (keyword×5, bestseller×4, hijacker×5)
@@ -357,6 +357,7 @@ Skills/sorftime-cli/
 | CategoryRequestKeyword | `{"Nodeid":"xxx"}` (lowercase d) | `{"NodeId":"xxx"}` |
 | ASINRequestKeyword | `{"ASIN":"B0X"}` (all caps) | `{"asin":"B0X"}` |
 | KeywordBatchScheduleDetail | `{"ScheduelId":"xxx"}` (sic — API's own spelling) | `{"ScheduleId":"xxx"}` |
+| KeywordSearchRealtimeRequest | `{"keyword":["kw"],"mode":0,"area":"10041","page":1}` — keyword is an **array**; all four params required; area is mode-specific | `{"keyword":"kw"}` string / any param omitted → Code 10 |
 | CoinStream date (Shopee/Walmart/1688) | `{"Querydate":[...]}` (lowercase d) | `{"QueryDate":...}` |
 | CoinStream date (Amazon) | `{"QueryDate":[...]}` (capital D) | `{"Querydate":...}` |
 | TikTok creator/video | domain=301 (US only) | other domains return 401 |
@@ -365,7 +366,7 @@ Skills/sorftime-cli/
 
 ## Realtime Task Semantics (RealtimeRequest 家族，2026-10-05 空转事故实证)
 
-> 适用 `SimilarProductRealtimeRequest` / `ProductRealtimeRequest` / `*ReviewsCollection` 等「提交任务→异步收取」端点。
+> 适用 `SimilarProductRealtimeRequest` / `ProductRealtimeRequest` / `*ReviewsCollection` 等「提交任务→异步收取」端点。`KeywordSearchRealtimeRequest` 三件套（见 `resources/amazon-keyword-api.md` §5）同属此模式，但差异实测在案：StatusQuery 不收过滤参数、Collection 按 taskId 取数；**第 1 条幂等语义对三件套未实测**（同 keyword 不同 page 会得到不同任务 ID；同入参重提是否返回旧 ID 未知）——勿按「重提=拿回旧任务」假设设计重试/去重。
 
 1. **按入参幂等**：同一张图片/同一个 ASIN 重复提交，返回**同一个任务 ID**（图搜实证：两天后重提同图仍返回 128710）。任务终态（含失败）永久冻结在该 ID 上——**重提同入参不是重试，是拿回同一个死任务**。
 2. **先查状态再判定**：`SimilarProductRealtimeRequestStatusQuery` 不收 taskId——只收 `{"Update": 小时数}`（1-240），返回该窗口全量任务列表 [{TaskId, Status}]。状态码：0=完成、4=积分不足、11=无采集任务、97=无匹配商品（图搜无同款）、98=采集失败、99=采集中。**零积分消耗**。
@@ -396,7 +397,7 @@ The skill ships 7 helper scripts (3 wrappers + 3 utilities + 1 shared library) t
 | [`scripts/decode.sh`](scripts/decode.sh) | Error-code dictionary: `decode 10` → meaning + troubleshooting (no API call needed) |
 | [`scripts/batch.sh`](scripts/batch.sh) | **Generic batch runner**: loop an endpoint over an input file with rate limiting, retries, resume, disk output (`--out`), and dry-run. The automation workhorse — see Shortcut Map → Batch Operations |
 | [`scripts/doctor.sh`](scripts/doctor.sh) | Environment self-check: node/npm/CLI version/profile/live connectivity, with install-and-configure hints on failure. `doctor.sh --connect` for the full check |
-| [`scripts/gen-index.sh`](scripts/gen-index.sh) | Auto-generates `resources/_endpoints-index.md` (endpoint count matrix) from resource headers — run after any resources update so the 127-endpoint number never goes stale |
+| [`scripts/gen-index.sh`](scripts/gen-index.sh) | Auto-generates `resources/_endpoints-index.md` (endpoint count matrix) from resource headers — run after any resources update so the endpoint counts never go stale |
 | [`scripts/_lib.sh`](scripts/_lib.sh) | Shared library sourced by all scripts — defines `call_api` / `_pyq` / `py_field` / `py_to_csv` helpers |
 
 **Typical usage** (replace `sorftime api ... | jq .` with 1 line):

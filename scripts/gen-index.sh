@@ -3,7 +3,7 @@
 #
 # Reads every resources/*.md header ("# XXX Endpoints (N)") and writes
 # resources/_endpoints-index.md. Run after updating resources (e.g. a new
-# npm release) to keep the 117-endpoint number accurate forever.
+# npm release) to keep the endpoint counts accurate.
 #
 # Usage: bash scripts/gen-index.sh
 # Exit codes: 0=regenerated / 1=no endpoint files found

@@ -1,8 +1,8 @@
-# Amazon Keyword Endpoints (12)
+# Amazon Keyword Endpoints (15)
 
 **Amazon Domains**: 1=US, 2=UK, 3=DE, 4=FR, 6=CA, 7=JP, 8=ES, 9=IT, 10=MX, 11=AE, 12=AU, 13=BR, 14=SA
 
-**Endpoints in this file**: KeywordQuery, KeywordSearchResults, KeywordRequest, KeywordSearchResultTrend, KeywordExtends, CategoryRequestKeyword, ASINRequestKeyword, KeywordProductRanking, ASINKeywordRanking, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword
+**Endpoints in this file**: KeywordQuery, KeywordSearchResults, KeywordRequest, KeywordSearchResultTrend, KeywordExtends, CategoryRequestKeyword, ASINRequestKeyword, KeywordProductRanking, ASINKeywordRanking, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword, KeywordSearchRealtimeRequest, KeywordSearchRealtimeRequestStatusQuery, KeywordSearchRealtimeRequestCollection
 
 **Site limitations**: domain 5 (in/India) is not in the keyword-endpoint support list.
 
@@ -32,6 +32,10 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
   - [4.1 Add keyword to my library (FavoriteKeyword)](#41-add-keyword-to-my-library-favoritekeyword)
   - [4.2 Move / delete library keyword (ChangeFavoriteKeyword)](#42-move--delete-library-keyword-changefavoritekeyword)
   - [4.3 Query library keywords (GetFavoriteKeyword)](#43-query-library-keywords-getfavoritekeyword)
+- [5. Realtime search-result collection (new, live-verified 2026-10-22)](#5-realtime-search-result-collection-new-live-verified-2026-10-22)
+  - [5.1 Submit collection task (KeywordSearchRealtimeRequest)](#51-submit-collection-task-keywordsearchrealtimerequest)
+  - [5.2 Task status (KeywordSearchRealtimeRequestStatusQuery)](#52-task-status-keywordsearchrealtimerequeststatusquery)
+  - [5.3 Fetch result (KeywordSearchRealtimeRequestCollection)](#53-fetch-result-keywordsearchrealtimerequestcollection)
 
 ---
 
@@ -421,6 +425,94 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 
 ---
 
+## 5. Realtime search-result collection (new, live-verified 2026-10-22)
+
+> Async trio: submit task → poll status → fetch result. Collects the **live** Amazon
+> search-results page for **any keyword** — unlike `KeywordSearchResults` (§1.2), which
+> serves cached last-15-days data for ABA trending keywords only. `mode` / `area` share
+> the semantics and postal-code table of the monitoring family (`KeywordBatchSubscription`);
+> `page` does **not** — it accepts integers ≥ 1 beyond the monitoring family's {1,3,5,7} (verified: 1/2/8/11/20; upper bound not published).
+
+### 5.1 Submit collection task (KeywordSearchRealtimeRequest)
+
+- **Endpoint description**: Submit a realtime keyword search-result collection task. Supports batch submission — one task is created per keyword.
+- **Requests consumed**: 0 — credit-based instead. Credits are deducted **asynchronously** while tasks are processed (live-observed: balance trickles down over minutes after submission; no charge at submit). The official per-page/per-site credit rate is not published here — check the balance with `CoinQuery`.
+- **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it) — all 8 live-verified 2026-10-22 (same matrix as keyword monitoring). Domain 5(in) returns `Code 401 API not available` (live). Domains 10-14: probed with a US area code they return `Code 10`, but no area codes are published for those sites and keyword monitoring excludes them — treat as unsupported until official docs say otherwise (a valid-area success there has not been observed).
+- **Request parameters**:
+  | Parameter | Type | Required | Description |
+  |------|------|------|------|
+  | Keyword | String Array | Yes | Keywords to collect, e.g. `["kw1","kw2"]`. Any keyword (not limited to ABA). Batch: one task per keyword. |
+  | Mode | Integer | Yes | Browser mode: 0 = PC, 1 = mobile. |
+  | Area | String | Yes | Collection-area postal code. **Required in both modes and mode-specific** — PC codes are rejected in mobile mode and vice versa (live-verified). Code table same as `KeywordBatchSubscription` (see [amazon-monitoring-api.md](./amazon-monitoring-api.md)); the Canadian code needs its space (`V5K 0A1`, live-verified). |
+  | Page | Integer | Yes | Collect **up to** the first N pages — a ceiling, not a guarantee: a rare-keyword `page:20` task returned all 38 rows that exist (live). Must be ≥ 1 (0 rejected; 1/2/8/11/20 verified accepted; upper bound not published). Larger collections likely cost more credits *(inferred — the charging granularity is unverified; a `page:20` rare-keyword task returned only 38 rows)* — do not pass large values blindly. |
+- **Usage example** (live-verified):
+  ```bash
+  # Single keyword, PC mode, New York, first page
+  sorftime api KeywordSearchRealtimeRequest '{"keyword": ["power bank"], "mode": 0, "area": "10041", "page": 1}' --domain 1
+  # → {"Code": 0, "Data": ["power bank:65087"]}
+
+  # Batch, mobile mode (Seattle)
+  sorftime api KeywordSearchRealtimeRequest '{"keyword": ["bluetooth earbuds", "phone case"], "mode": 1, "area": "98101", "page": 1}' --domain 1
+  ```
+- **Response data**:
+  - `Data`: `["<keyword>:<taskId>", ...]` — one entry per submitted keyword. Task IDs come from a per-domain series (live: US 65087+, GB 16187, DE 10932, FR 10125, CA 7711, JP 4476, ES 6722, IT 9439) — call the two follow-up endpoints on the **same domain**.
+
+---
+
+### 5.2 Task status (KeywordSearchRealtimeRequestStatusQuery)
+
+- **Endpoint description**: List this account's realtime keyword collection tasks and their statuses (for the queried domain).
+- **Requests consumed**: 0 (free — repeated polling showed no balance change, live-verified).
+- **Supported domains**: same as §5.1.
+- **Request parameters**: none required. `QueryDate` (yyyy-MM-dd) and `Update` (hours window) are accepted but do **not** filter (live-verified: today's tasks came back for a yesterday date) — the current task list is returned regardless. When no tasks exist: `Code 11 No data available`.
+- **Usage example**:
+  ```bash
+  sorftime api KeywordSearchRealtimeRequestStatusQuery '{}' --domain 1
+  ```
+- **Response data**:
+  - `Data`: array of task objects:
+    - `TaskId`: Integer.
+    - `Keyword`: the submitted keyword.
+    - `CreateDate`: `yyyy-MM-dd HH:mm:ss`.
+    - `Status`: 99 = collecting, 0 = completed (both live-verified). By family convention (`SimilarProductRealtimeRequestStatusQuery`): 4 = insufficient credits, 98 = collection failed — not observed live.
+- **Timing (live 2026-10-22)**: a GB page-1 task completed in ~13 min; US page-1 tasks completed between 35 and 47 min after submit. Do not assume the ~5-minute figure of the product-realtime family — poll periodically (e.g. every 2-5 min) and plan for minutes to hours.
+
+---
+
+### 5.3 Fetch result (KeywordSearchRealtimeRequestCollection)
+
+- **Endpoint description**: Fetch the collected search results of a completed task.
+- **Requests consumed**: 0 (free — 4 consecutive pulls of a completed result showed no balance change, live-verified).
+- **Supported domains**: same as §5.1.
+- **Request parameters**:
+  | Parameter | Type | Required | Description |
+  |------|------|------|------|
+  | TaskId | String / Integer | Yes | Task ID from §5.1; string and integer both accepted (live). Passing `Keyword` alone is rejected with `Code 10`. |
+- **Usage example**:
+  ```bash
+  sorftime api KeywordSearchRealtimeRequestCollection '{"taskId": "16187"}' --domain 2
+  ```
+- **Response data**:
+  - While the task is collecting: `Data: null` (pulling an unfinished task is not charged, live-verified).
+  - When completed: `Data` = array of rows in SERP position order; each row is a **compact 13-element tuple** (not named fields). Row count varies with keyword/site/mode — live samples: GB PC p1 "yoga mat" → 72 rows; US PC p1 "power bank" → 33; US mobile p1 "yoga mat" → 28; US PC p2 "running shoes" → 82 rows **all labelled 第1页**; US PC p20 rare keyword → 38 rows across labelled pages 1-2. Treat `Data` as one flat SERP snapshot — the page label in [5] does not reliably map to the requested page count. Column values below are live-verified; meaning labels marked *(inferred)* are read from the data/family conventions, not from official docs.
+    | Index | Content |
+    |-------|---------|
+    | 0 | ASIN |
+    | 1 | Main image URL |
+    | 2 | Product title (may contain HTML entities, e.g. `&amp;`) |
+    | 3 | 0/1 flag — every labelled ad/widget row carried 1, deeper plain rows 0 *(inferred: sponsored flag)* |
+    | 4 | Badge: `''` / `Deal` / `AC` / `Lowest` *(inferred: AC = Amazon's Choice; Lowest = 30-day lowest-price marker, cf. `SearchResultOfFP` item 11)* |
+    | 5 | Position text (Chinese): `第1页，第4/72位` = page 1, position 4 of 72 collected rows |
+    | 6 | Slot label as rendered: `''` (plain slot) / `品牌广告` / `视频广告` *(inferred: brand ad / video ad)* / labels like `4 stars and above`, `Social media picks` *(inferred: SERP widget rows)* |
+    | 7 | Empty in all live rows (reserved) |
+    | 8 | Star rating (0 = none) |
+    | 9 | Ratings count |
+    | 10 | Price *(inferred: local minor units per platform-wide convention — GB row `12900` ≈ £129.00)* |
+    | 11 | 0 in all live rows (reserved) |
+    | 12 | `prime` or `''` *(inferred: Prime badge)* |
+
+---
+
 ## Notes
 
 1. **ABA keyword**: Most endpoints only support Amazon Brand Analytics keywords.
@@ -429,10 +521,11 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
    - Other sites: only the last 30 days
    - FR, IT: keyword trend starts from 2025-01
    - `KeywordSearchResultTrend` does not support sites 4/5/9.
-3. **Site supplement**: `KeywordQuery` / `KeywordSearchResults` / `KeywordExtends` / `CategoryRequestKeyword` / `ASINRequestKeyword` / `KeywordProductRanking` / `FavoriteKeyword` / `ChangeFavoriteKeyword` / `GetFavoriteKeyword` do not support domain 5 (in).
+3. **Site supplement**: `KeywordQuery` / `KeywordSearchResults` / `KeywordExtends` / `CategoryRequestKeyword` / `ASINRequestKeyword` / `KeywordProductRanking` / `FavoriteKeyword` / `ChangeFavoriteKeyword` / `GetFavoriteKeyword` do not support domain 5 (in). The realtime trio (§5) also rejects domain 5 (`Code 401`, live-verified).
 4. **Library management**: The API library is not shared with the Sorftime web favorites; a single folder can hold at most 2000 keywords.
 5. **Paginated query**: At most 200 records per page; it is recommended to set `PageSize` reasonably.
 6. **Endpoint rename**: `ASINRequestKeywordv2` has been renamed to `ASINRequestKeyword`. The old name still works, but the new name is recommended.
+7. **Realtime collection trio (§5)**: the only keyword family that accepts **any** keyword (not ABA-limited) and returns a **live SERP snapshot**; async submit → poll → fetch; `Area` is mode-specific; results come as compact 13-element tuples, not named fields.
 
 ---
 
@@ -491,4 +584,18 @@ sorftime api GetFavoriteKeyword '{"command": "dict=core-words", "page": 1}' --do
 
 # Move a keyword to another folder
 sorftime api ChangeFavoriteKeyword '{"keyword": "power bank", "command": "move=high-priority"}' --domain 1
+```
+
+### 6. Realtime SERP collection (any keyword, live snapshot)
+
+```bash
+# Step 1: submit — PC mode, New York, first page (batch: multiple keywords in the array)
+sorftime api KeywordSearchRealtimeRequest '{"keyword": ["power bank"], "mode": 0, "area": "10041", "page": 1}' --domain 1
+# → Data: ["power bank:65087"]
+
+# Step 2: poll until Status flips 99 → 0 (takes minutes to hours; poll every 2-5 min, free)
+sorftime api KeywordSearchRealtimeRequestStatusQuery '{}' --domain 1
+
+# Step 3: fetch the collected SERP rows (free; 13-element tuples — column map in §5.3)
+sorftime api KeywordSearchRealtimeRequestCollection '{"taskId": "65087"}' --domain 1
 ```

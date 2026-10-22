@@ -1,10 +1,18 @@
 # Sorftime Data CLI — Cross-Border E-Commerce Data API for AI Agents & Developers
 
-> **Scriptable access to 133 data endpoints across Amazon, Shopee, Walmart, 1688, Temu, TikTok, and social media (Reddit/Quora)** — batch ASIN queries, category Best Sellers, keyword research, hijacker monitoring, variation sales, creator analytics.
+> **Scriptable access to 136 data endpoints across Amazon, Shopee, Walmart, 1688, Temu, TikTok, and social media (Reddit/Quora)** — batch ASIN queries, category Best Sellers, keyword research, realtime SERP collection, hijacker monitoring, variation sales, creator analytics.
 >
 > One npm package. One unified command: `sorftime api <Endpoint> '<json>'`. Works with any AI agent and any automation pipeline. Open source.
 
-## 🆕 What's New (October 12, 2026) — v1.6.0: Social Media Endpoints (Reddit & Quora)
+## 🆕 What's New (October 22, 2026) — v1.7.0: Realtime Keyword SERP Collection
+
+- **⚡ +3 Amazon endpoints** (live-verified end-to-end): the realtime keyword trio — `KeywordSearchRealtimeRequest` (submit a live SERP collection for **any keyword**, batch supported, PC/mobile modes with the monitoring-family area codes), `KeywordSearchRealtimeRequestStatusQuery` (poll task status, free), `KeywordSearchRealtimeRequestCollection` (fetch completed results, free — compact 13-column rows: ASIN, image, title, ad/badge flags, position, stars, ratings, price, Prime). 8 Amazon sites verified (US/GB/DE/FR/CA/JP/ES/IT). Full params, timing, and column map in [`resources/amazon-keyword-api.md`](resources/amazon-keyword-api.md) §5.
+- **✅ Endpoint count: 133 → 136** (Amazon 61 → 64).
+- **[Full changelog →](CHANGELOG.md)**
+
+---
+
+## What's New (October 12, 2026) — v1.6.0: Social Media Endpoints (Reddit & Quora)
 
 - **🗣️ +6 social endpoints** (live-verified): the Reddit trio (`RedditPostSearch` / `RedditPostRequest` / `RedditCommentRequest`, domain=801) and the Quora trio (`QuoraQuestionSearch` / `QuoraQuestionRequest` / `QuoraAnswerRequest`, domain=802). Searches cost 5 credits, detail calls 1; Reddit IDs carry the `t3_` prefix, Quora IDs are numeric; comments include `ParentCommentId` for thread reconstruction. New [`resources/social-api.md`](resources/social-api.md) covers params, pricing, and a sentiment-mining workflow.
 - **✅ Endpoint count: 127 → 133**; `_common.md` gains the §5d social domain table (803-810 verified absent).
@@ -29,7 +37,7 @@
 
 [Full changelog →](CHANGELOG.md)
 
-> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering **133 unique** Sorftime cross-border e-commerce data endpoints: Amazon 61 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21 + Social 6 (per-platform counts include the 3 shared cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth, counted once).
+> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering **136 unique** Sorftime cross-border e-commerce data endpoints: Amazon 64 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21 + Social 6 (per-platform counts include the 3 shared cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth, counted once).
 
 For the full index (discovery path, recipes, all endpoint references), see [SKILL.md](SKILL.md).
 
@@ -42,7 +50,7 @@ Sorftime serves cross-border e-commerce data through two access modes. Both draw
 | | **Sorftime Seller Agent** (MCP) | **Sorftime Data CLI** (this project) |
 |---|---|---|
 | Best for | Sellers & AI agents — out-of-the-box marketplace intelligence | Developers, data teams & enterprises — building on raw data |
-| Data access | Curated tool calls, structured for agents | **All 127 endpoints, every field, raw JSON** |
+| Data access | Curated tool calls, structured for agents | **All 136 endpoints, every field, raw JSON** |
 | Automation | Runs inside an AI agent session | **Any pipeline**: cron, CI, shell, Python/Node, Airflow |
 | Determinism | Agent interprets every call | **Reproducible**: same request → same JSON, always |
 | Volume | Per-interaction | **Thousands of records per run** — `batch.sh` rate-limit-safe, resumable |
@@ -226,7 +234,7 @@ sorftime-cli/
 │   ├── account.md                           # Cross-platform account management (3 endpoints)
 │   ├── amazon-category-api.md               # Amazon category (7 endpoints)
 │   ├── amazon-product-api.md                # Amazon product (22 endpoints)
-│   ├── amazon-keyword-api.md                # Amazon keyword (12 endpoints)
+│   ├── amazon-keyword-api.md                # Amazon keyword (15 endpoints, incl. realtime SERP trio)
 │   ├── amazon-alexa-api.md                  # Amazon Alexa question (4 endpoints)
 │   ├── amazon-ai-api.md                     # Amazon AI interpretation (2 endpoints)
 │   ├── amazon-monitoring-api.md             # Amazon monitoring (14 endpoints)

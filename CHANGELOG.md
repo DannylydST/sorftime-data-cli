@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-10-22] — v1.7.0（实时关键词采集三件套上线，+3）
+
+- **新增 3 个 Amazon 端点**（2026-10-22 全链路实测验证）：`KeywordSearchRealtimeRequest`（提交实时关键词搜索结果采集——任意关键词不限 ABA，支持批量；keyword 为**数组**且 mode/area/page 四参必填，area 与 mode 严格配对）/ `KeywordSearchRealtimeRequestStatusQuery`（任务状态列表，99=采集中、0=完成；queryDate/update 参数实测不过滤；轮询免费）/ `KeywordSearchRealtimeRequestCollection`（按 taskId 取结果，免费；完成后返回 13 元素紧凑元组：ASIN/图/标题/广告位标记/徽章/中文位次/位置标签/星级/评论数/最小单位价格/Prime）
+- 站点矩阵实测：8 站可用（US/GB/DE/FR/CA/JP/ES/IT，同关键词监控矩阵）；domain 5 返回 401；积分异步扣减（提交/轮询/取数均 0 request，余额随任务执行递减，官方费率未公开——文档如实标注）
+- `amazon-keyword-api.md`（12→15）新增 §5 三件套全参文档 + Notes 7 + Best Practices 6 工作流；SKILL.md 陷阱表补「keyword 数组+四参必填」行、Realtime 家族语义节纳入三件套；`_endpoints-index.md` 经 gen-index.sh 重生成
+- 唯一端点数 133→136（Amazon 61→64）；trigger-eval 补 2 条实时采集用例（34 条）
+
 ## [2026-10-12] — v1.6.5（双站口径全仓清扫）
 
 - doctor.sh 缺 profile 提示、SUPPORT.md（注册+取 Key）、decode.sh 694 充值指引、CONTRIBUTING.md 注释、_common.md 694 行×5——运行时提示与支持文档面的 open-intl 硬编码全部改为双站口径；README 断言同步软化为设计口径
