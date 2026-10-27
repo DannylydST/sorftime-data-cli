@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-10-27] — v1.8.0（专利三件套 + 反查关键词新字段）
+
+- **新增 3 个 Amazon 专利端点**（2026-10-27 全链路真数据实测，domain 1/2/7 均可）：`PatentSearchFromKeyword`（关键词/公司/人名/公告号查专利，≤30 条/页，专利类型·法律状态·国家·申请人·分类过滤）、`PatentSearchFromImage`（图搜外观专利，≤100 条带 Similarity；`QueryMode` 实际必传，不传返回 null）、`PatentRequest`（公告号查详情：类型/发明人/申请人/LOC·IPC·CPC·GBC 分类/法律状态/申请·公开·预估到期日/图组）
+- **`ASINRequestKeyword` 新增响应字段**：`KeywordType`（关键词类型数组，如实测「转化平稳词/主要流量词」）、`OrganicTrafficRatio`（贡献流量占比）、顶层 `SearchConversionRate`
+- 实测坑入档：`ClassNo` 必须字符串（数组静默空）；图搜不传 `QueryMode` 返回 Data null；`Photo` 可能为 null；专利数据与站点无关
+- 新增 `resources/amazon-patent-api.md`（参数/字段/侵权排查工作流/判读口径）——Amazon 64→67，唯一端点 136→139
+
 ## [2026-10-22] — v1.7.0（实时关键词采集三件套上线，+3）
 
 - **新增 3 个 Amazon 端点**（2026-10-22 全链路实测验证）：`KeywordSearchRealtimeRequest`（提交实时关键词搜索结果采集——任意关键词不限 ABA，支持批量；keyword 为**数组**且 mode/area/page 四参必填，area 与 mode 严格配对）/ `KeywordSearchRealtimeRequestStatusQuery`（任务状态列表，99=采集中、0=完成；queryDate/update 参数实测不过滤；轮询免费）/ `KeywordSearchRealtimeRequestCollection`（按 taskId 取结果，免费；完成后返回 13 元素紧凑元组：ASIN/图/标题/广告位标记/徽章/中文位次/位置标签/星级/评论数/最小单位价格/Prime）

@@ -14,6 +14,7 @@
 | [amazon-category-api.md](amazon-category-api.md) | `CategoryTree, CategoryRequest, CategoryProducts, CategoryTrend, CategorySearchFromName, CategoryAssistant, SimilarProductFeature` | 7 |
 | [amazon-keyword-api.md](amazon-keyword-api.md) | `KeywordQuery, KeywordSearchResults, KeywordRequest, KeywordSearchResultTrend, KeywordExtends, CategoryRequestKeyword, ASINRequestKeyword, KeywordProductRanking, ASINKeywordRanking, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword, KeywordSearchRealtimeRequest, KeywordSearchRealtimeRequestStatusQuery, KeywordSearchRealtimeRequestCollection` | 15 |
 | [amazon-monitoring-api.md](amazon-monitoring-api.md) | `KeywordBatchSubscription, KeywordTasks, KeywordBatchTaskUpdate, KeywordBatchScheduleList, KeywordBatchScheduleDetail, BestSellerListSubscription, BestSellerListTask, BestSellerListDelete, BestSellerListDataCollect, ProductSellerSubscription, ProductSellerTasks, ProductSellerTaskUpdate, ProductSellerTaskScheduleList, ProductSellerTaskScheduleDetail` | 14 |
+| [amazon-patent-api.md](amazon-patent-api.md) | `PatentSearchFromKeyword, PatentSearchFromImage, PatentRequest` | 3 |
 | [amazon-product-api.md](amazon-product-api.md) | `ProductRequest, ProductSearch, AsinSalesVolume, ProductVariations, ProductReviewsCollection, ProductReviewsCollectionStatusQuery, ProductReviewsQuery, ProductSearchFromName, ProductCustomersSay, ASINSubscription, ASINSubscriptionQuery, ASINSubscriptionCollection, ProductAssistant, ProductRealtimeRequest, ProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequest, SimilarProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequestCollection, SellerSearch, SellerSearchFromName, SellerRequest, BrandRequest` | 22 |
 | [shopee-api.md](shopee-api.md) | `CategoryTree, CategorySearchFromName, CategoryRequest, CategoryTrend, ProductRequest, ProductSearchFromName, ProductTrend, ProductSearch, ShopRequest, KeywordSearch, KeywordRelationResults, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword, CoinQuery, CoinStream, RequestStreamMonth` | 17 |
 | [social-api.md](social-api.md) | `RedditPostSearch, RedditPostRequest, RedditCommentRequest, QuoraQuestionSearch, QuoraQuestionRequest, QuoraAnswerRequest` | 6 |
@@ -23,6 +24,6 @@
 
 ## Summary
 
-- Files with endpoint counts: 13
-- **Sum of per-file counts: 151** (cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth are counted once per platform they appear in)
-- **Unique endpoint names across files: 91**; **unique per SKILL.md counting (account trio counted once): 136** — see SKILL.md
+- Files with endpoint counts: 14
+- **Sum of per-file counts: 154** (cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth are counted once per platform they appear in)
+- **Unique endpoint names across files: 94**; **unique per SKILL.md counting (account trio counted once): 139** — see SKILL.md

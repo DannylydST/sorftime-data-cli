@@ -282,6 +282,9 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
   sorftime api ASINRequestKeyword '{"asin": "B0CVM8TXHP", "pageIndex": 1, "pageSize": 50}' --domain 1
   ```
 - **Response data**:
+  - `KeywordType`: Array of keyword-type labels, e.g. `["转化平稳词","主要流量词"]` (new 2026-10-27 live-verified).
+  - `OrganicTrafficRatio`: Traffic contribution ratio (percentage), e.g. `100`.
+  - `SearchConversionRate`: Keyword conversion rate at top level (returns `0` when no data; new 2026-10-27 live-verified).
   - `ShowType`: Exposure type.
   - `ShowShare`: The traffic share contributed by this keyword in this ASIN's reverse-lookup keywords.
   - `PositionType`: Array — Exposure position type. E.g. `["organic traffic", "platform recommended"]`.

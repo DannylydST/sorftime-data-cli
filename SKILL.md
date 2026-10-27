@@ -1,19 +1,19 @@
 ---
 name: sorftime-data-cli
 description: >
-  Activate for tasks involving the actual Sorftime product-data platform or CLI: installing/configuring `sorftime-cli` and the API token/profile, calling `sorftime api` endpoints, writing bash/PowerShell loops over ASINs, keywords, or nodeIds, pulling Best Seller lists / monthly sales, comparing prices across Amazon, Shopee, Walmart, 1688, Temu, or TikTok, and setting up hijacker/keyword monitoring, realtime keyword search-result collection (live SERP snapshots for any keyword), or scheduled recurring pulls, Reddit/Quora social listening (posts, comments, Q&A mining). Also activate for Sorftime API support: choosing the right endpoint/parameter/field/type, and debugging invalid-parameter errors, non-zero error codes, or response issues.
+  Activate for tasks involving the actual Sorftime product-data platform or CLI: installing/configuring `sorftime-cli` and the API token/profile, calling `sorftime api` endpoints, writing bash/PowerShell loops over ASINs, keywords, or nodeIds, pulling Best Seller lists / monthly sales, comparing prices across Amazon, Shopee, Walmart, 1688, Temu, or TikTok, and setting up hijacker/keyword monitoring, realtime keyword search-result collection (live SERP snapshots for any keyword), patent search (image/keyword/detail) for infringement triage, or scheduled recurring pulls, Reddit/Quora social listening (posts, comments, Q&A mining). Also activate for Sorftime API support: choosing the right endpoint/parameter/field/type, and debugging invalid-parameter errors, non-zero error codes, or response issues.
 
   Trigger even when "Sorftime" isn't named if the user wants to look up, compare, monitor, or batch-query marketplace product data by ASIN/nodeId/keyword, or asks in Chinese (查 Best Seller 榜单, 批量查 ASIN, 查月销, 跨平台对比价格, 每天拉监控数据, 部署定时任务). Don't use for general e-commerce strategy, translation, or analytics unrelated to Sorftime.
 compatibility:
   tools: [Bash, Read]
   dependencies: [node>=16, npm, jq (optional), sorftime-cli@1.0.0]
-version: 1.7.0
+version: 1.8.0
 user-invocable: true
 ---
 
 # Sorftime Data CLI Skill
 
-> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering 136 unique Sorftime data endpoints (Amazon 64 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21 + Social 6; CoinQuery/CoinStream/RequestStreamMonth are shared across platforms and counted once; live-synced 2026-10-22).
+> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering 139 unique Sorftime data endpoints (Amazon 67 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21 + Social 6; CoinQuery/CoinStream/RequestStreamMonth are shared across platforms and counted once; live-synced 2026-10-27).
 
 ---
 
@@ -182,12 +182,13 @@ jq --version || echo "⚠️ jq not installed; pure-CLI JSON processing is limit
 | [`social-api.md`](resources/social-api.md) | Social media sentiment (6 endpoints): RedditPostSearch, RedditPostRequest, RedditCommentRequest (domain=801); QuoraQuestionSearch, QuoraQuestionRequest, QuoraAnswerRequest (domain=802) |
 | [`use-cases.md`](resources/use-cases.md) | Sorftime Data CLI recipes / use cases |
 
-### Amazon (64 endpoints: 50 base + 14 monitoring)
+### Amazon (67 endpoints: 53 base + 14 monitoring)
 
 | File | Count | Endpoints |
 |------|--------|---------|
 | [`amazon-category-api.md`](resources/amazon-category-api.md) | 7 | CategoryTree, CategoryRequest, CategoryProducts, CategoryTrend, CategorySearchFromName, CategoryAssistant, SimilarProductFeature |
 | [`amazon-product-api.md`](resources/amazon-product-api.md) | 22 | All 22 endpoints: ProductRequest, ProductSearch, AsinSalesVolume, ProductVariations, ProductReviewsCollection, ProductReviewsCollectionStatusQuery, ProductReviewsQuery, ProductSearchFromName, ProductCustomersSay, ASINSubscription, ASINSubscriptionQuery, ASINSubscriptionCollection, ProductAssistant, ProductRealtimeRequest, ProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequest, SimilarProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequestCollection, SellerSearch, SellerSearchFromName, SellerRequest, BrandRequest |
+| [`amazon-patent-api.md`](resources/amazon-patent-api.md) | 3 | PatentSearchFromKeyword, PatentSearchFromImage, PatentRequest (patent infringement triage) |
 | [`amazon-keyword-api.md`](resources/amazon-keyword-api.md) | 15 | KeywordQuery, KeywordSearchResults, KeywordRequest, KeywordSearchResultTrend, KeywordExtends, CategoryRequestKeyword, ASINRequestKeyword, KeywordProductRanking, ASINKeywordRanking, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword, KeywordSearchRealtimeRequest, KeywordSearchRealtimeRequestStatusQuery, KeywordSearchRealtimeRequestCollection |
 | [`amazon-alexa-api.md`](resources/amazon-alexa-api.md) | 4 | AlexaQuestionsCollection, AlexaQuestionsCollectionStatusQuery, AlexaQuestionsCollectionResultQuery, AlexaQuestionsQuery |
 | [`amazon-ai-api.md`](resources/amazon-ai-api.md) | 2 | AIResultQuery, AIResult |
@@ -312,6 +313,7 @@ Skills/sorftime-cli/
 │   ├── amazon-data-types.md              # Amazon data type definitions
 │   ├── amazon-product-api.md                 # Amazon product: 22 endpoints (core 13 + real-time 5 + seller/brand 4)
 │   ├── amazon-keyword-api.md                 # Amazon keyword 15 endpoints (incl. realtime SERP collection trio)
+│   ├── amazon-patent-api.md                  # Amazon patent 3 endpoints (keyword/image search + detail)
 │   ├── amazon-alexa-api.md                   # Amazon Alexa question collection/query 4 endpoints
 │   ├── amazon-ai-api.md                      # Amazon AI interpretation 2 endpoints
 │   ├── amazon-monitoring-api.md          # Amazon monitoring: common rules + 14 endpoints (keyword×5, bestseller×4, hijacker×5)

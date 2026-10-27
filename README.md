@@ -1,10 +1,19 @@
 # Sorftime Data CLI — Cross-Border E-Commerce Data API for AI Agents & Developers
 
-> **Scriptable access to 136 data endpoints across Amazon, Shopee, Walmart, 1688, Temu, TikTok, and social media (Reddit/Quora)** — batch ASIN queries, category Best Sellers, keyword research, realtime SERP collection, hijacker monitoring, variation sales, creator analytics.
+> **Scriptable access to 139 data endpoints across Amazon, Shopee, Walmart, 1688, Temu, TikTok, and social media (Reddit/Quora)** — batch ASIN queries, category Best Sellers, keyword research, realtime SERP collection, patent search, hijacker monitoring, variation sales, creator analytics.
 >
 > One npm package. One unified command: `sorftime api <Endpoint> '<json>'`. Works with any AI agent and any automation pipeline. Open source.
 
-## 🆕 What's New (October 22, 2026) — v1.7.0: Realtime Keyword SERP Collection
+## 🆕 What's New (October 27, 2026) — v1.8.0: Patent Endpoints + Keyword Type Fields
+
+- **⚖️ +3 Amazon patent endpoints** (live-verified): `PatentSearchFromImage` (design-patent image search, up to 100 hits with `Similarity`; `QueryMode` is effectively required), `PatentSearchFromKeyword` (keyword/company/person/publication-number search, ≤30 per page, filters for patent type/legal status/country/applicant/classification), `PatentRequest` (full detail by publication number — type, inventor, LOC/IPC/CPC classes, legal status, dates, images). Data via Zhihuiya. New guide: [`resources/amazon-patent-api.md`](resources/amazon-patent-api.md).
+- **🔎 `ASINRequestKeyword` new response fields**: `KeywordType` (array, e.g. 转化平稳词/主要流量词) and `OrganicTrafficRatio` (traffic contribution %), plus top-level `SearchConversionRate`.
+- **✅ Endpoint count: 136 → 139** (Amazon 64 → 67).
+- **[Full changelog →](CHANGELOG.md)**
+
+---
+
+## What's New (October 22, 2026) — v1.7.0: Realtime Keyword SERP Collection
 
 - **⚡ +3 Amazon endpoints** (live-verified end-to-end): the realtime keyword trio — `KeywordSearchRealtimeRequest` (submit a live SERP collection for **any keyword**, batch supported, PC/mobile modes with the monitoring-family area codes), `KeywordSearchRealtimeRequestStatusQuery` (poll task status, free), `KeywordSearchRealtimeRequestCollection` (fetch completed results, free — compact 13-column rows: ASIN, image, title, ad/badge flags, position, stars, ratings, price, Prime). 8 Amazon sites verified (US/GB/DE/FR/CA/JP/ES/IT). Full params, timing, and column map in [`resources/amazon-keyword-api.md`](resources/amazon-keyword-api.md) §5.
 - **✅ Endpoint count: 133 → 136** (Amazon 61 → 64).
@@ -37,7 +46,7 @@
 
 [Full changelog →](CHANGELOG.md)
 
-> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering **136 unique** Sorftime cross-border e-commerce data endpoints: Amazon 64 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21 + Social 6 (per-platform counts include the 3 shared cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth, counted once).
+> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering **139 unique** Sorftime cross-border e-commerce data endpoints: Amazon 67 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21 + Social 6 (per-platform counts include the 3 shared cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth, counted once).
 
 For the full index (discovery path, recipes, all endpoint references), see [SKILL.md](SKILL.md).
 
