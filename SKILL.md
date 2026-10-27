@@ -303,7 +303,7 @@ Skills/sorftime-cli/
 ├── SKILL.md                              # Main index + discovery path + endpoint catalog
 ├── README.md                             # Human quick reference
 ├── CHANGELOG.md                          # Version history
-├── trigger-eval.json                     # Trigger evaluation queries (34, bilingual)
+├── trigger-eval.json                     # Trigger evaluation queries (36, bilingual)
 ├── resources/
 │   ├── _common.md                        # Common: Domain/error codes/CLI template/rate limits/troubleshooting
 │   ├── _field_aliases.md                 # Field alias mapping

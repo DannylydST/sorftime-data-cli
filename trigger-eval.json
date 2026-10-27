@@ -32,5 +32,7 @@
   {"query": "什么是跨境电商？新手怎么入门选品", "should_trigger": false},
   {"query": "帮我把这篇英文产品文案翻译成中文", "should_trigger": false},
   {"query": "帮我实时采集 power bank 在亚马逊美国站的搜索结果第一页，要能区分广告位和自然位", "should_trigger": true},
-  {"query": "KeywordSearchRealtimeRequest 提交后 StatusQuery 一直返回 Status 99，采集要多久，结果怎么取", "should_trigger": true}
+  {"query": "KeywordSearchRealtimeRequest 提交后 StatusQuery 一直返回 Status 99，采集要多久，结果怎么取", "should_trigger": true},
+  {"query": "帮我用这个产品图查一下有没有外观专利侵权，用 sorftime 的图搜专利接口", "should_trigger": true},
+  {"query": "How do I use sorftime to search design patents by an image URL and get the patent legal status", "should_trigger": true}
 ]
