@@ -1,7 +1,7 @@
 # Amazon Patent Endpoints (3)
 
 > 2026-10-27 全链路实测（domain 1 / 2 / 7 均可——专利数据全局，与站点无关）
-> 数据源：智慧芽（zhihuiya）图链。计费走积分（MCP 同工具标注：关键词搜 60 / 图搜 450 / 详情 150 积分每次；CLI 侧 `RequestConsumed=0`）
+> 专利图链域名 = zhihuiya.com（智慧芽，2026-10-27 实测）。计费走积分（MCP 同工具标注：关键词搜 60 / 图搜 450 / 详情 150 积分每次；CLI 侧 `RequestConsumed=0`）
 
 **Endpoints in this file**: PatentSearchFromKeyword, PatentSearchFromImage, PatentRequest
 
