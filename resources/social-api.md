@@ -32,7 +32,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
 ### 1.1 Search Posts (RedditPostSearch)
 
 - **Endpoint description**: Search Reddit posts by keyword (product / brand / problem descriptions; supports plain-language queries).
-- **Requests consumed**: 5（实测）
+- **Credits consumed**: 25（实测）
 - **Request parameters**:
 
   | Parameter | Type | Required | Description |
@@ -49,7 +49,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
 ### 1.2 Post Detail (RedditPostRequest)
 
 - **Endpoint description**: Fetch a post's full content and engagement.
-- **Requests consumed**: 1（实测）
+- **Credits consumed**: 5（实测）
 - **Request parameters**: `RedditId`（String, required — t3_ 前缀，from RedditPostSearch）
 - **Usage example**:
   ```bash
@@ -59,7 +59,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
 ### 1.3 Post Comments (RedditCommentRequest)
 
 - **Endpoint description**: Fetch a post's comments, paginated.
-- **Requests consumed**: 1（实测）
+- **Credits consumed**: 5（实测）
 - **Request parameters**: `RedditId`（required, t3_ 前缀）+ `Page`（from 1）
 - **Usage example**（verified）:
   ```bash
@@ -74,7 +74,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
 ### 2.1 Search Questions (QuoraQuestionSearch)
 
 - **Endpoint description**: Search Quora questions by keyword.
-- **Requests consumed**: 5（实测）
+- **Credits consumed**: 25（实测）
 - **Request parameters**:
 
   | Parameter | Type | Required | Description |
@@ -92,7 +92,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
 ### 2.2 Question Detail (QuoraQuestionRequest)
 
 - **Endpoint description**: Fetch a question's full content.
-- **Requests consumed**: 1（实测）
+- **Credits consumed**: 5（实测）
 - **Request parameters**: `QuoraId`（String, required — from QuoraQuestionSearch）
 - **Usage example**（verified）:
   ```bash
@@ -102,7 +102,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
 ### 2.3 Question Answers (QuoraAnswerRequest)
 
 - **Endpoint description**: Fetch a question's answers, paginated.
-- **Requests consumed**: 1（实测）
+- **Credits consumed**: 5（实测）
 - **Request parameters**: `QuoraId`（required）+ `Page`（from 1）
 - **Usage example**（verified）:
   ```bash

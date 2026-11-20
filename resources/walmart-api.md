@@ -51,7 +51,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ## 1. Category Tree (CategoryTree)
 
 - **Endpoint description**: Returns the Best Seller category tree structure
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 21(us)
 - **Note**:
   - Response data is large (approx. 10MB+); it is recommended to set a long request timeout
@@ -74,7 +74,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ## 2. Category Market Report (CategoryRequest)
 
 - **Endpoint description**: Query the Best Seller Top 80 products of a category
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 21(us)
 - **Note**: Categories not suitable for third-party sellers are excluded, e.g. apps, audio/video, books, music, food, number games, etc.
 - **Request parameters**:
@@ -119,7 +119,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ## 2a. Search Categories by Name (CategorySearchFromName)
 
 - **Endpoint description**: Search Walmart category markets by name; used to obtain the NodePath of matching categories
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 21(us)
 - **Note**: Name matching works on indexed category names; generic terms may return `Code=11` (no data) — try more specific names (e.g. `toy` returns matches, `kitchen` does not).
 - **Request parameters**:
@@ -139,7 +139,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ## 3. Product Data Query (ProductRequest)
 
 - **Endpoint description**: Product data query
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 21(us)
 - **Request parameters**:
   | Parameter | Type | Description |
@@ -182,7 +182,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ## 4. Product Historical Trend Query (ProductTrendRequest)
 
 - **Endpoint description**: Product historical trend query
-- **Requests consumed**: 2
+- **Credits consumed**: 10
 - **Supported domains**: 21(us)
 - **Request parameters**:
   | Parameter | Type | Description |
@@ -208,7 +208,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ## 4a. Search Products by Name (ProductSearchFromName)
 
 - **Endpoint description**: Search Walmart products by name, returning up to ~100 matches per call, sorted by monthly sales
-- **Requests consumed**: 2
+- **Credits consumed**: 10
 - **Supported domains**: 21(us)
 - **Request parameters**:
   | Parameter | Type | Description |
@@ -225,7 +225,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ## 5. Product Officially Disclosed Variant Sales (ProductSalesVolume)
 
 - **Endpoint description**: Query the officially disclosed variant sales history of a product, earliest from 2023-11
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 21(us)
 - **Note**: The endpoint description says data is available from 2023-11, while the `QueryDate` parameter description says earliest support is 2023-09-01; this document preserves both original statements without merging them.
 - **Request parameters**:
@@ -251,7 +251,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ## 6. Query This Month's Remaining Credits (CoinQuery)
 
 - **Endpoint description**: Query remaining credits
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 21(us)
 - **Note**: Credit balance is not differentiated by site or platform; querying through any site or platform returns the total credit balance.
 - **Request parameters**: none
@@ -267,7 +267,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ## 7. Query Credit Usage Details (CoinStream)
 
 - **Endpoint description**: Query the credit usage details on the current query site
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 21(us)
 - **Request parameters**:
   | Parameter | Type | Description |
@@ -287,7 +287,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ## 8. Query Monthly Request Usage Details (RequestStreamMonth)
 
 - **Endpoint description**: Query remaining request count and purchased request pack usage; for detailed call history, please contact Sorftime. For user privacy, only the last 3 days of call records are retained.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 21(us)
 - **Note**: Request query is not differentiated by site; querying through any site returns the total request balance.
 - **Request parameters**: none
@@ -312,7 +312,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ### 9.1 Keyword Query (KeywordQuery)
 
 - **Endpoint description**: Current trending keyword list
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 21(us)
 - **Request parameters**:
   | Parameter | Type | Description |
@@ -344,7 +344,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ### 9.2 Search Keywords by Name (KeywordSearchFromName)
 
 - **Endpoint description**: Use natural language to search Walmart trending keywords
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 21(us)
 - **Request parameters**:
   | Parameter | Type | Description |
@@ -372,7 +372,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ### 9.3 Keyword (Last 15 Days) Search Result Products (KeywordSearchResults)
 
 - **Endpoint description**: Query the products in the search results for the last 15 days for the keyword; only currently trending keywords are supported
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 21(us)
 - **Note**: Only currently trending keywords are supported
 - **Request parameters**:
@@ -418,7 +418,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ### 9.4 Keyword Details (KeywordRequest)
 
 - **Endpoint description**: Keyword details query
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 21(us)
 - **Request parameters**:
   | Parameter | Type | Description |
@@ -445,7 +445,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ### 9.5 Product Reverse-lookup Keywords (ProductRequestKeyword)
 
 - **Endpoint description**: Query the keywords in whose search-result first 3 pages the product gained exposure in the last 30 days
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 21(us)
 - **Request parameters**:
   | Parameter | Type | Description |
@@ -478,7 +478,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ### 9.6 Find Related Keywords (KeywordExtends)
 
 - **Endpoint description**: Find related keywords
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 21(us)
 - **Request parameters**:
   | Parameter | Type | Description |
@@ -507,7 +507,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ### 9.7 Add Keyword to My Library (FavoriteKeyword)
 
 - **Endpoint description**: Add a keyword to my keyword library, not limited to trending keywords
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 21(us)
 - **Note**:
   - The API library (favorites) is not shared with the Sorftime web favorites
@@ -529,7 +529,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ### 9.8 Move / Delete Keyword Library Keyword (ChangeFavoriteKeyword)
 
 - **Endpoint description**: Move a keyword to a specified folder or delete a keyword; a single folder can hold up to 2000 keywords
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 21(us)
 - **Note**: The API library (favorites) is not shared with the Sorftime web favorites
 - **Request parameters**:
@@ -554,7 +554,7 @@ For data type definitions, see [`walmart-data-types.md`](./walmart-data-types.md
 ### 9.9 Query Keyword Library (GetFavoriteKeyword)
 
 - **Endpoint description**: Query the keyword library
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 21(us)
 - **Note**: The API library (favorites) is not shared with the Sorftime web favorites
 - **Request parameters**:

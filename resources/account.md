@@ -11,7 +11,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
 ## 1. Query Credits Balance (CoinQuery)
 
 - **Endpoint description**: Query the current account credit balance. Credits are issued at 00:00 on the 10th of each month and are not differentiated by site or platform.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: any (1, 21, 201-208, 601, 701, 705, 301-312)
 - **Request parameters**: none
 - **Usage example**:
@@ -25,7 +25,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
 ## 2. Query Credit Stream (CoinStream)
 
 - **Endpoint description**: Query the credit consumption stream.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Request parameters**:
   | Parameter | Type | Required | Description |
   |------|------|------|------|
@@ -63,7 +63,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
 ## 3. Query Request Stream (RequestStreamMonth)
 
 - **Endpoint description**: Query the request purchase and consumption stream. Request queries are not differentiated by site; queries against any site return the total request balance.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Request parameters**: none
 - **Usage example**:
   ```bash

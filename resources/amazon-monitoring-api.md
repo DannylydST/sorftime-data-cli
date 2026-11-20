@@ -247,7 +247,7 @@ Format: `<which days of the week>|<which time slots each day>|<monitoring freque
 ### 2. Query Keyword Tasks (KeywordTasks)
 
 - **Endpoint description**: View all valid (non-deleted) keyword monitoring tasks.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Request parameters**:
   | Parameter | Type | Required | Description |
   |------|------|------|------|
@@ -273,7 +273,7 @@ Format: `<which days of the week>|<which time slots each day>|<monitoring freque
 ### 3. Modify Keyword Monitoring Task (KeywordBatchTaskUpdate)
 
 - **Endpoint description**: Modify a keyword monitoring task (pause, start, delete, change settings).
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Request parameters**:
   | Parameter | Type | Required | Description |
   |------|------|------|------|
@@ -304,7 +304,7 @@ Format: `<which days of the week>|<which time slots each day>|<monitoring freque
 ### 4. Query Keyword Monitoring Task Execution Batches (KeywordBatchScheduleList)
 
 - **Endpoint description**: Query all execution task batches of keyword monitoring.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Request parameters**:
   | Parameter | Type | Required | Description |
   |------|------|------|------|
@@ -325,7 +325,7 @@ Format: `<which days of the week>|<which time slots each day>|<monitoring freque
 ### 5. Extract Keyword Monitoring Product List Detail Data (KeywordBatchScheduleDetail)
 
 - **Endpoint description**: Extract the ASIN list data of all products in a single keyword monitoring search result.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Request parameters**:
   | Parameter | Type | Required | Description |
   |------|------|------|------|
@@ -389,7 +389,7 @@ Format: `<which days of the week>|<which time slots each day>|<monitoring freque
 ### 2. Query Best Seller List Monitoring Tasks (BestSellerListTask)
 
 - **Endpoint description**: View all Best Seller list monitoring tasks.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Request parameters**:
   | Parameter | Type | Required | Description |
   |------|------|------|------|
@@ -411,7 +411,7 @@ Format: `<which days of the week>|<which time slots each day>|<monitoring freque
 ### 3. Delete Best Seller List Monitoring Task (BestSellerListDelete)
 
 - **Endpoint description**: Delete a registered Best Seller list monitoring task.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Request parameters**:
   | Parameter | Type | Required | Description |
   |------|------|------|------|
@@ -428,7 +428,7 @@ Format: `<which days of the week>|<which time slots each day>|<monitoring freque
 ### 4. Collect Best Seller List Monitoring Data (BestSellerListDataCollect)
 
 - **Endpoint description**: Query the data of a monitored list.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Request parameters**:
   | Parameter | Type | Required | Description |
   |------|------|------|------|
@@ -488,7 +488,7 @@ Format: `<which days of the week>|<which time slots each day>|<monitoring freque
 ### 2. Query Hijacker & Stock Monitoring Tasks (ProductSellerTasks)
 
 - **Endpoint description**: View all valid (non-deleted) hijacker monitoring tasks.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Request parameters**:
   | Parameter | Type | Required | Description |
   |------|------|------|------|
@@ -505,7 +505,7 @@ Format: `<which days of the week>|<which time slots each day>|<monitoring freque
 ### 3. Modify Hijacker & Stock Monitoring Task (ProductSellerTaskUpdate)
 
 - **Endpoint description**: Modify a hijacker monitoring task (pause, start, delete, change settings).
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Request parameters**:
   | Parameter | Type | Required | Description |
   |------|------|------|------|
@@ -533,7 +533,7 @@ Format: `<which days of the week>|<which time slots each day>|<monitoring freque
 ### 4. Query Hijacker & Stock Monitoring Task Execution Batches (ProductSellerTaskScheduleList)
 
 - **Endpoint description**: Query all execution task batches of hijacker monitoring.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Request parameters**:
   | Parameter | Type | Required | Description |
   |------|------|------|------|
@@ -549,7 +549,7 @@ Format: `<which days of the week>|<which time slots each day>|<monitoring freque
 ### 5. Extract Hijacker & Stock Monitoring Execution Result Detail Data (ProductSellerTaskScheduleDetail)
 
 - **Endpoint description**: Extract the result data of a single hijacker monitoring run.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Request parameters**:
   | Parameter | Type | Required | Description |
   |------|------|------|------|

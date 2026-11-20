@@ -53,7 +53,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 1.1 Product Details (with Product Trend) (ProductRequest)
 
 - **Endpoint description**: Product (listing) details query. Note: when the ASIN does not exist or the link is broken, no data is returned (in this scenario, to confirm the product status, we will fetch the product details in real time); the request still consumes quota.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -134,7 +134,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 1.2 Product Search (ProductSearch)
 
 - **Endpoint description**: Multi-dimensional product search.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -222,7 +222,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 2.1 Officially Disclosed Variant Sales (AsinSalesVolume)
 
 - **Endpoint description**: Query the officially disclosed variant sales history of a product. The earliest data start from 2023-07 for the following sites: 13:br | 12:au | 10:mx | 8:es | 7:jp | 6:ca | 3:de | 2:uk | 1:us. The earliest data start from 2023-08 for the following sites: 11:ae | 9:it | 5:in | 4:fr. The earliest data start from 2023-10 for the following site: 14:sa.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -243,7 +243,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 2.2 Product Variant Data (ProductVariations)
 
 - **Endpoint description**: Query all variants of an ASIN.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -263,7 +263,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 2.3 Product Reviews CustomerSay Query (ProductCustomersSay)
 
 - **Endpoint description**: Get the Amazon-summarized product reviews (CustomerSay) data.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -284,7 +284,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 3.1 Real-time Collection of Product Reviews (ProductReviewsCollection)
 
 - **Endpoint description**: Real-time collection of product reviews (does not return the collected review content; you need to pull the data through the `ProductReviewsQuery` endpoint. After successful collection of the same product, re-collection is not allowed within 2 hours). Review fetching is divided into two parts: the first step is real-time collection (this step is only collection, not returning specific review content). The real-time collected reviews will be merged with the reviews we have already collected. If you need the latest reviews, we recommend performing collection first; if you don't need the latest reviews, you can skip this step. Credits are deducted based on your collection requirements: 5 credits for each page of reviews successfully collected (10 reviews), and at least 5 credits per launch (even if no reviews are collected, 5 credits will still be deducted). The second step is to pull the review data, through the `ProductReviewsQuery` endpoint to pull all the product reviews we have collected. Since Amazon's control over review data is increasingly strict, the actual collection completion time is at least 2 hours, and at most 7 days.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -306,7 +306,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 3.2 Real-time Review Task Status Query (ProductReviewsCollectionStatusQuery)
 
 - **Endpoint description**: Query the task execution status of the real-time collection of "Ask Alexa" preset questions.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -325,7 +325,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 3.3 Product Reviews (ProductReviewsQuery)
 
 - **Endpoint description**: Query product reviews.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -365,7 +365,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 4.1 Search Product by Name (ProductSearchFromName)
 
 - **Endpoint description**: Search Amazon for related products by name.
-- **Requests consumed**: 2
+- **Credits consumed**: 10
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -393,7 +393,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 4.2 ASIN Update Subscription (ASINSubscription)
 
 - **Endpoint description**: Subscribe to ASIN update; we ensure that the subscribed ASIN is updated at least once within the set time range. Credits are deducted based on the update frequency: 1 credit for every ASIN successfully updated (2 credits on the JP site). Up to 100 ASINs can be subscribed at a time; to subscribe more than 100 ASINs, please initiate multiple subscription requests. To view the data, use the `ASINSubscriptionCollection` endpoint.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -411,7 +411,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 4.3 ASIN Subscription Query (ASINSubscriptionQuery)
 
 - **Endpoint description**: The list of subscribed ASINs.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**: none
 - **Usage example**:
@@ -426,7 +426,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 4.4 ASIN Subscription Data Query (ASINSubscriptionCollection)
 
 - **Endpoint description**: View the subscribed ASIN product data (only the data of currently valid subscribed ASINs can be viewed).
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -480,7 +480,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 5.1 AI Product Interpretation (ProductAssistant)
 
 - **Endpoint description**: Sorftime Agent interprets the product (currently only supports products with monthly sales greater than 500; products with monthly sales less than 500 will fail directly and return the request), and the generation takes about 5 minutes. Results can be obtained via the `AIResult` endpoint. Supports both text and text+graphic versions (request cost: 75).
-- **Requests consumed**: 25
+- **Credits consumed**: 125
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -512,7 +512,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 #### 6.1.1 Product Realtime Update (ProductRealtimeRequest)
 
 - **Endpoint description**: If the product has not been updated within the set time (e.g. require the product to be updated within 24 hours, set the `update` parameter to 24), this triggers a real-time product fetch and consumes 1 credit (2 credits on the JP site). If it has been updated, use `ProductRequest` to pull the product detail data. Use `ProductRealtimeRequestStatusQuery` to check completion status; after a successful fetch, use `ProductRequest` to query this ASIN.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -530,7 +530,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 #### 6.1.2 Realtime Update Status (ProductRealtimeRequestStatusQuery)
 
 - **Endpoint description**: If the product has triggered a real-time collection, use this endpoint to query the completion status.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -550,7 +550,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 #### 6.2.1 Image Search Submit (SimilarProductRealtimeRequest)
 
 - **Endpoint description**: Real-time search for similar products on the Amazon platform via a product image. The searched product should occupy greater than 80% of the image and the background should be as clean as possible. The real-time fetch takes about 5 minutes. After a successful fetch, use `SimilarProductRealtimeRequestCollection` to query (each query consumes 5 credits, 6 credits on the JP site) and is expected to return 20+ products.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 7(jp), 8(es), 9(it)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -568,7 +568,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 #### 6.2.2 Image Search Status (SimilarProductRealtimeRequestStatusQuery)
 
 - **Endpoint description**: Query the execution status of the image-search similar product task.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 7(jp), 8(es), 9(it)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -586,7 +586,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 #### 6.2.3 Image Search Result (SimilarProductRealtimeRequestCollection)
 
 - **Endpoint description**: Query the result of an image search.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |

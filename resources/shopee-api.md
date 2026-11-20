@@ -41,7 +41,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 #### 1.1 Category Tree (CategoryTree)
 
 - **Endpoint description**: Returns the Shopee category tree structure. The system excludes categories that are not suitable for third-party sellers, e.g. apps, audio/video, books, music, food, number games, etc.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Note**: Response data is very large (approx. 10MB+); it is recommended to set a long request timeout.
 - **Request parameters**: none
@@ -66,7 +66,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 #### 1.2 Search Category by Name (CategorySearchFromName)
 
 - **Endpoint description**: Use natural language to search Shopee-related category markets.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Request parameters**:
 
@@ -86,7 +86,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 #### 1.3 Category Best Sellers (supports historical lookup) (CategoryRequest)
 
 - **Endpoint description**: Query the Best Seller Top 500 products in a category. The system excludes categories that are not suitable for third-party sellers, e.g. apps, audio/video, books, music, food, number games, etc.
-- **Requests consumed**: 10
+- **Credits consumed**: 50
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Note**:
   - Data scope is Best Seller Top 500.
@@ -137,7 +137,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 #### 1.4 Category Historical Trend (CategoryTrend)
 
 - **Endpoint description**: Query the last 2 years of historical trend of a category market.
-- **Requests consumed**: 2
+- **Credits consumed**: 10
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Request parameters**:
 
@@ -212,7 +212,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 #### 2.1 Product Details (ProductRequest)
 
 - **Endpoint description**: Query the product (listing) details.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Request parameters**:
 
@@ -253,7 +253,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 #### 2.2 Search Product by Name (ProductSearchFromName)
 
 - **Endpoint description**: Search Shopee for related products by name.
-- **Requests consumed**: 2
+- **Credits consumed**: 10
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Request parameters**:
 
@@ -296,7 +296,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 #### 2.3 Product Historical Trend (ProductTrend)
 
 - **Endpoint description**: Query the product's historical trend.
-- **Requests consumed**: 2
+- **Credits consumed**: 10
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Request parameters**:
 
@@ -321,7 +321,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 #### 2.4 Product Search (ProductSearch)
 
 - **Endpoint description**: Multi-dimensional product query.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Request parameters**:
 
@@ -386,7 +386,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 #### 3.1 Shop Query (ShopRequest)
 
 - **Endpoint description**: Query Shopee shop information.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Request parameters**:
 
@@ -419,7 +419,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 #### 4.1 Keyword Query (KeywordSearch)
 
 - **Endpoint description**: Query the current trending keyword list.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Request parameters**:
 
@@ -461,7 +461,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 #### 4.2 Keyword-related Products (KeywordRelationResults)
 
 - **Endpoint description**: Query products related to a keyword.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Request parameters**:
 
@@ -497,7 +497,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 #### 4.3 Add Keyword to My Library (FavoriteKeyword)
 
 - **Endpoint description**: Add a keyword to your keyword library. The API library (favorites) is not shared with the Sorftime web favorites.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Request parameters**:
 
@@ -522,7 +522,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 #### 4.4 Move / Delete Library Keyword (ChangeFavoriteKeyword)
 
 - **Endpoint description**: Move a keyword to a specified folder or delete a keyword. The API library (favorites) is not shared with the Sorftime web favorites.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Note**: A single folder can hold at most 2000 keywords.
 - **Request parameters**:
@@ -549,7 +549,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 #### 4.5 Query Library Keywords (GetFavoriteKeyword)
 
 - **Endpoint description**: Query the API keyword library. The API library (favorites) is not shared with the Sorftime web favorites.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Request parameters**:
 
@@ -579,7 +579,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 #### 5.1 Query This Month's Remaining Credits (CoinQuery)
 
 - **Endpoint description**: Query remaining credits. The credit balance is not differentiated by site or platform; the balance obtained by querying through any site or platform is the total credit balance.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Request parameters**: none
 - **Usage example**:
@@ -594,7 +594,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 #### 5.2 Query Credit Usage Details (CoinStream)
 
 - **Endpoint description**: Query the credit usage details on the currently queried site.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Request parameters**:
 
@@ -625,7 +625,7 @@ For data type definitions, see [`shopee-data-types.md`](./shopee-data-types.md).
 #### 5.3 Query Monthly Request Usage Details (RequestStreamMonth)
 
 - **Endpoint description**: Query the remaining request count and the usage of purchased request packs. Request query is not differentiated by site; the balance obtained by querying through any site is the total request balance. For detailed call history, please contact Sorftime. For user privacy, only the last 3 days of call records are retained.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 201(vn), 202(id), 203(sg), 204(th), 205(my), 206(tw), 207(ph), 208(br)
 - **Note**: Request query is not differentiated by site; the balance obtained by querying through any site is the account total request balance.
 - **Request parameters**: none

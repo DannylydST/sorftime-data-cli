@@ -15,7 +15,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
 ## 1. Query AI Task Progress (AIResultQuery)
 
 - **Endpoint description**: Query historical AI tasks that have been executed.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -36,7 +36,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
 ## 2. Query AI Interpretation Analysis Result (AIResult)
 
 - **Endpoint description**: Query the result of an AI-analyzed category or product.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx)
 - **Request parameters**:
   | Parameter | Type | Required | Description |

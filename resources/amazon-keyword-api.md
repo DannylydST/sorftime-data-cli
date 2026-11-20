@@ -44,7 +44,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 1.1 KeywordQuery (KeywordQuery)
 
 - **Endpoint description**: Current ABA trending keyword list. Supported keyword count per site: US=2 million, GB/DE=300K, IT/FR/JP=150K, ES/CA/MX=100K, AU=50K, other sites = all ABA keywords.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -100,7 +100,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 1.2 Keyword (last 15 days) search-result products (KeywordSearchResults)
 
 - **Endpoint description**: Last 15 days of keyword search-result products, only supports ABA trending keywords. Supported keyword count per site: US=2 million, GB/DE=300K, IT/FR/JP=150K, ES/CA/MX=100K, AU=50K, other sites = all ABA keywords.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -159,7 +159,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 1.3 Keyword details (with search volume, CPC trend) (KeywordRequest)
 
 - **Endpoint description**: Keyword details query. Supported keyword count per site: US=2 million, GB/DE=300K, IT/FR/JP=150K, ES/CA/MX=100K, AU=50K, other sites = all ABA keywords.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -200,7 +200,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 1.4 Keyword search-result product trend (KeywordSearchResultTrend)
 
 - **Endpoint description**: Statistical data trend of the top 3 pages of products in keyword search results. Supported keyword count per site: US=2 million, GB/DE=300K, IT/FR/JP=150K, ES/CA/MX=100K, AU=50K, other sites = all ABA keywords.
-- **Requests consumed**: 10
+- **Credits consumed**: 50
 - **Supported domains**: 1(us), 2(gb), 3(de), 6(ca), 7(jp), 8(es), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -231,7 +231,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 2.1 Find extended keywords (KeywordExtends)
 
 - **Endpoint description**: Find extended keywords. Supported keyword count per site: US=2 million, GB/DE=300K, IT/FR/JP=150K, ES/CA/MX=100K, AU=50K, other sites = all ABA keywords.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -250,7 +250,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 2.2 Category reverse-lookup keywords (CategoryRequestKeyword)
 
 - **Endpoint description**: Query category-related ABA keywords by category. Supported keyword count per site: US=2 million, GB/DE=300K, IT/FR/JP=150K, ES/CA/MX=100K, AU=50K, other sites = all ABA keywords.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -269,7 +269,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 2.3 ASIN reverse-lookup keywords (ASINRequestKeyword)
 
 - **Endpoint description**: Query the keywords in whose search-result first 3 pages this ASIN gained exposure in the last 30 days. Supported keyword count per site: US=2 million, GB/DE=300K, IT/FR/JP=150K, ES/CA/MX=100K, AU=50K, other sites = all ABA keywords.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -325,7 +325,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 3.1 Keyword historical search-result products (KeywordProductRanking)
 
 - **Endpoint description**: Keyword historical monthly search-result products, up to the last 2 years. Currently only supports US-site ABA keywords. Supported keyword count per site: US=2 million, GB/DE=300K, IT/FR/JP=150K, ES/CA/MX=100K, AU=50K, other sites = all ABA keywords.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -349,7 +349,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 3.2 ASIN's rank trend under a keyword (ASINKeywordRanking)
 
 - **Endpoint description**: ASIN's rank history under a specified keyword, up to the last 2 years. Currently only supports US-site ABA keywords. Supported keyword count per site: US=2 million, GB/DE=300K, IT/FR/JP=150K, ES/CA/MX=100K, AU=50K, other sites = all ABA keywords.
-- **Requests consumed**: 2
+- **Credits consumed**: 10
 - **Supported domains**: 1(us)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -373,7 +373,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 4.1 Add keyword to my library (FavoriteKeyword)
 
 - **Endpoint description**: Add a keyword to your keyword library (not limited to ABA keywords). Note: the API library (favorites) is not shared with the Sorftime web favorites.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -392,7 +392,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 4.2 Move / Delete library keyword (ChangeFavoriteKeyword)
 
 - **Endpoint description**: Move a keyword to a specified folder or delete a keyword. A single folder can hold at most 2000 keywords. Note: the API library (favorites) is not shared with the Sorftime web favorites.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -412,7 +412,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 4.3 Query library keywords (GetFavoriteKeyword)
 
 - **Endpoint description**: Query the keyword library. Note: the API library (favorites) is not shared with the Sorftime web favorites.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -439,7 +439,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 5.1 Submit collection task (KeywordSearchRealtimeRequest)
 
 - **Endpoint description**: Submit a realtime keyword search-result collection task. Supports batch submission — one task is created per keyword.
-- **Requests consumed**: 0 — credit-based instead. Credits are deducted **asynchronously** while tasks are processed (live-observed: balance trickles down over minutes after submission; no charge at submit). The official per-page/per-site credit rate is not published here — check the balance with `CoinQuery`.
+- **Credits consumed**: 0 — credit-based instead. Credits are deducted **asynchronously** while tasks are processed (live-observed: balance trickles down over minutes after submission; no charge at submit). The official per-page/per-site credit rate is not published here — check the balance with `CoinQuery`.
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it) — all 8 live-verified 2026-10-22 (same matrix as keyword monitoring). Domain 5(in) returns `Code 401 API not available` (live). Domains 10-14: probed with a US area code they return `Code 10`, but no area codes are published for those sites and keyword monitoring excludes them — treat as unsupported until official docs say otherwise (a valid-area success there has not been observed).
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -465,7 +465,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 5.2 Task status (KeywordSearchRealtimeRequestStatusQuery)
 
 - **Endpoint description**: List this account's realtime keyword collection tasks and their statuses (for the queried domain).
-- **Requests consumed**: 0 (free — repeated polling showed no balance change, live-verified).
+- **Credits consumed**: 0 (free — repeated polling showed no balance change, live-verified).
 - **Supported domains**: same as §5.1.
 - **Request parameters**: none required. `QueryDate` (yyyy-MM-dd) and `Update` (hours window) are accepted but do **not** filter (live-verified: today's tasks came back for a yesterday date) — the current task list is returned regardless. When no tasks exist: `Code 11 No data available`.
 - **Usage example**:
@@ -485,7 +485,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ### 5.3 Fetch result (KeywordSearchRealtimeRequestCollection)
 
 - **Endpoint description**: Fetch the collected search results of a completed task.
-- **Requests consumed**: 0 (free — 4 consecutive pulls of a completed result showed no balance change, live-verified).
+- **Credits consumed**: 0 (free — 4 consecutive pulls of a completed result showed no balance change, live-verified).
 - **Supported domains**: same as §5.1.
 - **Request parameters**:
   | Parameter | Type | Required | Description |

@@ -24,7 +24,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
 ## 1. Real-time Collect Alexa Questions (AlexaQuestionsCollection)
 
 - **Endpoint description**: Real-time collect the pre-set "Ask Alexa" questions and their AI answers for the given ASIN. This endpoint does not return the collected question content; use `AlexaQuestionsCollectionResultQuery` to query this run's results by task ID, or use `AlexaQuestionsQuery` to pull all questions collected in the last 15 days. Note: the passed-in ASIN is the current ASIN, and each call only collects that single ASIN, not other ASINs under the same listing. To collect multiple ASINs, call this endpoint once for each (each ASIN counts as 1 collection and deducts credits separately). Data consistency note: the "Ask Alexa" questions shown on Amazon's front-end are dynamically recommended content that may differ due to login account, browsing time, region, device, etc. Therefore the question count and specific content returned by this endpoint may not exactly match the Amazon front-end in real time.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -42,7 +42,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
 ## 2. Real-time Query Alexa Question Task Status (AlexaQuestionsCollectionStatusQuery)
 
 - **Endpoint description**: Query the execution status of the real-time "Ask Alexa" pre-set question collection task.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -61,7 +61,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
 ## 3. Query Alexa Question Task Result (AlexaQuestionsCollectionResultQuery)
 
 - **Endpoint description**: Query the "Ask Alexa" pre-set questions and AI answers collected in this real-time collection run by task ID.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
@@ -84,7 +84,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
 ## 4. Query Alexa Questions (AlexaQuestionsQuery)
 
 - **Endpoint description**: Query the "Ask Alexa" pre-set questions we have collected. For the latest content, use `AlexaQuestionsCollection` to perform a real-time collection and then query. This endpoint returns by default the "Ask Alexa" questions and AI answers for all variants of the given ASIN that have been updated within the last 15 days.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it)
 - **Request parameters**:
   | Parameter | Type | Required | Description |

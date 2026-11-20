@@ -37,7 +37,7 @@ For data type definitions, see [`temu-data-types.md`](./temu-data-types.md). Thi
 ### 1.1 Category Tree (CategoryTree)
 
 - **Endpoint description**: Category tree structure. **Note: this endpoint's response data is very large (approx. 10MB+); it is recommended to set a long request timeout.**
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 701(us), 705(eur)
 - **Request parameters**: none
 - **Usage example**:
@@ -61,7 +61,7 @@ For data type definitions, see [`temu-data-types.md`](./temu-data-types.md). Thi
 ### 1.2 Category Market (CategoryRequest)
 
 - **Endpoint description**: Query the Best Seller products in a category market, which can be used for category data analysis. Supports up to Top 300 products.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 701(us), 705(eur)
 - **Request parameters**:
 
@@ -98,7 +98,7 @@ For data type definitions, see [`temu-data-types.md`](./temu-data-types.md). Thi
 ### 1.3 Search Category by Name (CategorySearchFromName)
 
 - **Endpoint description**: Use natural language to search Temu-related category markets.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 701(us), 705(eur)
 - **Request parameters**:
 
@@ -118,7 +118,7 @@ For data type definitions, see [`temu-data-types.md`](./temu-data-types.md). Thi
 ### 1.4 Category Search (CategorySearch)
 
 - **Endpoint description**: Multi-dimensional category selection.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 701(us), 705(eur)
 - **Request parameters**:
 
@@ -203,7 +203,7 @@ For data type definitions, see [`temu-data-types.md`](./temu-data-types.md). Thi
 ### 2.1 Product Details (ProductRequest)
 
 - **Endpoint description**: Product (listing) details query.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 701(us), 705(eur)
 - **Request parameters**:
 
@@ -246,7 +246,7 @@ For data type definitions, see [`temu-data-types.md`](./temu-data-types.md). Thi
 ### 2.2 Search Product by Name (ProductSearchFromName)
 
 - **Endpoint description**: Search Temu for related products by name.
-- **Requests consumed**: 2
+- **Credits consumed**: 10
 - **Supported domains**: 701(us), 705(eur)
 - **Request parameters**:
 
@@ -282,7 +282,7 @@ For data type definitions, see [`temu-data-types.md`](./temu-data-types.md). Thi
 ### 2.3 Product Historical Trend Query (ProductTrendRequest)
 
 - **Endpoint description**: Query a product's historical trend data. Returns the product's weekly-aggregated sales trend, weekly-aggregated cumulative sales trend, weekly-aggregated sales amount trend, weekly-aggregated average price trend, weekly-aggregated review count trend, weekly-aggregated star rating trend, weekly-aggregated new affiliate video count trend, and weekly-aggregated new affiliate creator count trend.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 701(us), 705(eur)
 - **Request parameters**:
 
@@ -308,7 +308,7 @@ For data type definitions, see [`temu-data-types.md`](./temu-data-types.md). Thi
 ### 2.4 Product Search (ProductSearch)
 
 - **Endpoint description**: Multi-dimensional product search.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Supported domains**: 701(us), 705(eur)
 - **Request parameters**:
 
@@ -361,7 +361,7 @@ For data type definitions, see [`temu-data-types.md`](./temu-data-types.md). Thi
 ### 3.1 Seller Query (ShopRequest)
 
 - **Endpoint description**: Query shop details.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Supported domains**: 701(us), 705(eur)
 - **Request parameters**:
 
@@ -398,7 +398,7 @@ For data type definitions, see [`temu-data-types.md`](./temu-data-types.md). Thi
 ### 4.1 Query This Month's Remaining Credits (CoinQuery)
 
 - **Endpoint description**: Query remaining credits. **Note: credit balance is not differentiated by site or platform. The credits obtained by querying through any site or platform is the total credit balance.**
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 701(us), 705(eur)
 - **Request parameters**: none
 - **Usage example**:
@@ -413,7 +413,7 @@ For data type definitions, see [`temu-data-types.md`](./temu-data-types.md). Thi
 ### 4.2 Query Credit Usage Details (CoinStream)
 
 - **Endpoint description**: Query the credit usage details on the queried site.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 701(us), 705(eur)
 - **Request parameters**:
 
@@ -436,7 +436,7 @@ For data type definitions, see [`temu-data-types.md`](./temu-data-types.md). Thi
 ### 4.3 Query Monthly Request Usage Details (RequestStreamMonth)
 
 - **Endpoint description**: Query remaining request count, and the usage of purchased request packs. **Note: request query is not differentiated by site. The values obtained by querying through any site is the total request balance.** For detailed call history, please contact us. For user privacy, we only retain the last 3 days of call records.
-- **Requests consumed**: 0
+- **Credits consumed**: 0
 - **Supported domains**: 701(us), 705(eur)
 - **Request parameters**: none
 - **Usage example**:

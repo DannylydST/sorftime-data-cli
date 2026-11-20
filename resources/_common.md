@@ -191,7 +191,7 @@ Error / no-data response (e.g. `code=11`):
 | Field | Description |
 |------|------|
 | `RequestLeft` / `requestleft` | Remaining request count |
-| `RequestConsumed` / `requestconsumed` | Requests consumed by this request |
+| `RequestConsumed` / `requestconsumed` | Requests consumed by this call; billing is credit-based — 1 Request = 5 credits（2026-11-20 全平台积分口径） |
 | `RequestCount` (Walmart only) | Fixed at 0; meaning to be confirmed |
 | `Code` / `code` | Business status code, **the only basis for judging success** (see error code table). `0` indicates success; non-zero means a business error. |
 | `Message` / `message` | Status description; contains the specific reason on error. |

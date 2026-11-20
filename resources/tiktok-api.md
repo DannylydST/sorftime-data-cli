@@ -52,7 +52,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 1.1 Category Tree (CategoryTree)
 
 - **Endpoint description**: Category tree structure. Note: this endpoint's response data is very large (approx. 10MB+); it is recommended to set a long request timeout.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Request parameters**: none
 - **Usage example**:
   ```bash
@@ -75,7 +75,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 1.2 Category Market (CategoryRequest)
 
 - **Endpoint description**: Query the Best Seller products in a category market, which can be used for category data analysis. Supports up to Top 300 products.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Request parameters**:
 
   | Parameter | Type | Required | Description |
@@ -122,7 +122,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 1.3 Search Category by Name (CategorySearchFromName)
 
 - **Endpoint description**: Use natural language to search TikTok-related category markets.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Request parameters**:
 
   | Parameter | Type | Required | Description |
@@ -145,7 +145,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 1.4 Category Search (CategorySearch)
 
 - **Endpoint description**: Multi-dimensional category selection (30+ filter dimensions: sales, price, review, star rating, monopoly, new product, etc.).
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Request parameters** (approx. 30 fields, listed in blocks):
 
   **Pagination / scope**:
@@ -261,7 +261,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 1.5 Query Market Historical Trend (CategoryTrend)
 
 - **Endpoint description**: Query the historical trend of a category market, covering 30+ dimensions including monthly sales, monthly sales amount, average price, review star rating, etc.
-- **Requests consumed**: 2
+- **Credits consumed**: 10
 - **Request parameters**:
 
   | Parameter | Type | Required | Description |
@@ -312,7 +312,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 2.1 Product Details (ProductRequest)
 
 - **Endpoint description**: Product (listing) details query.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Request parameters**:
 
   | Parameter | Type | Required | Description |
@@ -369,7 +369,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 2.2 Search Product by Name (ProductSearchFromName)
 
 - **Endpoint description**: Search TikTok for related products by name.
-- **Requests consumed**: 2
+- **Credits consumed**: 10
 - **Request parameters**:
 
   | Parameter | Type | Required | Description |
@@ -392,7 +392,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 2.3 Product Historical Trend Query (ProductTrendRequest)
 
 - **Endpoint description**: Query a product's historical trend data. Returns 8 trend dimensions: sales / cumulative sales / sales amount / average price / review count / star rating / new affiliate video count / new affiliate creator count, aggregated by week or month.
-- **Requests consumed**: 5 (Type=2, monthly query) / 10 (Type=1, weekly query)
+- **Credits consumed**: 25 (Type=2, monthly query) / 50 (Type=1, weekly query)
 - **Request parameters**:
 
   | Parameter | Type | Required | Description |
@@ -424,7 +424,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 2.4 Product Search (ProductSearch)
 
 - **Endpoint description**: Multi-dimensional product selection (24 filter dimensions: pagination/scope, price/sales, time/rating/review, shop/shipping/affiliate).
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Request parameters** (24 dimensions, listed in blocks):
 
   **Pagination / scope**:
@@ -493,7 +493,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 3.1 Seller Search (ShopSearch)
 
 - **Endpoint description**: Multi-dimensional seller search.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Request parameters** (listed in blocks):
 
   **Pagination / scope**:
@@ -575,7 +575,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 3.2 Search Seller by Name (ShopSearchFromName)
 
 - **Endpoint description**: Search TikTok sellers/shops by name (by-name counterpart of `ShopSearch`).
-- **Requests consumed**: 2 (per verified siblings)
+- **Credits consumed**: 10 (per verified siblings)
 - **Status (2026-10-10 live check)**: endpoint exists; test account returns `Code 694 Insufficient request quota` (data package not enabled for the account) — params below mirror the by-name family, to be confirmed once the package is enabled.
 - **Request parameters**:
 
@@ -594,7 +594,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 
 ### 3.3 Seller Query (ShopRequest)
 - **Endpoint description**: Query shop details.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Request parameters**:
 
   | Parameter | Type | Required | Description |
@@ -618,7 +618,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 4.1 Creator Query (AuthorRequest)
 
 - **Endpoint description**: Query affiliate creator details.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Limitations**: **Limited to domain=301 (US site) only**
 - **Request parameters**:
 
@@ -661,7 +661,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 4.2 Search Creator by Name (AuthorSearchFromName)
 
 - **Endpoint description**: Search TikTok creators by name (by-name counterpart of `AuthorRequest`).
-- **Requests consumed**: 2 (verified)
+- **Credits consumed**: 10 (verified)
 - **Request parameters**:
 
   | Parameter | Type | Required | Description |
@@ -683,7 +683,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 5.1 Video Query (VideoRequest)
 
 - **Endpoint description**: Query TikTok video details, synchronously returning video, creator data, and its affiliate product ID.
-- **Requests consumed**: 1
+- **Credits consumed**: 5
 - **Limitations**: **Limited to domain=301 (US site) only**
 - **Request parameters**:
 
@@ -726,7 +726,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 5.2 Video Tag Search (VideoTagSearch)
 
 - **Endpoint description**: Based on the statistics of videos with a given tag, can be used to analyze popular videos, new tags, related video views, and the count of affiliate products.
-- **Requests consumed**: 5
+- **Credits consumed**: 25
 - **Limitations**: **Limited to domain=301 (US site) only**
 - **Request parameters**:
 
@@ -758,7 +758,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 5.3 Search Video by Name (VideoSearchFromName)
 
 - **Endpoint description**: Search TikTok videos by name/title (by-name counterpart of `VideoRequest`).
-- **Requests consumed**: 2 (verified)
+- **Credits consumed**: 10 (verified)
 - **Request parameters**:
 
   | Parameter | Type | Required | Description |
@@ -780,7 +780,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 > Only domain=301 (US) was tested for the by-name family; behavior on other domains is untested.
 
 - **Endpoint description**: Search TikTok brands by name.
-- **Requests consumed**: 2 (verified)
+- **Credits consumed**: 10 (verified)
 - **Request parameters**:
 
   | Parameter | Type | Required | Description |
@@ -802,7 +802,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 6.1 Query This Month's Remaining Credits (CoinQuery)
 
 - **Endpoint description**: Query remaining credits. Note: credit balance is not differentiated by site or platform; the credits obtained by querying through any site or platform is the total credit balance.
-- **Requests consumed**: 0 (does not consume requests)
+- **Credits consumed**: 0 (does not consume requests)
 - **Request parameters**: none
 - **Usage example**:
   ```bash
@@ -818,7 +818,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 6.2 Query Credit Usage Details (CoinStream)
 
 - **Endpoint description**: Query the credit usage details on the current site.
-- **Requests consumed**: 0 (does not consume requests)
+- **Credits consumed**: 0 (does not consume requests)
 - **Request parameters**:
 
   | Parameter | Type | Required | Description |
@@ -844,7 +844,7 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ### 6.3 Query Monthly Request Usage Details (RequestStreamMonth)
 
 - **Endpoint description**: Query remaining request count and the usage of purchased request packs. Note: request query is not differentiated by site; the values obtained by querying through any site is the total request balance. For detailed call history, please contact us. For user privacy, we only retain the last 3 days of call records.
-- **Requests consumed**: 0 (does not consume requests)
+- **Credits consumed**: 0 (does not consume requests)
 - **Request parameters**: none
 - **Usage example**:
   ```bash

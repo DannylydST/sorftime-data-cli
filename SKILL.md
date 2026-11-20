@@ -1,13 +1,10 @@
 ---
 name: sorftime-data-cli
-description: >
-  Activate for tasks involving the actual Sorftime product-data platform or CLI: installing/configuring `sorftime-cli` and the API token/profile, calling `sorftime api` endpoints, writing bash/PowerShell loops over ASINs, keywords, or nodeIds, pulling Best Seller lists / monthly sales, comparing prices across Amazon, Shopee, Walmart, 1688, Temu, or TikTok, and setting up hijacker/keyword monitoring, realtime keyword search-result collection (live SERP snapshots for any keyword), patent search (image/keyword/detail) for infringement triage, or scheduled recurring pulls, Reddit/Quora social listening (posts, comments, Q&A mining). Also activate for Sorftime API support: choosing the right endpoint/parameter/field/type, and debugging invalid-parameter errors, non-zero error codes, or response issues.
-
-  Trigger even when "Sorftime" isn't named if the user wants to look up, compare, monitor, or batch-query marketplace product data by ASIN/nodeId/keyword, or asks in Chinese (查 Best Seller 榜单, 批量查 ASIN, 查月销, 跨平台对比价格, 每天拉监控数据, 部署定时任务). Don't use for general e-commerce strategy, translation, or analytics unrelated to Sorftime.
+description: "Activate for the Sorftime data platform/CLI (`sorftime api`): ASIN/keyword/nodeId batch pulls, Best Seller & monthly sales, price compare across Amazon/Shopee/Walmart/1688/Temu/TikTok, hijacker/keyword monitoring, realtime SERP snapshots, patent/infringement search, Reddit/Quora listening, scheduled pulls, API error debugging. Trigger when batch-querying or monitoring marketplace product data even if 'Sorftime' is unsaid (查榜/批量查ASIN/月销/比价/盯数)."
 compatibility:
   tools: [Bash, Read]
   dependencies: [node>=16, npm, jq (optional), sorftime-cli@1.0.0]
-version: 1.8.1
+version: 1.8.2
 user-invocable: true
 ---
 
@@ -84,7 +81,7 @@ sorftime whoami      # View current profile
 Run `bash scripts/doctor.sh` and identify exactly what's missing (CLI / profile / connectivity).
 
 ### Step 2 — Register (only if the user has no account)
-→ **[open-intl.sorftime.com](https://open-intl.sorftime.com)** — sign up with Google, free trial credits included, PayPal for additional credits.
+→ **[open-intl.sorftime.com](https://open-intl.sorftime.com)** — sign up with Google; new accounts get a free trial package (**200 credits / 7 days**; **500 credits / 7 days** with a promo code), PayPal for additional credits. Usage is billed in credits across all channels (API / CLI / MCP); former Request-metered endpoints bill at 1 Request = 5 credits.
 
 **Mainland-China users**: [open.sorftime.com](https://open.sorftime.com) is the more convenient entrance — phone-number (+86) or WeChat sign-up, CNY payment. Both sites are one platform built around the same CLI gateway; the Account-SK from either site's dashboard is what it accepts.
 
