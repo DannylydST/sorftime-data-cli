@@ -72,7 +72,7 @@ Sorftime serves cross-border e-commerce data through two access modes. Both draw
 
 ## Installation
 
-**No account yet?** Register at [open-intl.sorftime.com](https://open-intl.sorftime.com) — sign up with Google, free trial credits included. Mainland-China users: [open.sorftime.com](https://open.sorftime.com) is more convenient (phone/WeChat sign-up, CNY payment); both sites issue the Account-SK used by the same CLI gateway.
+**No account yet?** Register at [open-intl.sorftime.com](https://open-intl.sorftime.com) — sign up with Google, free trial package included (200 credits / 7 days; 500 with a promo code). Mainland-China users: [open.sorftime.com](https://open.sorftime.com) is more convenient (phone/WeChat sign-up, CNY payment); both sites issue the Account-SK used by the same CLI gateway.
 
 ```bash
 npm install -g sorftime-cli
