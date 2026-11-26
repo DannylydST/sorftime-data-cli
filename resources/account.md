@@ -1,4 +1,4 @@
-# Account Management Endpoints (3)
+# Account Management Endpoints (5)
 
 **Endpoints in this file**: CoinQuery, CoinStream, RequestStreamMonth
 
@@ -70,3 +70,32 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
   sorftime api RequestStreamMonth '{}' --domain 1
   ```
 - **Response data**: data contains `Purchase` (Array, currently empty) and `Consume` (2-D array, each row formatted as `[month, requestsSpent]`, e.g. `["202605", 510]`).
+
+
+## 4. Monthly Credit Usage Details (CoinStreamMonth)
+
+- **Endpoint description**: Query the remaining credit balance and purchased credit-package usage. Credits are shared across platforms and sites (the query is not site-scoped). Statistics start from 2026-11-23.
+- **Credits consumed**: 0 (account query — verified 2026-11-26, `RequestConsumed: 0`)
+- **Request parameters**:
+  | Parameter | Type | Required | Description |
+  |------|------|------|------|
+  | — | — | — | No parameters required |
+- **Usage example**:
+  ```bash
+  sorftime api CoinStreamMonth '{}' --domain 1
+  ```
+- **Notes**: Verified live 2026-11-26 (bare `{}` call succeeds). Data is measured from 2026-11-23 onward.
+
+## 5. Credit Task Details (CoinUsage)
+
+- **Endpoint description**: Query credit usage details. Only credit-usage data produced from 2026-11-23 onward is available through this endpoint; for earlier data use `CoinStream` instead.
+- **Credits consumed**: 0 (account query — verified 2026-11-26, `RequestConsumed: 0`)
+- **Request parameters**:
+  | Parameter | Type | Required | Description |
+  |------|------|------|------|
+  | — | — | — | No parameters required (bare call succeeds; filters to be confirmed against official docs) |
+- **Usage example**:
+  ```bash
+  sorftime api CoinUsage '{}' --domain 1
+  ```
+- **Notes**: Verified live 2026-11-26. Boundary with `CoinStream`: `CoinUsage` covers 2026-11-23+; `CoinStream` covers earlier data.

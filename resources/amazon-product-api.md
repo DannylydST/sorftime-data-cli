@@ -1,8 +1,8 @@
-# Amazon Product Endpoints (22)
+# Amazon Product Endpoints (25)
 
 **Amazon Domains**: 1=US, 2=UK, 3=DE, 4=FR, 5=IN, 6=CA, 7=JP, 8=ES, 9=IT, 10=MX, 11=AE, 12=AU, 13=BR, 14=SA
 
-**Endpoints in this file**: ProductRequest, ProductSearch, AsinSalesVolume, ProductVariations, ProductReviewsCollection, ProductReviewsCollectionStatusQuery, ProductReviewsQuery, ProductSearchFromName, ProductCustomersSay, ASINSubscription, ASINSubscriptionQuery, ASINSubscriptionCollection, ProductAssistant, ProductRealtimeRequest, ProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequest, SimilarProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequestCollection, SellerSearch, SellerSearchFromName, SellerRequest, BrandRequest
+**Endpoints in this file**: ProductRequest, ProductSearch, AsinSalesVolume, ProductVariations, ProductReviewsCollection, ProductReviewsCollectionStatusQuery, ProductReviewsQuery, ProductSearchFromName, ProductCustomersSay, ASINSubscription, ASINSubscriptionQuery, ASINSubscriptionCollection, ProductAssistant, ProductRealtimeRequest, ProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequest, SimilarProductRealtimeRequestStatusQuery, SimilarProductRealtimeRequestCollection, SellerSearch, SellerSearchFromName, SellerRequest, BrandRequest, ProductSPAdStructure, SellerDetail, VariationSalesTrendRequest
 
 > **Endpoint rename**:
 > - `ProductVariationHistory` has been renamed to `ProductVariations` (the old name still works, but the new name is recommended).
@@ -21,6 +21,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
   - [2.1 Officially Disclosed Variant Sales (AsinSalesVolume)](#21-officially-disclosed-variant-sales-asinsalesvolume)
   - [2.2 Product Variant Data (ProductVariations)](#22-product-variant-data-productvariations)
   - [2.3 Product Reviews CustomerSay Query (ProductCustomersSay)](#23-product-reviews-customersay-query-productcustomerssay)
+  - [2.4 Variant Monthly Sales Trend (VariationSalesTrendRequest)](#24-variant-monthly-sales-trend-variationstrendrequest)
 - [3. Product reviews](#3-product-reviews)
   - [3.1 Real-time Collection of Product Reviews (ProductReviewsCollection)](#31-real-time-collection-of-product-reviews-productreviewscollection)
   - [3.2 Real-time Review Task Status Query (ProductReviewsCollectionStatusQuery)](#32-real-time-review-task-status-query-productreviewscollectionstatusquery)
@@ -45,6 +46,9 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
   - [7.2 Search Seller by Name (SellerSearchFromName)](#72-search-seller-by-name-sellersearchfromname)
   - [7.3 Seller Query (SellerRequest)](#73-seller-query-sellerrequest)
   - [7.4 Brand Query (BrandRequest)](#74-brand-query-brandrequest)
+  - [7.5 Seller Detail (SellerDetail)](#75-seller-detail-sellerdetail)
+- [8. Product advertising intelligence (new, 2026-11-26)](#8-product-advertising-intelligence-new-2026-11-26)
+  - [8.1 SP Ad Structure (ProductSPAdStructure)](#81-sp-ad-structure-productspadstructure)
 
 ---
 
@@ -278,6 +282,21 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
   - `Data.CustomerSay`: String — The text of the Amazon-summarized product reviews (CustomerSay).
 
 ---
+
+### 2.4 Variant Monthly Sales Trend (VariationSalesTrendRequest)
+
+- **Endpoint description**: Historical monthly sales of a specified ASIN (Amazon's officially disclosed variant monthly sales — NOT the current listing monthly sales). Returns the ASIN's monthly sales series.
+- **Credits consumed**: 10
+- **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
+- **Request parameters**:
+  | Parameter | Type | Required | Description |
+  |------|------|------|------|
+  | Asin | String | Yes | The ASIN to query |
+- **Usage example**:
+  ```bash
+  sorftime api VariationSalesTrendRequest '{"Asin": "B0CVM8TXHP"}' --domain 1
+  ```
+- **Notes**: Verified live 2026-11-26 (call succeeded, 10-credit deduction observed). Companion to `AsinSalesVolume` (2.1): use this endpoint for the monthly trend view.
 
 ## 3. Product reviews
 
@@ -636,6 +655,42 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 - **Status (2026-10-10)**: exists; `Code 10` for `{}` / `BrandName` / `Name` — required key TBD (likely brand ID).
 
 ---
+
+### 7.5 Seller Detail (SellerDetail)
+
+- **Endpoint description**: Basic profile of a single Amazon seller, looked up by seller name or seller ID.
+- **Credits consumed**: Billing to be confirmed on first data-bearing call (endpoint live; seller data still backfilling — 2026-11-26 a valid-name call returned `Code 11 No data available`, a data-coverage state, not a parameter error).
+- **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
+- **Request parameters**:
+  | Parameter | Type | Required | Description |
+  |------|------|------|------|
+  | Name | String | Yes | Seller name or seller ID |
+  | QueryType | Integer | No | 1 = by seller name / 2 = by seller ID |
+- **Usage example**:
+  ```bash
+  sorftime api SellerDetail '{"Name": "Anker", "QueryType": 1}' --domain 1
+  ```
+- **Notes**: Verified live 2026-11-26 (parameter names accepted; data backfilling). Narrower than `SellerSearch` (which lists sellers by filters) — this one returns a single seller's profile. MCP-side name: `seller_detail`.
+
+## 8. Product advertising intelligence (new, 2026-11-26)
+
+### 8.1 SP Ad Structure (ProductSPAdStructure)
+
+- **Endpoint description**: Query the SP (Sponsored Products) ad structure of a competitor's product by ASIN — the keywords, ad groups and campaigns it ran, plus first/last record times per combination. Use it to reconstruct a competitor's ad grouping, judge running status and compare keyword packs. Data scope covers the ASIN's variation family (up to 20 ASINs under the same parent, including the input ASIN); US site covers the last 90 days of SP ad-slot records, other sites the last 30 days; multiple records of the same ASIN + Keyword + AdGroupId + CampaignId combination are merged into one row.
+- **Credits consumed**: 0 on the verified call (2026-11-26 receipt showed `RequestConsumed: 0`; treat as "no charge observed", not "free forever").
+- **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
+- **Request parameters**:
+  | Parameter | Type | Required | Description |
+  |------|------|------|------|
+  | Asin | String | Yes | The ASIN to query |
+  | Site | Integer | No | Site code (1=US etc.) |
+  | Page | Integer | No | Pagination, page number starting from 1 |
+- **Usage example**:
+  ```bash
+  sorftime api ProductSPAdStructure '{"Asin": "B0CVM8TXHP", "Site": 1}' --domain 1
+  ```
+- **Response data** (per row): `Asin` (the variation ASIN that ran the ad), `Keyword`, `AdGroupId`, `CampaignId`, first/last record times of the combination in the data window.
+- **Notes**: Verified live 2026-11-26 (call succeeded with valid params). MCP-side name: `product_sp_ad_structure`.
 
 ## Notes
 

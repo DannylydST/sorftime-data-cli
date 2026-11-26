@@ -211,7 +211,7 @@ sorftime api ProductSearchFromName '{"name": "water bottle"}' --domain 1
 # Step 2: From the returned results, pick the Top 20 with the highest monthly sales as target competitors
 # (Manually extract the ASIN and title of the top 20 products)
 
-# Step 3: Batch query these 20 competitors' details (at most 10 ASINs per request, so 2 calls)
+# Step 3: Batch query these 20 competitors' details (at most 10 ASINs per call, so 2 calls)
 sorftime api ProductRequest '{"asin": "B0XXXXX01,B0XXXXX02,B0XXXXX03,B0XXXXX04,B0XXXXX05,B0XXXXX06,B0XXXXX07,B0XXXXX08,B0XXXXX09,B0XXXXX10"}' --domain 1
 sorftime api ProductRequest '{"asin": "B0XXXXX11,B0XXXXX12,B0XXXXX13,B0XXXXX14,B0XXXXX15,B0XXXXX16,B0XXXXX17,B0XXXXX18,B0XXXXX19,B0XXXXX20"}' --domain 1
 ```
@@ -553,7 +553,7 @@ sorftime api ProductSearch '{"asin": "B0CVM8TXHP"}' --domain 1
 **Question**: I have 5 competitor ASINs, I want a quick comparison.
 
 ```bash
-# Query 10 ASINs at once (max 10), 1 request
+# Query 10 ASINs at once (max 10), 1 call
 sorftime api ProductRequest '{"asin": "B0CVM8TXHP,B0ASIN002,B0ASIN003,B0ASIN004,B0ASIN005"}' --domain 1
 
 # Query each competitor's variant sales separately

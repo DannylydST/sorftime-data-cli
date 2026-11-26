@@ -1,5 +1,15 @@
 # Changelog
 
+## [2026-11-26] — v1.8.3（9 个新增接口 + 统一积分计费收尾）
+
+- **新增接口入档（R-20261125-006，王童）**，全部经官方目录+网关双重核验（2026-11-26）：
+  - Amazon 7 个：`CategoryProductsReport`（类目市场概览快照，每周更新；参数待官方文档补充——实测各常见参数拼写均报 Code 10，如实标注不臆造）、`CategorySearchFromLowPriceMarket`（低价商城类目搜索，全参数可选，25 积分）、`KeywordSearchProduct`（近 15 日搜索结果产品·ABA 热词，25 积分）、`KeywordTrendRequest`（搜索量/排名/CPC 趋势，月 5 积分/周 10 积分）、`ProductSPAdStructure`（竞品 SP 广告结构，变体族≤20 ASIN、US 近 90 天/他站近 30 天）、`SellerDetail`（单卖家档案，数据回填中 Code 11 如实标注）、`VariationSalesTrendRequest`（子体历史月销，10 积分）。
+  - 账户侧 2 个：`CoinStreamMonth`（月度积分明细）、`CoinUsage`（积分任务明细，仅 2026-11-23 起数据；更早走 `CoinStream`）——均 0 积分。
+- **`ShopSearchFromName` 下线**（全站点 404，改用 `ShopSearch`），条目内加退役标注。
+- **积分口径收尾**：残余 request 计量表述全部换算（1 request = 5 积分）——tiktok ProductTrendRequest 5/10 请求→25/50 积分、amazon-ai 75 请求→375 积分、amazon-category 示例 40 请求→200 积分、tiktok Notes 计量行、批量脚本注释 1 request→1 call；rate limit 表述（10 requests/second）属速率非消耗，保留。
+- 端点计数 139→148（Amazon 67→74）；索引已再生（sum=163）。
+- 来源：技能广场需求单 R-20261125-006。
+
 ## [2026-11-20] — v1.8.2（全平台积分结算口径）
 
 - **计费口径切换（R-20261120-001）**：全平台开放数据（API / CLI / MCP）用量统一以「积分」结算、各通道通用。原 Request 计量端点按 **1 Request = 5 积分**计——`resources/*.md` 全部端点的 `Requests consumed` 字段批量换算为 `Credits consumed`（144 行 / 13 文件；0 值与注解原样保留，`_common.md` 字段词典补换算口径）。

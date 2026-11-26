@@ -53,7 +53,7 @@ sorftime api ProductReviewsQuery '{"asin": "B0CVM8TXHP", "star": "11", "querysta
 # Define the competitor ASIN list
 COMPETITORS="B0CVM8TXHP,B0XXXXXXX,B0YYYYYYY,B0ZZZZZZZZ,B0AAAAAAAA"
 
-# Step 1: Batch query base info (up to 10 ASINs, 1 request)
+# Step 1: Batch query base info (up to 10 ASINs, 1 call)
 sorftime api ProductRequest '{"asin": "'"$COMPETITORS"'", "trend": 1}' --domain 1
 
 # Step 2: Query variant sales history for each (loop, 1 request per ASIN)
@@ -164,7 +164,7 @@ NODE_ID="7073960011"
 # 0=sales, 3=average price, 6=1-month new product share, 28=top 3 listing monopoly, 34=top 10 brand monopoly
 INDICES="0 3 6 28 34"
 
-# Step 2: Loop through, 2 requests per metric
+# Step 2: Loop through, 2 calls per metric
 for idx in $INDICES; do
   echo "=== trendIndex: $idx ==="
   sorftime api CategoryTrend '{"nodeId": "'"$NODE_ID"'", "trendIndex": '"$idx"'}' --domain 1 > "trend_${idx}.json"

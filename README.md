@@ -1,8 +1,18 @@
 # Sorftime Data CLI — Cross-Border E-Commerce Data API for AI Agents & Developers
 
-> **Scriptable access to 139 data endpoints across Amazon, Shopee, Walmart, 1688, Temu, TikTok, and social media (Reddit/Quora)** — batch ASIN queries, category Best Sellers, keyword research, realtime SERP collection, patent search, hijacker monitoring, variation sales, creator analytics.
+> **Scriptable access to 148 data endpoints across Amazon, Shopee, Walmart, 1688, Temu, TikTok, and social media (Reddit/Quora)** — batch ASIN queries, category Best Sellers, keyword research, realtime SERP collection, patent search, hijacker monitoring, variation sales, creator analytics.
 >
 > One npm package. One unified command: `sorftime api <Endpoint> '<json>'`. Works with any AI agent and any automation pipeline. Open source.
+
+## 🆕 What's New (November 26, 2026) — v1.8.3: 9 New Endpoints + Unified Credit Billing
+
+- **🆕 9 new endpoints documented** (live-verified against the official catalog and the gateway): `CategoryProductsReport` (category market overview snapshot), `CategorySearchFromLowPriceMarket` (Low-Price-Market category search), `KeywordSearchProduct` (15-day search-result products, ABA hot words), `KeywordTrendRequest` (search volume / rank / CPC trend), `ProductSPAdStructure` (competitor SP ad structure by ASIN), `SellerDetail` (single seller profile), `VariationSalesTrendRequest` (variant monthly sales trend), plus account-side `CoinStreamMonth` and `CoinUsage` (credit ledger from 2026-11-23; earlier data via `CoinStream`).
+- **💳 Unified credit billing**: all remaining request-quantity wording converted to credits (1 request = 5 credits); credit-metered endpoints unchanged. `KeywordTrendRequest` bills 5 credits monthly / 10 weekly.
+- **🪦 `ShopSearchFromName` retired** (404 on the gateway) — use `ShopSearch`.
+- **✅ Endpoint count: 139 → 148** (Amazon 67 → 74).
+- **[Full changelog →](CHANGELOG.md)**
+
+---
 
 ## 🆕 What's New (October 27, 2026) — v1.8.0: Patent Endpoints + Keyword Type Fields
 
@@ -46,7 +56,7 @@
 
 [Full changelog →](CHANGELOG.md)
 
-> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering **139 unique** Sorftime cross-border e-commerce data endpoints: Amazon 67 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21 + Social 6 (per-platform counts include the 3 shared cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth, counted once).
+> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering **148 unique** Sorftime cross-border e-commerce data endpoints: Amazon 74 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21 + Social 6 (per-platform counts include the 5 shared cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth/CoinStreamMonth/CoinUsage, counted once).
 
 For the full index (discovery path, recipes, all endpoint references), see [SKILL.md](SKILL.md).
 
@@ -59,7 +69,7 @@ Sorftime serves cross-border e-commerce data through two access modes. Both draw
 | | **Sorftime Seller Agent** (MCP) | **Sorftime Data CLI** (this project) |
 |---|---|---|
 | Best for | Sellers & AI agents — out-of-the-box marketplace intelligence | Developers, data teams & enterprises — building on raw data |
-| Data access | Curated tool calls, structured for agents | **All 136 endpoints, every field, raw JSON** |
+| Data access | Curated tool calls, structured for agents | **All 148 endpoints, every field, raw JSON** |
 | Automation | Runs inside an AI agent session | **Any pipeline**: cron, CI, shell, Python/Node, Airflow |
 | Determinism | Agent interprets every call | **Reproducible**: same request → same JSON, always |
 | Volume | Per-interaction | **Thousands of records per run** — `batch.sh` rate-limit-safe, resumable |

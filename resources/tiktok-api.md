@@ -398,14 +398,14 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
   | Parameter | Type | Required | Description |
   |------|------|------|------|
   | ProductId | String | Yes | The product ID to query. E.g. 1729508370969629931 |
-  | Type | Integer | Yes (omitting returns `Code: 10 Invalid request parameter`) | Type=1 weekly query (10 requests); Type=2 monthly query (5 requests). E.g. 1 |
+  | Type | Integer | Yes (omitting returns `Code: 10 Invalid request parameter`) | Type=1 weekly query (50 credits, formerly 10 requests); Type=2 monthly query (25 credits, formerly 5 requests). Billing is credit-based — 1 request = 5 credits. E.g. 1 |
 
 - **Usage example**:
   ```bash
-  # Monthly trend (5 requests)
+  # Monthly trend (25 credits)
   sorftime api ProductTrendRequest '{"ProductId": "1729508370969629931", "Type": 2}' --domain 301
 
-  # Weekly trend (10 requests, finer granularity)
+  # Weekly trend (50 credits, finer granularity)
   sorftime api ProductTrendRequest '{"ProductId": "1729508370969629931", "Type": 1}' --domain 301
   ```
 - **Response data**:
@@ -573,6 +573,8 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 ---
 
 ### 3.2 Search Seller by Name (ShopSearchFromName)
+
+> **Endpoint retired**: `ShopSearchFromName` returns 404 on the live gateway (verified 2026-11-26, all domains). Use `ShopSearch` (multi-dimension seller search) instead. Kept below for historical reference.
 
 - **Endpoint description**: Search TikTok sellers/shops by name (by-name counterpart of `ShopSearch`).
 - **Credits consumed**: 10 (per verified siblings)
@@ -862,10 +864,10 @@ For data type definitions, see [`tiktok-data-types.md`](./tiktok-data-types.md).
 
 1. **Domain support**: The available domains for the 21 endpoints in this file come from the `SiteStr` field of the JSON, which has been converted to `301: us | 304: ph | 305: vn | 306: th | 307: id | 309: uk | 312: jp`. The `303=MY` listed in `_common.md` has no mapping in the JSON and has been omitted.
 2. **US-only endpoints**: The `SiteStr` of `AuthorRequest`, `VideoRequest`, `VideoTagSearch` only has `301: us`; passing other domains usually returns 401/404.
-3. **Account endpoints are not differentiated by domain**: The data of `CoinQuery`, `CoinStream`, `RequestStreamMonth` is account-level (total credits / total request balance); the 7 domains listed in the `SiteStr` field can all be called, and the result is the same.
-4. **Endpoints that consume 0 requests**: The `RequestNum` of `CoinQuery`, `CoinStream`, `RequestStreamMonth` is `0`, and the call does not consume requests. The remaining 14 endpoints all deduct from the account's request balance according to `RequestNum`.
+3. **Account endpoints are not differentiated by domain**: The data of `CoinQuery`, `CoinStream`, `RequestStreamMonth` is account-level (total credits / total credit balance); the 7 domains listed in the `SiteStr` field can all be called, and the result is the same.
+4. **Endpoints that consume 0 requests**: The `RequestNum` of `CoinQuery`, `CoinStream`, `RequestStreamMonth` is `0`, and the call does not consume credits. The remaining 14 endpoints all deduct from the account's credit balance (1 request = 5 credits, i.e. `RequestNum` x 5 credits).
 5. **Category tree response is large**: The `CategoryTree` endpoint response is approx. 10MB+; please set a long request timeout.
-6. **ProductTrend Type is required**: `ProductTrendRequest` must include `Type` (omitting returns `Code: 10 Invalid request parameter`). Type=2 monthly query consumes 5 requests; Type=1 weekly query consumes 10 requests.
+6. **ProductTrend Type is required**: `ProductTrendRequest` must include `Type` (omitting returns `Code: 10 Invalid request parameter`). Type=2 monthly query consumes 25 credits; Type=1 weekly query consumes 50 credits (1 request = 5 credits).
 7. **Affiliate-related fields are data-only on US site**: `AuthorCount` (affiliate creator count) and `VideoCount` (affiliate video count) may be empty on other domains.
 
 ## Best Practices

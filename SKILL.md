@@ -7,13 +7,13 @@ description: >
 compatibility:
   tools: [Bash, Read]
   dependencies: [node>=16, npm, jq (optional), sorftime-cli@1.0.0]
-version: 1.8.2
+version: 1.8.3
 user-invocable: true
 ---
 
 # Sorftime Data CLI Skill
 
-> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering 139 unique Sorftime data endpoints (Amazon 67 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21 + Social 6; CoinQuery/CoinStream/RequestStreamMonth are shared across platforms and counted once; live-synced 2026-10-27).
+> Based on the npm package `sorftime-cli@1.0.0` (unified entry point `sorftime api <Endpoint> '<json>'`), covering 148 unique Sorftime data endpoints (Amazon 74 + Shopee 17 + Walmart 19 + 1688 9 + Temu 12 + TikTok 21 + Social 6; CoinQuery/CoinStream/RequestStreamMonth/CoinStreamMonth/CoinUsage are shared across platforms and counted once; live-synced 2026-11-26).
 
 ---
 

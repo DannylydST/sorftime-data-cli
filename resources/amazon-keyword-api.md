@@ -1,8 +1,8 @@
-# Amazon Keyword Endpoints (15)
+# Amazon Keyword Endpoints (17)
 
 **Amazon Domains**: 1=US, 2=UK, 3=DE, 4=FR, 6=CA, 7=JP, 8=ES, 9=IT, 10=MX, 11=AE, 12=AU, 13=BR, 14=SA
 
-**Endpoints in this file**: KeywordQuery, KeywordSearchResults, KeywordRequest, KeywordSearchResultTrend, KeywordExtends, CategoryRequestKeyword, ASINRequestKeyword, KeywordProductRanking, ASINKeywordRanking, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword, KeywordSearchRealtimeRequest, KeywordSearchRealtimeRequestStatusQuery, KeywordSearchRealtimeRequestCollection
+**Endpoints in this file**: KeywordQuery, KeywordSearchResults, KeywordRequest, KeywordSearchResultTrend, KeywordExtends, CategoryRequestKeyword, ASINRequestKeyword, KeywordProductRanking, ASINKeywordRanking, FavoriteKeyword, ChangeFavoriteKeyword, GetFavoriteKeyword, KeywordSearchRealtimeRequest, KeywordSearchRealtimeRequestStatusQuery, KeywordSearchRealtimeRequestCollection, KeywordSearchProduct, KeywordTrendRequest
 
 **Site limitations**: domain 5 (in/India) is not in the keyword-endpoint support list.
 
@@ -21,6 +21,8 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
   - [1.2 Keyword (last 15 days) search-result products (KeywordSearchResults)](#12-keyword-last-15-days-search-result-products-keywordsearchresults)
   - [1.3 Keyword details (with search volume, CPC trend) (KeywordRequest)](#13-keyword-details-with-search-volume-cpc-trend-keywordrequest)
   - [1.4 Keyword search-result product trend (KeywordSearchResultTrend)](#14-keyword-search-result-product-trend-keywordsearchresulttrend)
+- [1.5 Keyword 15-day search-result products (ABA hot words) (KeywordSearchProduct)](#15-keyword-15-day-search-result-products-aba-hot-words-keywordsearchproduct)
+- [1.6 Keyword trend query (search volume / rank / CPC) (KeywordTrendRequest)](#16-keyword-trend-query-search-volume--rank--cpc-keywordtrendrequest)
 - [2. Keyword extension and reverse lookup](#2-keyword-extension-and-reverse-lookup)
   - [2.1 Find extended keywords (KeywordExtends)](#21-find-extended-keywords-keywordextends)
   - [2.2 Category reverse-lookup keywords (CategoryRequestKeyword)](#22-category-reverse-lookup-keywords-categoryrequestkeyword)
@@ -225,6 +227,41 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
   - `NoRatingProductCount`: Number of products with no star rating in the first 3 pages.
 
 ---
+
+### 1.5 Keyword 15-day search-result products (ABA hot words) (KeywordSearchProduct)
+
+- **Endpoint description**: Products appearing in a keyword's search results over the last 15 days. Supports ABA hot keywords only.
+- **Credits consumed**: 25
+- **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
+- **Request parameters**:
+  | Parameter | Type | Required | Description |
+  |------|------|------|------|
+  | Keyword | String | Yes | The ABA hot keyword to query |
+- **Usage example**:
+  ```bash
+  sorftime api KeywordSearchProduct '{"Keyword": "yoga mat"}' --domain 1
+  ```
+- **Notes**: Verified live 2026-11-26 (call succeeded, 25 credits deducted). Distinct from `KeywordSearchResults` (which covers currently-trending words); this one is scoped to ABA hot words. MCP-side name: `keyword_search_product` family.
+
+### 1.6 Keyword trend query (search volume / rank / CPC) (KeywordTrendRequest)
+
+- **Endpoint description**: Historical trend of a keyword's search volume, search ranking and CPC bid. Supports monthly and weekly dimensions.
+- **Credits consumed**: 5 (monthly, Type=1) / 10 (weekly, Type=2) — formerly billed 1 / 2 requests; the 1-request = 5-credits conversion applies (2026-11-26 requirement). Original credit-metered endpoints are unchanged.
+- **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
+- **Request parameters**:
+  | Parameter | Type | Required | Description |
+  |------|------|------|------|
+  | Keyword | String | Yes | The keyword to query |
+  | Type | Integer | Yes | 1 = monthly trend (5 credits) / 2 = weekly trend (10 credits, finer granularity) |
+- **Usage example**:
+  ```bash
+  # Monthly trend (5 credits)
+  sorftime api KeywordTrendRequest '{"Keyword": "yoga mat", "Type": 1}' --domain 1
+
+  # Weekly trend (10 credits, finer granularity)
+  sorftime api KeywordTrendRequest '{"Keyword": "yoga mat", "Type": 2}' --domain 1
+  ```
+- **Notes**: Verified live 2026-11-26 (monthly call succeeded, 5-credit deduction observed). The official description still says "1/2 request" — read that as 5/10 credits per the unified credit metering.
 
 ## 2. Keyword extension and reverse lookup
 

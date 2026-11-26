@@ -56,7 +56,7 @@ For common reference, see [`_common.md`](./_common.md): CLI call template, Domai
 1. **Eligibility**: `ProductAssistant` only supports products with monthly sales greater than 500; `CategoryAssistant` only supports categories where the sum of monthly sales of the top 100 products is greater than 5000 AND the product count is greater than 50.
 2. **Site limitations**: AI series endpoints only support domains 1/2/3/4/6/7/8/9/10 (9 sites in total). Domains 5/11/12/13/14 are not supported.
 3. **Expected time**: AI reports take approximately 5 minutes to generate.
-4. **Report types**: When creating a task via `ProductAssistant` / `CategoryAssistant`, `Type=0` returns only the text version (markdown); `Type=1` returns both the text version and a graphic version (75 requests consumed).
+4. **Report types**: When creating a task via `ProductAssistant` / `CategoryAssistant`, `Type=0` returns only the text version (markdown); `Type=1` returns both the text version and a graphic version (375 credits consumed (formerly 75 requests; 1 request = 5 credits)).
 5. **Query interval**: The interval between `QueryStart` and `QueryEnd` for `AIResultQuery` must not exceed 7 days.
 
 ---
