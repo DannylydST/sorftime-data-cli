@@ -56,7 +56,7 @@ Field names in this file are PascalCase (e.g. `NodeId`, `TrendIndex`, `Asin`); o
 
 ## 2. Category Best Sellers (supports historical lookup) (CategoryRequest)
 
-- **Endpoint description**: Query the Best Seller Top 100 products of a category. Real-time category data is supported for all 14 major sites. Historical lookup supports up to 2 years of data (sites 5/in, 12/au, 14/sa are not supported for historical lookup). Note: we exclude some categories that are not suitable for third-party sellers, e.g. apps, audio/video, books, music, food, number games, etc. Combined data description: the data sample is the Top 100 per day within the chosen time range, deduplicated by ParentAsin, with combined product sales: take the product's last 30-day sales statistics on the last day of the time range. Request cost for historical lookup: every 3 days of span costs 10 (day span rounded up). E.g. querying 3 days costs 10, querying 4 days costs 20.
+- **Endpoint description**: Query the Best Seller Top 100 products of a category. Real-time category data is supported for all 14 major sites. Historical lookup supports up to 2 years of data (sites 5/in, 12/au, 14/sa are not supported for historical lookup). Note: we exclude some categories that are not suitable for third-party sellers, e.g. apps, audio/video, books, music, food, number games, etc. Combined data description: the data sample is the Top 100 per day within the chosen time range, deduplicated by ParentAsin, with combined product sales: take the product's last 30-day sales statistics on the last day of the time range. Credit cost for historical lookup: every 3 days of span costs 50 credits (day span rounded up; formerly 10 requests, 1 request = 5 credits). E.g. querying 3 days costs 50 credits, querying 4 days costs 100 credits.
 - **Credits consumed**: 25
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
 - **Request parameters**:
@@ -227,7 +227,7 @@ Field names in this file are PascalCase (e.g. `NodeId`, `TrendIndex`, `Asin`); o
 
 ## 6. AI Interpret Category Market (CategoryAssistant)
 
-- **Endpoint description**: Sorftime Agent interprets the category market (currently only supports categories where the sum of monthly sales of the top 100 products is greater than 5000 AND the product count is greater than 50; otherwise it fails directly and returns the request). Generation takes about 5 minutes. Results can be obtained via the `AIResult` endpoint. Supports text and text+graphic versions (request cost: 75).
+- **Endpoint description**: Sorftime Agent interprets the category market (currently only supports categories where the sum of monthly sales of the top 100 products is greater than 5000 AND the product count is greater than 50; otherwise it fails directly and refunds the credits). Generation takes about 5 minutes. Results can be obtained via the `AIResult` endpoint. Supports text and text+graphic versions (credit cost: 375, formerly 75 requests).
 - **Credits consumed**: 125
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx)
 - **Request parameters**:

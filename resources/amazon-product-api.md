@@ -62,10 +62,10 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 - **Request parameters**:
   | Parameter | Type | Required | Description |
   |------|------|------|------|
-  | ASIN | String | Yes | The ASIN to query. Supports querying up to 10 ASINs at once. When calculating request consumption, fees are charged according to the actual number of ASINs called (2 ASINs charged at 2x, 3 ASINs at 3x, and so on). |
+  | ASIN | String | Yes | The ASIN to query. Supports querying up to 10 ASINs at once. When calculating credit consumption, fees are charged according to the actual number of ASINs called (2 ASINs charged at 2x, 3 ASINs at 3x, and so on; 1 request = 5 credits). |
   | Trend | Integer | No | Whether to include trend data in the result (see the fields ending in `trend` in `ProductObject`). 1: includes (default includes), 2: excludes |
-  | QueryTrendStartDt | String | No | Optional, valid when `trend=1`. If you want to query trend data after a specific date, set this value. Format: yyyy-MM-dd. Default (when trend is enabled but this parameter is not specified) trend only returns the last 15 days of data; if you need more data, you must specify this parameter. When the requested historical trend exceeds 15 days, request consumption = 2 |
-  | QueryTrendEndDt | String | No | Optional, valid when `QueryTrendStartDt` is set (with `trend=1`), represents the query end date, format: yyyy-MM-dd. According to the actual number of days queried from `QueryTrendStartDt` to `QueryTrendEndDt`, when less than or equal to 15 days, request consumption = 1; when greater than 15 days, request consumption = 2 |
+  | QueryTrendStartDt | String | No | Optional, valid when `trend=1`. If you want to query trend data after a specific date, set this value. Format: yyyy-MM-dd. Default (when trend is enabled but this parameter is not specified) trend only returns the last 15 days of data; if you need more data, you must specify this parameter. When the requested historical trend exceeds 15 days, credit consumption = 10 (formerly 2 requests; 1 request = 5 credits) |
+  | QueryTrendEndDt | String | No | Optional, valid when `QueryTrendStartDt` is set (with `trend=1`), represents the query end date, format: yyyy-MM-dd. According to the actual number of days queried from `QueryTrendStartDt` to `QueryTrendEndDt`, when less than or equal to 15 days, credit consumption = 5 (formerly 1 request); when greater than 15 days, credit consumption = 10 (formerly 2 requests; 1 request = 5 credits) |
 - **Usage example**:
   ```bash
   sorftime api ProductRequest '{"asin": "B0CVM8TXHP"}' --domain 1
@@ -254,7 +254,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
   |------|------|------|------|
   | Asin | String | Yes | The ASIN to query |
   | PageIndex | Integer | No | Paginated query, at most 100 variants per page. Default 1, representing page 1 (all result pagination starts from 1, not 0). |
-  | IsSalesVolume | Boolean | No | Optional, default: false. If set to true, request consumption becomes 2. Whether to include the latest page-disclosed variant sales (within 15 days). Variants that are not hot-selling may have missing sales; you can call `ProductRequest` for an ASIN to check variant sales. |
+  | IsSalesVolume | Boolean | No | Optional, default: false. If set to true, credit consumption becomes 10 (formerly 2 requests). Whether to include the latest page-disclosed variant sales (within 15 days). Variants that are not hot-selling may have missing sales; you can call `ProductRequest` for an ASIN to check variant sales. |
 - **Usage example**:
   ```bash
   sorftime api ProductVariations '{"asin": "B0CVM8TXHP"}' --domain 1
@@ -498,7 +498,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 
 ### 5.1 AI Product Interpretation (ProductAssistant)
 
-- **Endpoint description**: Sorftime Agent interprets the product (currently only supports products with monthly sales greater than 500; products with monthly sales less than 500 will fail directly and return the request), and the generation takes about 5 minutes. Results can be obtained via the `AIResult` endpoint. Supports both text and text+graphic versions (request cost: 75).
+- **Endpoint description**: Sorftime Agent interprets the product (currently only supports products with monthly sales greater than 500; products with monthly sales less than 500 will fail directly and refund the credits), and the generation takes about 5 minutes. Results can be obtained via the `AIResult` endpoint. Supports both text and text+graphic versions (credit cost: 375, formerly 75 requests).
 - **Credits consumed**: 125
 - **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx)
 - **Request parameters**:
@@ -695,7 +695,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 ## Notes
 
 1. **Batch query optimization**: `ProductRequest` supports querying up to 10 ASINs at once. When multiple ASINs are passed, the fees are charged according to the actual number of ASINs called.
-2. **Trend data**: Default returns the last 15 days; to get more data, you must specify `QueryTrendStartDt` and `QueryTrendEndDt`. When the requested historical trend exceeds 15 days, request consumption = 2.
+2. **Trend data**: Default returns the last 15 days; to get more data, you must specify `QueryTrendStartDt` and `QueryTrendEndDt`. When the requested historical trend exceeds 15 days, credit consumption = 10 (formerly 2 requests; 1 request = 5 credits).
 3. **Endpoint rename**: `ProductVariationHistory` has been renamed to `ProductVariations`. The old name still works, but the new name is recommended in new code.
 4. **Alexa questions**: See [amazon-alexa-api.md](./amazon-alexa-api.md).
 5. **AI result query**: See [amazon-ai-api.md](./amazon-ai-api.md).

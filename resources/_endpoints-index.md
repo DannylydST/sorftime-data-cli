@@ -8,7 +8,7 @@
 | File | Endpoints | Count |
 |------|-----------|-------|
 | [1688-api.md](1688-api.md) | `ProductSearchFromName, CoinQuery, CoinStream, RequestStreamMonth, CategoryTree, ProductSearchFromImage, ProductRequest, ProductVariations, ProductSearch` | 9 |
-| [account.md](account.md) | `CoinQuery, CoinStream, RequestStreamMonth` | 5 |
+| [account.md](account.md) | `CoinQuery, CoinStream, RequestStreamMonth, CoinStreamMonth, CoinUsage` | 5 |
 | [amazon-ai-api.md](amazon-ai-api.md) | `AIResultQuery, AIResult` | 2 |
 | [amazon-alexa-api.md](amazon-alexa-api.md) | `AlexaQuestionsCollection, AlexaQuestionsCollectionStatusQuery, AlexaQuestionsCollectionResultQuery, AlexaQuestionsQuery` | 4 |
 | [amazon-category-api.md](amazon-category-api.md) | `CategoryTree, CategoryRequest, CategoryProducts, CategoryTrend, CategorySearchFromName, CategoryAssistant, SimilarProductFeature, CategoryProductsReport, CategorySearchFromLowPriceMarket` | 9 |
@@ -26,4 +26,4 @@
 
 - Files with endpoint counts: 14
 - **Sum of per-file counts: 163** (cross-platform account endpoints CoinQuery/CoinStream/RequestStreamMonth are counted once per platform they appear in)
-- **Unique endpoint names across files: 101**; **unique per SKILL.md counting (account trio counted once): 148** — see SKILL.md
+- **Unique endpoint names across files: 103**; **unique per SKILL.md counting (account trio counted once): 148** — see SKILL.md

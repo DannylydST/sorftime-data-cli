@@ -232,7 +232,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 
 - **Endpoint description**: Products appearing in a keyword's search results over the last 15 days. Supports ABA hot keywords only.
 - **Credits consumed**: 25
-- **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
+- **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa) — domain 5 (in) is not supported for keyword endpoints (file-level limitation)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
   |------|------|------|------|
@@ -247,7 +247,7 @@ Field names in this file are PascalCase (e.g. `Asin`, `NodeId`, `PageIndex`); ot
 
 - **Endpoint description**: Historical trend of a keyword's search volume, search ranking and CPC bid. Supports monthly and weekly dimensions.
 - **Credits consumed**: 5 (monthly, Type=1) / 10 (weekly, Type=2) — formerly billed 1 / 2 requests; the 1-request = 5-credits conversion applies (2026-11-26 requirement). Original credit-metered endpoints are unchanged.
-- **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 5(in), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa)
+- **Supported domains**: 1(us), 2(gb), 3(de), 4(fr), 6(ca), 7(jp), 8(es), 9(it), 10(mx), 11(ae), 12(au), 13(br), 14(sa) — domain 5 (in) is not supported for keyword endpoints (file-level limitation)
 - **Request parameters**:
   | Parameter | Type | Required | Description |
   |------|------|------|------|

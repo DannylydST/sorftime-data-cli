@@ -56,12 +56,12 @@ COMPETITORS="B0CVM8TXHP,B0XXXXXXX,B0YYYYYYY,B0ZZZZZZZZ,B0AAAAAAAA"
 # Step 1: Batch query base info (up to 10 ASINs, 1 call)
 sorftime api ProductRequest '{"asin": "'"$COMPETITORS"'", "trend": 1}' --domain 1
 
-# Step 2: Query variant sales history for each (loop, 1 request per ASIN)
+# Step 2: Query variant sales history for each (loop, 1 call per ASIN = 10 credits)
 for asin in $(echo $COMPETITORS | tr ',' ' '); do
   sorftime api AsinSalesVolume '{"asin": "'"$asin"'", "queryDate": "2026-01-01", "queryEndDate": "2026-03-31"}' --domain 1
 done
 
-# Step 3: Reverse-lookup keywords for each (loop, 1 request per ASIN)
+# Step 3: Reverse-lookup keywords for each (loop, 1 call per ASIN)
 for asin in $(echo $COMPETITORS | tr ',' ' '); do
   sorftime api ASINRequestKeyword '{"asin": "'"$asin"'", "pageSize": 100}' --domain 1
 done

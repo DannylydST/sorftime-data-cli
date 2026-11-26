@@ -1,8 +1,8 @@
 # Account Management Endpoints (5)
 
-**Endpoints in this file**: CoinQuery, CoinStream, RequestStreamMonth
+**Endpoints in this file**: CoinQuery, CoinStream, RequestStreamMonth, CoinStreamMonth, CoinUsage
 
-> These 3 endpoints are common to all platforms and can be called against any Amazon / Shopee / Walmart site. They are account-level endpoints (not site-specific).
+> These 5 endpoints are common to all platforms and can be called against any Amazon / Shopee / Walmart site. Note: `CoinStreamMonth` and `CoinUsage` cover credit data from 2026-11-23 onward (earlier data via `CoinStream`). They are account-level endpoints (not site-specific).
 
 For common reference, see [`_common.md`](./_common.md): CLI call template, Domain table, error codes, response structure, rate limits & concurrency.
 
